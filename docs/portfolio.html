@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - GRIT Web Services Limited</title>
+    <meta name="description" content="Explore GRIT Web Services Limited's portfolio of real-world tech projects built for Zambian businesses — from fintech portals to AI dashboards.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: #0b0f1e;
+            color: #e2e8f0;
+        }
+
+        /* ── Underline accent (matches services.html) ── */
+        .underline-accent {
+            position: relative;
+            display: inline-block;
+        }
+
+        .underline-accent::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #3b82f6;
+            border-radius: 0px;
+        }
+
+        /* ── Hex logo ── */
+        .hex-logo {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            border-radius: 2px;
+            font-weight: 700;
+            font-size: 20px;
+            color: white;
+        }
+
+        /* ── Buttons ── */
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 0px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 300ms ease;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateX(2px);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 0px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 300ms ease;
+            cursor: pointer;
+            border: 1px solid #1e2a45;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-ghost:hover {
+            border-color: #3b82f6;
+            color: #3b82f6;
+        }
+
+        /* ── Filter Tabs ── */
+        .filter-tab {
+            padding: 8px 20px;
+            border-radius: 0px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 250ms ease;
+            border: 1px solid #1e2a45;
+            background: transparent;
+            color: #94a3b8;
+            white-space: nowrap;
+        }
+
+        .filter-tab:hover {
+            border-color: #3b82f6;
+            color: #3b82f6;
+        }
+
+        .filter-tab.active {
+            background: #2563eb;
+            border-color: #2563eb;
+            color: white;
+        }
+
+        /* ── Project Card ── */
+        .project-card {
+            background: #111827;
+            border: 1px solid #1e2a45;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 300ms ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            border-color: #3b82f6;
+            box-shadow: 0 0 24px rgba(59, 130, 246, 0.25);
+        }
+
+        .project-card.hidden-card {
+            display: none;
+        }
+
+        /* ── Thumbnail placeholder ── */
+        .card-thumb {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .thumb-gradient {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Unique gradient per card category */
+        .thumb-web    { background: linear-gradient(135deg, #0f1f3d 0%, #0b0f1e 60%, #1a2744 100%); }
+        .thumb-soft   { background: linear-gradient(135deg, #0d1f2d 0%, #0b0f1e 60%, #112233 100%); }
+        .thumb-ai     { background: linear-gradient(135deg, #120e2d 0%, #0b0f1e 60%, #1a1040 100%); }
+        .thumb-mobile { background: linear-gradient(135deg, #0d1a2d 0%, #0b0f1e 60%, #1a2030 100%); }
+        .thumb-consult{ background: linear-gradient(135deg, #0f1e20 0%, #0b0f1e 60%, #112026 100%); }
+
+        /* Geometric SVG pattern overlay */
+        .thumb-pattern {
+            position: absolute;
+            inset: 0;
+            opacity: 0.18;
+        }
+
+        /* Mock browser chrome */
+        .mock-browser {
+            position: absolute;
+            bottom: -8px;
+            left: 16px;
+            right: 16px;
+            height: 110px;
+            background: #0f172a;
+            border: 1px solid #1e2a45;
+            border-bottom: none;
+            border-radius: 4px 4px 0 0;
+            overflow: hidden;
+        }
+
+        .mock-browser-bar {
+            height: 22px;
+            background: #1e2a45;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            gap: 5px;
+        }
+
+        .mock-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+        }
+
+        .mock-browser-content {
+            padding: 8px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .mock-line {
+            height: 6px;
+            background: #1e2a45;
+            border-radius: 2px;
+        }
+
+        /* Mock phone */
+        .mock-phone {
+            position: absolute;
+            bottom: -4px;
+            right: 28px;
+            width: 54px;
+            height: 96px;
+            background: #0f172a;
+            border: 2px solid #1e2a45;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .mock-phone-notch {
+            width: 20px;
+            height: 5px;
+            background: #1e2a45;
+            border-radius: 0 0 4px 4px;
+            margin: 0 auto;
+        }
+
+        .mock-phone-content {
+            padding: 4px 5px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        /* ── Category badge on card ── */
+        .cat-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(37, 99, 235, 0.9);
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            padding: 3px 10px;
+            text-transform: uppercase;
+            backdrop-filter: blur(4px);
+        }
+
+        /* ── Card body ── */
+        .card-body {
+            padding: 20px 24px 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            color: white;
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .card-desc {
+            color: #94a3b8;
+            font-size: 13px;
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .card-link {
+            color: #3b82f6;
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 16px;
+            transition: gap 200ms ease, color 200ms ease;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .card-link:hover {
+            color: #60a5fa;
+            gap: 8px;
+        }
+
+        /* ── Grid fade transition ── */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        @media (max-width: 1024px) {
+            .projects-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 640px) {
+            .projects-grid { grid-template-columns: 1fr; }
+        }
+
+        .project-card {
+            transition: opacity 250ms ease, transform 300ms ease, border-color 300ms ease, box-shadow 300ms ease;
+        }
+
+        .project-card.fade-out {
+            opacity: 0;
+            transform: scale(0.97);
+        }
+
+        /* ── Modal ── */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: overlayFadeIn 300ms ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        @keyframes overlayFadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        .modal-box {
+            background: #111827;
+            border: 1px solid #1e2a45;
+            max-width: 760px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalEntrance 300ms ease;
+        }
+
+        @keyframes modalEntrance {
+            from { opacity: 0; transform: scale(0.95) translateY(16px); }
+            to   { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .modal-box::-webkit-scrollbar { width: 4px; }
+        .modal-box::-webkit-scrollbar-track { background: #0b0f1e; }
+        .modal-box::-webkit-scrollbar-thumb { background: #1e2a45; border-radius: 2px; }
+
+        .modal-hero {
+            height: 220px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 34px;
+            height: 34px;
+            border-radius: 0px;
+            background: rgba(11, 15, 30, 0.7);
+            border: 1px solid #1e2a45;
+            color: #94a3b8;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 200ms ease;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        .modal-body {
+            padding: 32px;
+        }
+
+        /* ── Tech stack pill ── */
+        .tech-pill {
+            background: rgba(37, 99, 235, 0.12);
+            border: 1px solid rgba(59, 130, 246, 0.25);
+            color: #60a5fa;
+            padding: 4px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 0px;
+        }
+
+        /* ── Metric callout ── */
+        .metric-card {
+            background: rgba(37, 99, 235, 0.07);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-left: 3px solid #3b82f6;
+            padding: 14px 18px;
+        }
+
+        .metric-value {
+            color: white;
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .metric-label {
+            color: #94a3b8;
+            font-size: 12px;
+            margin-top: 2px;
+        }
+
+        /* ── Section divider ── */
+        .section-divider {
+            height: 1px;
+            background: #1e2a45;
+            margin: 24px 0;
+        }
+
+        /* ── CTA bottom section ── */
+        .bottom-cta {
+            background: #111827;
+            border-top: 1px solid #1e2a45;
+            border-bottom: 1px solid #1e2a45;
+        }
+
+        /* ── Scrollbar for filter tabs on mobile ── */
+        .filter-scroll {
+            overflow-x: auto;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .filter-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* close btn in services */
+        .close-btn {
+            background: none;
+            border: none;
+            color: #94a3b8;
+            cursor: pointer;
+            font-size: 24px;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 200ms ease;
+        }
+
+        .close-btn:hover { color: #e2e8f0; }
+    </style>
+</head>
+<body class="bg-[#0b0f1e] text-white">
+
+    <!-- ══════════════════════════════════════ NAVBAR ══ -->
+    <nav class="bg-[#0b0f1e] border-b border-[#1e2a45] sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2">
+                    <div class="hex-logo">G</div>
+                    <span class="text-white font-bold text-lg hidden sm:inline">GRIT</span>
+                </div>
+
+                <!-- Nav Links -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-300 hover:text-white text-xs font-semibold tracking-wider transition">HOME</a>
+                    <a href="services.html" class="text-gray-300 hover:text-white text-xs font-semibold tracking-wider transition">SERVICES</a>
+                    <a href="portfolio.html" class="text-blue-400 hover:text-blue-300 text-xs font-semibold tracking-wider transition">PORTFOLIO</a>
+                    <a href="about.html" class="text-gray-300 hover:text-white text-xs font-semibold tracking-wider transition">ABOUT</a>
+                    <a href="contact.html" class="text-gray-300 hover:text-white text-xs font-semibold tracking-wider transition">CONTACT</a>
+                </div>
+
+                <!-- CTA -->
+                <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold text-sm transition">
+                    REQUEST A QUOTE
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ══════════════════════════════════════ PAGE HEADER ══ -->
+    <section class="bg-[#0b0f1e] pt-16 pb-8 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
+                <div>
+                    <h1 class="text-5xl md:text-6xl font-bold text-white mb-8">
+                        <span class="underline-accent">Portfolio.</span>
+                    </h1>
+                </div>
+                <div class="md:max-w-sm pt-4">
+                    <p class="text-gray-400 text-lg leading-relaxed">
+                        Real solutions. Real impact. Built for businesses that mean business.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════ FILTER TABS ══ -->
+    <section class="bg-[#0b0f1e] pb-10 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="filter-scroll">
+                <div class="flex items-center gap-3 py-2" id="filterBar">
+                    <button class="filter-tab active" data-filter="all" onclick="filterProjects('all', this)">All</button>
+                    <button class="filter-tab" data-filter="Web Development"    onclick="filterProjects('Web Development', this)">Web Development</button>
+                    <button class="filter-tab" data-filter="Software Solutions" onclick="filterProjects('Software Solutions', this)">Software Solutions</button>
+                    <button class="filter-tab" data-filter="AI & Automation"    onclick="filterProjects('AI & Automation', this)">AI &amp; Automation</button>
+                    <button class="filter-tab" data-filter="Mobile Apps"        onclick="filterProjects('Mobile Apps', this)">Mobile Apps</button>
+                    <button class="filter-tab" data-filter="Consulting"         onclick="filterProjects('Consulting', this)">Consulting</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════ PROJECTS GRID ══ -->
+    <section class="bg-[#0b0f1e] pb-24 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="projects-grid" id="projectsGrid">
+
+                <!-- ── Card 1: ZamPay Gateway ── -->
+                <div class="project-card" data-category="Web Development">
+                    <div class="card-thumb">
+                        <div class="thumb-gradient thumb-web">
+                            <!-- SVG geometric pattern -->
+                            <svg class="thumb-pattern" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                                <defs>
+                                    <pattern id="grid1" width="40" height="40" patternUnits="userSpaceOnUse">
+                                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#3b82f6" stroke-width="0.5"/>
+                                    </pattern>
+                                </defs>
+                                <rect width="400" height="200" fill="url(#grid1)"/>
+                                <circle cx="320" cy="60" r="60" fill="none" stroke="#3b82f6" stroke-width="0.5"/>
+                                <circle cx="320" cy="60" r="35" fill="none" stroke="#3b82f6" stroke-width="0.5"/>
+                                <line x1="0" y1="0" x2="200" y2="200" stroke="#3b82f6" stroke-width="0.5"/>
+                            </svg>
+                            <!-- Mock browser chrome -->
+                            <div class="mock-browser">
+                                <div class="mock-browser-bar">
+                                    <div class="mock-dot" style="background:#ef4444"></div>
+                                    <div class="mock-dot" style="background:#f59e0b"></div>
+                                    <div class="mock-dot" style="background:#22c55e"></div>
+                                    <div style="flex:1; height:10px; background:#0b0f1e; border-radius:2px; margin-left:6px;"></div>
+                                </div>
+                                <div class="mock-browser-content">
+                                    <div class="mock-line" style="width:55%; background:#2563eb; opacity:.6;"></div>
+                                    <div style="display:flex;gap:6px;">
+                                        <div class="mock-line" style="width:30%; height:28px; background:#1e2a45;"></div>
+                                        <div style="flex:1; display:flex; flex-direction:column; gap:4px; padding-top:4px;">
+                                            <div class="mock-line" style="width:80%;"></div>
+                                            <div class="mock-line" style="width:60%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="cat-badge">Web Development</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">ZamPay Gateway</div>
+                        <p class="card-desc">A secure online payment portal built for a Lusaka-based fintech startup, handling 10,000+ monthly transactions.</p>
+                        <button class="card-link" onclick="openCaseStudy(0)">View Case Study <span>→</span></button>
+                    </div>
+                </div>
+
+                <!-- ── Card 2: MedTrack Zambia ── -->
+                <div class="project-card" data-category="Software Solutions">
+                    <div class="card-thumb">
+                        <div class="thumb-gradient thumb-soft">
+                            <svg class="thumb-pattern" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                                <defs>
+                                    <pattern id="dots2" width="20" height="20" patternUnits="userSpaceOnUse">
+                                        <circle cx="10" cy="10" r="1" fill="#3b82f6"/>
+                                    </pattern>
+                                </defs>
+                                <rect width="400" height="200" fill="url(#dots2)"/>
+                                <rect x="50" y="30" width="120" height="80" rx="2" fill="none" stroke="#3b82f6" stroke-width="0.7"/>
+                                <rect x="60" y="40" width="20" height="20" rx="1" fill="#3b82f6" opacity=".15"/>
+                                <line x1="0" y1="200" x2="400" y2="0" stroke="#3b82f6" stroke-width="0.4"/>
+                            </svg>
+                            <div class="mock-browser">
+                                <div class="mock-browser-bar">
+                                    <div class="mock-dot" style="background:#ef4444"></div>
+                                    <div class="mock-dot" style="background:#f59e0b"></div>
+                                    <div class="mock-dot" style="background:#22c55e"></div>
+                                    <div style="flex:1; height:10px; background:#0b0f1e; border-radius:2px; margin-left:6px;"></div>
+                                </div>
+                                <div class="mock-browser-content">
+                                    <div style="display:flex;gap:6px;align-items:center;">
+                                        <div class="mock-line" style="width:14px;height:14px;background:#3b82f6; opacity:.5; flex-shrink:0;"></div>
+                                        <div class="mock-line" style="width:50%;"></div>
+                                    </div>
+                                    <div class="mock-line" style="width:90%;"></div>
+                                    <div class="mock-line" style="width:70%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="cat-badge">Software Solutions</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">MedTrack Zambia</div>
+                        <p class="card-desc">A hospital inventory and patient records management system deployed across 3 clinics in Copperbelt Province.</p>
+                        <button class="card-link" onclick="openCaseStudy(1)">View Case Study <span>→</span></button>
+                    </div>
+                </div>
+
+                <!-- ── Card 3: AgroSense Dashboard ── -->
+                <div class="project-card" data-category="AI & Automation">
+                    <div class="card-thumb">
+                        <div class="thumb-gradient thumb-ai">
+                            <svg class="thumb-pattern" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                                <defs>
+                                    <pattern id="hex3" width="30" height="26" patternUnits="userSpaceOnUse">
+                                        <polygon points="15,1 28,8 28,22 15,29 2,22 2,8" fill="none" stroke="#8b5cf6" stroke-width="0.5"/>
+                                    </pattern>
+                                </defs>
+                                <rect width="400" height="200" fill="url(#hex3)"/>
+                                <polyline points="20,180 80,120 140,150 200,80 260,110 320,50 380,90" fill="none" stroke="#8b5cf6" stroke-width="1.5"/>
+                                <circle cx="200" cy="80" r="4" fill="#8b5cf6" opacity=".7"/>
+                            </svg>
+                            <div class="mock-browser">
+                                <div class="mock-browser-bar">
+                                    <div class="mock-dot" style="background:#ef4444"></div>
+                                    <div class="mock-dot" style="background:#f59e0b"></div>
+                                    <div class="mock-dot" style="background:#22c55e"></div>
+                                    <div style="flex:1; height:10px; background:#0b0f1e; border-radius:2px; margin-left:6px;"></div>
+                                </div>
+                                <div class="mock-browser-content">
+                                    <div style="display:flex;gap:4px;height:50px;align-items:flex-end;">
+                                        <div style="flex:1;background:#8b5cf6;opacity:.35;border-radius:1px 1px 0 0;height:60%;"></div>
+                                        <div style="flex:1;background:#8b5cf6;opacity:.35;border-radius:1px 1px 0 0;height:80%;"></div>
+                                        <div style="flex:1;background:#8b5cf6;opacity:.35;border-radius:1px 1px 0 0;height:45%;"></div>
+                                        <div style="flex:1;background:#8b5cf6;opacity:.6;border-radius:1px 1px 0 0;height:95%;"></div>
+                                        <div style="flex:1;background:#8b5cf6;opacity:.35;border-radius:1px 1px 0 0;height:70%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="cat-badge" style="background:rgba(139,92,246,0.9);">AI &amp; Automation</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">AgroSense Dashboard</div>
+                        <p class="card-desc">An AI-powered crop monitoring dashboard that uses predictive analytics to advise smallholder farmers on yield optimization.</p>
+                        <button class="card-link" onclick="openCaseStudy(2)">View Case Study <span>→</span></button>
+                    </div>
+                </div>
+
+                <!-- ── Card 4: RentEase App ── -->
+                <div class="project-card" data-category="Mobile Apps">
+                    <div class="card-thumb">
+                        <div class="thumb-gradient thumb-mobile" style="display:flex;align-items:flex-end;justify-content:center;gap:8px;padding-bottom:0;">
+                            <svg class="thumb-pattern" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                                <defs>
+                                    <pattern id="cross4" width="20" height="20" patternUnits="userSpaceOnUse">
+                                        <line x1="10" y1="0" x2="10" y2="20" stroke="#22d3ee" stroke-width="0.4"/>
+                                        <line x1="0" y1="10" x2="20" y2="10" stroke="#22d3ee" stroke-width="0.4"/>
+                                    </pattern>
+                                </defs>
+                                <rect width="400" height="200" fill="url(#cross4)"/>
+                                <circle cx="80" cy="100" r="50" fill="none" stroke="#22d3ee" stroke-width="0.5"/>
+                            </svg>
+                            <!-- Two phones side by side -->
+                            <div class="mock-phone" style="bottom:-4px; right:auto; left:50%; transform:translateX(-65px);">
+                                <div class="mock-phone-notch"></div>
+                                <div class="mock-phone-content">
+                                    <div style="height:5px;background:#22d3ee;opacity:.4;border-radius:1px;"></div>
+                                    <div style="height:20px;background:#1e2a45;border-radius:1px;"></div>
+                                    <div style="height:4px;background:#1e2a45;border-radius:1px;width:70%;"></div>
+                                    <div style="height:4px;background:#1e2a45;border-radius:1px;width:50%;"></div>
+                                    <div style="height:4px;background:#22d3ee;opacity:.25;border-radius:1px;"></div>
+                                </div>
+                            </div>
+                            <div class="mock-phone" style="bottom:-4px; right:auto; left:50%; transform:translateX(10px); height:110px;">
+                                <div class="mock-phone-notch"></div>
+                                <div class="mock-phone-content">
+                                    <div style="height:5px;background:#22d3ee;opacity:.4;border-radius:1px;"></div>
+                                    <div style="height:25px;background:#1e2a45;border-radius:1px;"></div>
+                                    <div style="height:4px;background:#1e2a45;border-radius:1px;width:80%;"></div>
+                                    <div style="height:4px;background:#22d3ee;opacity:.35;border-radius:1px;"></div>
+                                    <div style="height:14px;background:#1e2a45;border-radius:1px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="cat-badge" style="background:rgba(8,145,178,0.9);">Mobile Apps</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">RentEase App</div>
+                        <p class="card-desc">A cross-platform property rental app for the Zambian market, connecting landlords and tenants with in-app lease management.</p>
+                        <button class="card-link" onclick="openCaseStudy(3)">View Case Study <span>→</span></button>
+                    </div>
+                </div>
+
+                <!-- ── Card 5: LegalEdge Portal ── -->
+                <div class="project-card" data-category="Web Development">
+                    <div class="card-thumb">
+                        <div class="thumb-gradient thumb-web">
+                            <svg class="thumb-pattern" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                                <defs>
+                                    <pattern id="grid5" width="40" height="40" patternUnits="userSpaceOnUse">
+                                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#3b82f6" stroke-width="0.5"/>
+                                    </pattern>
+                                </defs>
+                                <rect width="400" height="200" fill="url(#grid5)"/>
+                                <rect x="200" y="20" width="160" height="110" fill="none" stroke="#3b82f6" stroke-width="0.6"/>
+                                <line x1="200" y1="45" x2="360" y2="45" stroke="#3b82f6" stroke-width="0.4"/>
+                            </svg>
+                            <div class="mock-browser">
+                                <div class="mock-browser-bar">
+                                    <div class="mock-dot" style="background:#ef4444"></div>
+                                    <div class="mock-dot" style="background:#f59e0b"></div>
+                                    <div class="mock-dot" style="background:#22c55e"></div>
+                                    <div style="flex:1; height:10px; background:#0b0f1e; border-radius:2px; margin-left:6px;"></div>
+                                </div>
+                                <div class="mock-browser-content">
+                                    <div style="display:flex;gap:6px;">
+                                        <div style="width:60px;display:flex;flex-direction:column;gap:3px;">
+                                            <div class="mock-line" style="width:100%;height:6px;background:#2563eb;opacity:.4;"></div>
+                                            <div class="mock-line" style="width:80%;"></div>
+                                            <div class="mock-line" style="width:90%;"></div>
+                                            <div class="mock-line" style="width:70%;"></div>
+                                        </div>
+                                        <div style="flex:1;display:flex;flex-direction:column;gap:3px;">
+                                            <div class="mock-line" style="width:100%;"></div>
+                                            <div class="mock-line" style="width:85%;"></div>
+                                            <div class="mock-line" style="width:70%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="cat-badge">Web Development</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">LegalEdge Portal</div>
+                        <p class="card-desc">A client-facing document management portal for a Lusaka law firm, with role-based access and e-signature integration.</p>
+                        <button class="card-link" onclick="openCaseStudy(4)">View Case Study <span>→</span></button>
+                    </div>
+                </div>
+
+                <!-- ── Card 6: SmartStock POS ── -->
+                <div class="project-card" data-category="Software Solutions">
+                    <div class="card-thumb">
+                        <div class="thumb-gradient thumb-soft">
+                            <svg class="thumb-pattern" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                                <defs>
+                                    <pattern id="dots6" width="20" height="20" patternUnits="userSpaceOnUse">
+                                        <circle cx="10" cy="10" r="1" fill="#3b82f6"/>
+                                    </pattern>
+                                </defs>
+                                <rect width="400" height="200" fill="url(#dots6)"/>
+                                <polygon points="200,20 360,110 280,180 120,180 40,110" fill="none" stroke="#3b82f6" stroke-width="0.6"/>
+                            </svg>
+                            <div class="mock-browser">
+                                <div class="mock-browser-bar">
+                                    <div class="mock-dot" style="background:#ef4444"></div>
+                                    <div class="mock-dot" style="background:#f59e0b"></div>
+                                    <div class="mock-dot" style="background:#22c55e"></div>
+                                    <div style="flex:1; height:10px; background:#0b0f1e; border-radius:2px; margin-left:6px;"></div>
+                                </div>
+                                <div class="mock-browser-content">
+                                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;height:55px;">
+                                        <div style="background:#1e2a45;border-radius:2px;display:flex;align-items:center;justify-content:center;">
+                                            <div style="width:12px;height:12px;background:#3b82f6;opacity:.5;"></div>
+                                        </div>
+                                        <div style="background:#1e2a45;border-radius:2px;display:flex;align-items:center;justify-content:center;">
+                                            <div style="width:12px;height:12px;background:#3b82f6;opacity:.5;"></div>
+                                        </div>
+                                        <div style="background:#2563eb;opacity:.3;border-radius:2px;"></div>
+                                        <div style="background:#1e2a45;border-radius:2px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="cat-badge">Software Solutions</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">SmartStock POS</div>
+                        <p class="card-desc">A cloud-based point-of-sale and inventory system tailored for Zambian SMEs in the retail sector.</p>
+                        <button class="card-link" onclick="openCaseStudy(5)">View Case Study <span>→</span></button>
+                    </div>
+                </div>
+
+                <!-- ── Card 7: AutoBot CRM ── -->
+                <div class="project-card" data-category="AI & Automation">
+                    <div class="card-thumb">
+                        <div class="thumb-gradient thumb-ai">
+                            <svg class="thumb-pattern" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                                <defs>
+                                    <pattern id="hex7" width="30" height="26" patternUnits="userSpaceOnUse">
+                                        <polygon points="15,1 28,8 28,22 15,29 2,22 2,8" fill="none" stroke="#8b5cf6" stroke-width="0.5"/>
+                                    </pattern>
+                                </defs>
+                                <rect width="400" height="200" fill="url(#hex7)"/>
+                                <circle cx="200" cy="100" r="70" fill="none" stroke="#8b5cf6" stroke-width="0.6"/>
+                                <line x1="150" y1="60" x2="200" y2="100" stroke="#8b5cf6" stroke-width="0.8"/>
+                                <line x1="260" y1="70" x2="200" y2="100" stroke="#8b5cf6" stroke-width="0.8"/>
+                                <line x1="180" y1="155" x2="200" y2="100" stroke="#8b5cf6" stroke-width="0.8"/>
+                                <circle cx="150" cy="60" r="6" fill="#8b5cf6" opacity=".4"/>
+                                <circle cx="260" cy="70" r="6" fill="#8b5cf6" opacity=".4"/>
+                                <circle cx="180" cy="155" r="6" fill="#8b5cf6" opacity=".4"/>
+                                <circle cx="200" cy="100" r="8" fill="#8b5cf6" opacity=".5"/>
+                            </svg>
+                            <div class="mock-browser">
+                                <div class="mock-browser-bar">
+                                    <div class="mock-dot" style="background:#ef4444"></div>
+                                    <div class="mock-dot" style="background:#f59e0b"></div>
+                                    <div class="mock-dot" style="background:#22c55e"></div>
+                                    <div style="flex:1; height:10px; background:#0b0f1e; border-radius:2px; margin-left:6px;"></div>
+                                </div>
+                                <div class="mock-browser-content">
+                                    <div style="display:flex;gap:5px;align-items:flex-start;">
+                                        <div style="flex:1;display:flex;flex-direction:column;gap:3px;">
+                                            <div class="mock-line" style="width:90%;"></div>
+                                            <div class="mock-line" style="width:70%;"></div>
+                                            <div style="height:18px;background:#8b5cf6;opacity:.2;width:60%;border-radius:8px;margin-top:2px;"></div>
+                                        </div>
+                                        <div style="flex:1;display:flex;flex-direction:column;gap:3px;padding-top:14px;">
+                                            <div class="mock-line" style="width:80%;"></div>
+                                            <div style="height:18px;background:#1e2a45;width:70%;border-radius:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="cat-badge" style="background:rgba(139,92,246,0.9);">AI &amp; Automation</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">AutoBot CRM</div>
+                        <p class="card-desc">An intelligent CRM with automated WhatsApp follow-ups and lead scoring built for a real estate agency.</p>
+                        <button class="card-link" onclick="openCaseStudy(6)">View Case Study <span>→</span></button>
+                    </div>
+                </div>
+
+                <!-- ── Card 8: EduPath Zambia ── -->
+                <div class="project-card" data-category="Consulting">
+                    <div class="card-thumb">
+                        <div class="thumb-gradient thumb-consult">
+                            <svg class="thumb-pattern" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                                <defs>
+                                    <pattern id="diag8" width="20" height="20" patternUnits="userSpaceOnUse">
+                                        <line x1="0" y1="20" x2="20" y2="0" stroke="#10b981" stroke-width="0.5"/>
+                                    </pattern>
+                                </defs>
+                                <rect width="400" height="200" fill="url(#diag8)"/>
+                                <rect x="30" y="40" width="80" height="60" rx="2" fill="none" stroke="#10b981" stroke-width="0.7"/>
+                                <rect x="140" y="60" width="80" height="60" rx="2" fill="none" stroke="#10b981" stroke-width="0.7"/>
+                                <rect x="250" y="40" width="80" height="60" rx="2" fill="none" stroke="#10b981" stroke-width="0.7"/>
+                                <line x1="110" y1="70" x2="140" y2="90" stroke="#10b981" stroke-width="0.7"/>
+                                <line x1="220" y1="90" x2="250" y2="70" stroke="#10b981" stroke-width="0.7"/>
+                                <line x1="70" y1="140" x2="70" y2="100" stroke="#10b981" stroke-width="0.7"/>
+                                <line x1="180" y1="140" x2="180" y2="120" stroke="#10b981" stroke-width="0.7"/>
+                                <line x1="290" y1="140" x2="290" y2="100" stroke="#10b981" stroke-width="0.7"/>
+                            </svg>
+                            <div class="mock-browser">
+                                <div class="mock-browser-bar">
+                                    <div class="mock-dot" style="background:#ef4444"></div>
+                                    <div class="mock-dot" style="background:#f59e0b"></div>
+                                    <div class="mock-dot" style="background:#22c55e"></div>
+                                    <div style="flex:1; height:10px; background:#0b0f1e; border-radius:2px; margin-left:6px;"></div>
+                                </div>
+                                <div class="mock-browser-content">
+                                    <div class="mock-line" style="width:65%;background:#10b981;opacity:.35;"></div>
+                                    <div class="mock-line" style="width:90%;"></div>
+                                    <div class="mock-line" style="width:75%;"></div>
+                                    <div style="height:16px;background:#10b981;opacity:.2;width:40%;border-radius:1px;margin-top:2px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="cat-badge" style="background:rgba(5,150,105,0.9);">Consulting</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">EduPath Zambia</div>
+                        <p class="card-desc">A digital transformation roadmap and tech infrastructure audit delivered for a national e-learning initiative.</p>
+                        <button class="card-link" onclick="openCaseStudy(7)">View Case Study <span>→</span></button>
+                    </div>
+                </div>
+
+            </div><!-- /projects-grid -->
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════ BOTTOM CTA ══ -->
+    <section class="bottom-cta py-20 px-4">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Have a project in mind?</h2>
+            <p class="text-gray-400 text-lg mb-10">Let's build something great together.</p>
+            <div class="flex items-center justify-center flex-wrap gap-4">
+                <button class="btn-primary text-base px-8 py-3">Work With Us</button>
+                <button class="btn-ghost text-base px-8 py-3">View Services</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════ FOOTER ══ -->
+    <footer class="bg-[#0b0f1e] border-t border-[#1e2a45] py-12 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="hex-logo">G</div>
+                        <span class="text-white font-bold">GRIT</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">Engineering the Future</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-blue-400 transition">Web Development</a></li>
+                        <li><a href="#" class="hover:text-blue-400 transition">Software Solutions</a></li>
+                        <li><a href="#" class="hover:text-blue-400 transition">AI &amp; Automation</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-blue-400 transition">About</a></li>
+                        <li><a href="portfolio.html" class="hover:text-blue-400 transition">Portfolio</a></li>
+                        <li><a href="#" class="hover:text-blue-400 transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Location</h4>
+                    <p class="text-gray-400 text-sm">Lusaka, Zambia</p>
+                </div>
+            </div>
+            <div class="border-t border-[#1e2a45] pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2026 GRIT Web Services Limited. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ══════════════════════════════════════ CASE STUDY MODAL ══ -->
+    <div id="caseModal" class="modal-overlay">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeCaseStudy()" id="modalCloseBtn">✕</button>
+            <div class="modal-hero" id="modalHeroArea"></div>
+            <div class="modal-body">
+                <div id="modalInner"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════ JAVASCRIPT ══ -->
+    <script>
+        // ── Project data ──────────────────────────────────────────
+        const projects = [
+            {
+                id: 0,
+                title: 'ZamPay Gateway',
+                category: 'Web Development',
+                badgeColor: 'rgba(37,99,235,0.9)',
+                heroGrad: 'linear-gradient(135deg,#0f1f3d,#0b0f1e,#1a2744)',
+                heroAccent: '#3b82f6',
+                heroPatternId: 'modalP0',
+                challenge: 'A fast-growing Lusaka-based fintech startup needed a secure, high-throughput payment gateway capable of handling thousands of daily transactions across multiple mobile money providers. Their existing vendor solution was unreliable and lacked local compliance standards.',
+                solution: 'GRIT engineered a bespoke payment portal integrating Airtel Money, MTN Mobile Money, and card-based flows under a single unified API. We implemented PCI-DSS aligned storage and tokenisation, built a real-time transaction monitoring dashboard, and automated reconciliation for the finance team — all within a 10-week delivery window.',
+                deliverables: [
+                    'Custom unified payment API (REST & webhooks)',
+                    'Real-time fraud detection & transaction monitoring dashboard',
+                    'PCI-DSS aligned data handling & tokenisation layer',
+                    'Automated daily reconciliation reporting system',
+                ],
+                techStack: ['React', 'Node.js', 'PostgreSQL', 'AWS', 'Redis', 'Stripe API'],
+                metrics: [
+                    { value: '10,000+', label: 'Monthly transactions processed' },
+                    { value: '99.97%', label: 'Uptime since go-live' },
+                    { value: '40%', label: 'Reduction in failed payment errors' },
+                ],
+            },
+            {
+                id: 1,
+                title: 'MedTrack Zambia',
+                category: 'Software Solutions',
+                badgeColor: 'rgba(37,99,235,0.9)',
+                heroGrad: 'linear-gradient(135deg,#0d1f2d,#0b0f1e,#112233)',
+                heroAccent: '#3b82f6',
+                challenge: 'Three clinics across Copperbelt Province were managing patient records and medical inventory on paper and isolated spreadsheets, leading to stock shortages, duplicate entries, and slow physician access to patient history.',
+                solution: 'GRIT built MedTrack — a centralised, cloud-hosted hospital management system with role-based access for doctors, nurses, pharmacists, and administrators. The system synchronises patient records in real time across all three clinic branches, provides low-stock alerts, and generates compliance-ready reports for the Ministry of Health.',
+                deliverables: [
+                    'Multi-clinic patient records management with audit logs',
+                    'Real-time inventory tracking with automated reorder alerts',
+                    'Role-based access control (RBAC) for clinical staff',
+                    'Ministry of Health compliance reporting module',
+                ],
+                techStack: ['Vue.js', 'Laravel', 'MySQL', 'Docker', 'DigitalOcean'],
+                metrics: [
+                    { value: '3', label: 'Clinics onboarded in 30 days' },
+                    { value: '60%', label: 'Reduction in stock discrepancies' },
+                    { value: '4×', label: 'Faster patient record retrieval' },
+                ],
+            },
+            {
+                id: 2,
+                title: 'AgroSense Dashboard',
+                category: 'AI & Automation',
+                badgeColor: 'rgba(139,92,246,0.9)',
+                heroGrad: 'linear-gradient(135deg,#120e2d,#0b0f1e,#1a1040)',
+                heroAccent: '#8b5cf6',
+                challenge: 'An NGO working with smallholder farmers in Southern Province lacked data-driven tools to predict crop yields, detect disease outbreaks early, and advise farmers on optimal planting schedules. Decisions were made purely on experience, leading to significant yield losses.',
+                solution: 'GRIT developed a machine-learning powered dashboard that ingests satellite NDVI imagery, soil sensor data, and rainfall APIs to surface actionable crop health insights. A trained gradient-boosting model provides per-plot yield forecasts 6 weeks in advance, with SMS alerts sent directly to field extension officers for rapid intervention.',
+                deliverables: [
+                    'ML yield-prediction model (gradient boosting, 87% accuracy)',
+                    'Satellite NDVI imagery integration & automated analysis pipeline',
+                    'SMS push alert system for field extension officers',
+                    'Farmer-facing web dashboard with Zambian language localisation',
+                ],
+                techStack: ['Python', 'FastAPI', 'React', 'TensorFlow', 'AWS S3', 'Africa\'s Talking SMS'],
+                metrics: [
+                    { value: '87%', label: 'Yield prediction accuracy' },
+                    { value: '2,400+', label: 'Farmers reached via SMS alerts' },
+                    { value: '22%', label: 'Average yield improvement in pilot season' },
+                ],
+            },
+            {
+                id: 3,
+                title: 'RentEase App',
+                category: 'Mobile Apps',
+                badgeColor: 'rgba(8,145,178,0.9)',
+                heroGrad: 'linear-gradient(135deg,#0d1a2d,#0b0f1e,#1a2030)',
+                heroAccent: '#22d3ee',
+                challenge: 'Zambia\'s rental market was fragmented — landlords relied on WhatsApp groups and word of mouth while tenants had no reliable way to view verified listings, sign leases, or track rental payment history, leading to high fraud and dispute rates.',
+                solution: 'GRIT built RentEase as a cross-platform Flutter app available on iOS and Android. The app features a verified listing marketplace, in-app digital lease generation and signing, M-Pesa / Airtel Money rent payment integration, and an automated receipt & dispute logging system accessible to both parties.',
+                deliverables: [
+                    'Cross-platform Flutter app (iOS & Android)',
+                    'Verified landlord onboarding with ID & property document checks',
+                    'In-app digital lease generation, signing & storage',
+                    'Mobile money payment integration with automated receipts',
+                ],
+                techStack: ['Flutter', 'Dart', 'Firebase', 'Node.js', 'Airtel Money API', 'M-Pesa API'],
+                metrics: [
+                    { value: '1,200+', label: 'Landlords onboarded in beta' },
+                    { value: '4.7★', label: 'Average app store rating' },
+                    { value: '35%', label: 'Reduction in rental disputes' },
+                ],
+            },
+            {
+                id: 4,
+                title: 'LegalEdge Portal',
+                category: 'Web Development',
+                badgeColor: 'rgba(37,99,235,0.9)',
+                heroGrad: 'linear-gradient(135deg,#0f1f3d,#0b0f1e,#1a2744)',
+                heroAccent: '#3b82f6',
+                challenge: 'A mid-sized Lusaka law firm was emailing sensitive case documents to clients, creating version control nightmares and compliance risks. Clients had no centralised view of their case files, progress updates, or signed agreements.',
+                solution: 'GRIT designed and built LegalEdge — a secure client-facing document management portal with granular role-based permissions. Partners, associates, and clients each access only the documents relevant to their role. Integrated e-signature powered by a DocuSign-compatible layer allows remote contract execution, cutting turnaround from weeks to hours.',
+                deliverables: [
+                    'Secure document vault with version history & audit trail',
+                    'Role-based access control (Partner / Associate / Client tiers)',
+                    'E-signature integration (DocuSign-compatible)',
+                    'Email and SMS client notification system',
+                ],
+                techStack: ['Next.js', 'TypeScript', 'PostgreSQL', 'AWS S3', 'WorkOS', 'Resend'],
+                metrics: [
+                    { value: '5 days → 4 hrs', label: 'Contract turnaround time' },
+                    { value: '100%', label: 'GDPR-aligned document handling' },
+                    { value: '8', label: 'Practice groups migrated to the portal' },
+                ],
+            },
+            {
+                id: 5,
+                title: 'SmartStock POS',
+                category: 'Software Solutions',
+                badgeColor: 'rgba(37,99,235,0.9)',
+                heroGrad: 'linear-gradient(135deg,#0d1f2d,#0b0f1e,#112233)',
+                heroAccent: '#3b82f6',
+                challenge: 'Zambian SME retailers were using generic POS tools built for Western markets, with no local mobile money integration, poor Kwacha formatting, and no meaningful stock management. Manual counting led to chronic over-ordering and cash loss.',
+                solution: 'GRIT built SmartStock — a cloud-based POS system optimised for the Zambian retail context. It integrates directly with MTN and Airtel float accounts, allows offline sale recording with automatic sync when connectivity is restored, and provides owners with a daily inventory health report accessible from any device.',
+                deliverables: [
+                    'Cloud POS with offline-first architecture & sync engine',
+                    'Zambian mobile money integration (MTN & Airtel)',
+                    'Auto-reorder triggers based on configurable stock thresholds',
+                    'Owner analytics dashboard (daily, weekly, monthly reporting)',
+                ],
+                techStack: ['React', 'Electron', 'SQLite', 'Node.js', 'Supabase', 'MTN MoMo API'],
+                metrics: [
+                    { value: '30%', label: 'Reduction in stock shrinkage' },
+                    { value: '15 min', label: 'Average onboarding time per store' },
+                    { value: '200+', label: 'SME stores using SmartStock' },
+                ],
+            },
+            {
+                id: 6,
+                title: 'AutoBot CRM',
+                category: 'AI & Automation',
+                badgeColor: 'rgba(139,92,246,0.9)',
+                heroGrad: 'linear-gradient(135deg,#120e2d,#0b0f1e,#1a1040)',
+                heroAccent: '#8b5cf6',
+                challenge: 'A real estate agency in Lusaka was losing leads due to slow manual follow-up. Sales agents were overwhelmed by volume, had no system of record, and spent hours copying client details between WhatsApp, email, and spreadsheets.',
+                solution: 'GRIT built AutoBot — a full CRM platform with automated WhatsApp Business API follow-up sequences triggered by lead status changes. An ML-powered lead scoring model prioritises high-intent prospects using search behaviour and engagement signals, surfacing the hottest leads to agents each morning.',
+                deliverables: [
+                    'CRM platform with pipeline views and agent assignment',
+                    'WhatsApp Business API automated follow-up sequences',
+                    'ML lead scoring model (logistic regression + engagement signals)',
+                    'Morning lead digest email with top-5 hottest leads per agent',
+                ],
+                techStack: ['React', 'Django', 'PostgreSQL', 'Celery', 'Redis', 'WhatsApp Business API', 'scikit-learn'],
+                metrics: [
+                    { value: '3×', label: 'Increase in lead-to-viewing conversion' },
+                    { value: '70%', label: 'Reduction in manual follow-up time' },
+                    { value: '48 hrs → 2 hrs', label: 'Average first-response time' },
+                ],
+            },
+            {
+                id: 7,
+                title: 'EduPath Zambia',
+                category: 'Consulting',
+                badgeColor: 'rgba(5,150,105,0.9)',
+                heroGrad: 'linear-gradient(135deg,#0f1e20,#0b0f1e,#112026)',
+                heroAccent: '#10b981',
+                challenge: 'A national e-learning initiative — backed by the Ministry of General Education — lacked a coherent digital strategy. Their infrastructure consisted of aging servers, inconsistent LMS deployments, and no clear data governance policy, preventing effective rollout across 200+ schools.',
+                solution: 'GRIT conducted a comprehensive 8-week digital transformation audit, interviewing stakeholders across 12 districts, benchmarking against comparable African edtech deployments, and delivering a phased 3-year technology roadmap. We also designed a reference LMS architecture optimised for low-bandwidth rural connectivity.',
+                deliverables: [
+                    '12-district stakeholder assessment with findings report',
+                    '3-year phased digital transformation roadmap',
+                    'Low-bandwidth LMS architecture design (offline-first)',
+                    'Data governance framework and IT policy templates',
+                ],
+                techStack: ['Moodle LMS', 'Cloudflare Workers', 'Progressive Web App', 'Google Workspace', 'Power BI'],
+                metrics: [
+                    { value: '200+', label: 'Schools included in the roadmap scope' },
+                    { value: '8 weeks', label: 'Full audit-to-delivery timeline' },
+                    { value: '3', label: 'Government departments aligned on the strategy' },
+                ],
+            },
+        ];
+
+        // ── Filter logic ──────────────────────────────────────────
+        function filterProjects(category, btn) {
+            // Update tab states
+            document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+            btn.classList.add('active');
+
+            const cards = document.querySelectorAll('.project-card');
+            cards.forEach(card => {
+                const match = category === 'all' || card.dataset.category === category;
+                if (!match) {
+                    card.style.opacity = '0';
+                    card.style.transform = 'scale(0.97)';
+                    setTimeout(() => { card.style.display = 'none'; }, 250);
+                }
+            });
+            cards.forEach(card => {
+                const match = category === 'all' || card.dataset.category === category;
+                if (match) {
+                    card.style.display = 'flex';
+                    // Trigger reflow so transition fires
+                    card.getBoundingClientRect();
+                    card.style.opacity = '1';
+                    card.style.transform = '';
+                }
+            });
+        }
+
+        // ── Modal helpers ─────────────────────────────────────────
+        function buildHeroSVG(project) {
+            const accent = project.heroAccent;
+            const isAI = project.category === 'AI & Automation';
+            const isMobile = project.category === 'Mobile Apps';
+            const isConsult = project.category === 'Consulting';
+
+            let patternInner = '';
+            if (isAI) {
+                patternInner = `
+                    <polygon points="15,1 28,8 28,22 15,29 2,22 2,8" fill="none" stroke="${accent}" stroke-width="0.5"/>`;
+            } else if (isMobile) {
+                patternInner = `
+                    <line x1="10" y1="0" x2="10" y2="20" stroke="${accent}" stroke-width="0.4"/>
+                    <line x1="0" y1="10" x2="20" y2="10" stroke="${accent}" stroke-width="0.4"/>`;
+            } else if (isConsult) {
+                patternInner = `
+                    <line x1="0" y1="20" x2="20" y2="0" stroke="${accent}" stroke-width="0.5"/>`;
+            } else {
+                patternInner = `
+                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="${accent}" stroke-width="0.5"/>`;
+            }
+
+            const pSize = (isAI || isMobile) ? 'width="20" height="20"' : 'width="40" height="40"';
+
+            return `
+            <svg style="width:100%;height:100%;position:absolute;inset:0;opacity:0.18;" viewBox="0 0 760 220" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                    <pattern id="mhp" ${pSize} patternUnits="userSpaceOnUse">${patternInner}</pattern>
+                </defs>
+                <rect width="760" height="220" fill="url(#mhp)"/>
+                <circle cx="600" cy="80" r="100" fill="none" stroke="${accent}" stroke-width="0.6"/>
+                <line x1="0" y1="220" x2="760" y2="0" stroke="${accent}" stroke-width="0.4"/>
+            </svg>
+            <div style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:10px;align-items:flex-end;">
+                <div style="width:340px;background:#0f172a;border:1px solid #1e2a45;border-bottom:none;border-radius:4px 4px 0 0;overflow:hidden;">
+                    <div style="height:24px;background:#1e2a45;display:flex;align-items:center;padding:0 10px;gap:5px;">
+                        <div style="width:8px;height:8px;border-radius:50%;background:#ef4444;"></div>
+                        <div style="width:8px;height:8px;border-radius:50%;background:#f59e0b;"></div>
+                        <div style="width:8px;height:8px;border-radius:50%;background:#22c55e;"></div>
+                        <div style="flex:1;height:12px;background:#0b0f1e;border-radius:2px;margin-left:8px;"></div>
+                    </div>
+                    <div style="padding:12px 14px;display:flex;flex-direction:column;gap:7px;">
+                        <div style="height:8px;background:${accent};opacity:.4;border-radius:2px;width:45%;"></div>
+                        <div style="height:7px;background:#1e2a45;border-radius:2px;width:85%;"></div>
+                        <div style="height:7px;background:#1e2a45;border-radius:2px;width:65%;"></div>
+                        <div style="display:flex;gap:8px;margin-top:4px;">
+                            <div style="height:28px;flex:1;background:#1e2a45;border-radius:2px;"></div>
+                            <div style="height:28px;flex:1;background:${accent};opacity:.2;border-radius:2px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+        }
+
+        function openCaseStudy(index) {
+            const p = projects[index];
+            const modal = document.getElementById('caseModal');
+            const heroArea = document.getElementById('modalHeroArea');
+            const inner = document.getElementById('modalInner');
+
+            // Hero area
+            heroArea.style.background = p.heroGrad;
+            heroArea.innerHTML = buildHeroSVG(p);
+
+            // Badge colour variables
+            const badgeBg = p.badgeColor;
+
+            // Deliverables
+            const delItems = p.deliverables.map(d =>
+                `<li style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #1e2a45;">
+                    <span style="color:${p.heroAccent};font-size:16px;line-height:1;flex-shrink:0;margin-top:1px;">•</span>
+                    <span style="color:#cbd5e1;font-size:14px;line-height:1.5;">${d}</span>
+                </li>`).join('');
+
+            // Tech pills
+            const pills = p.techStack.map(t =>
+                `<span class="tech-pill" style="border-color:rgba(${hexToRgb(p.heroAccent)},0.3);color:${p.heroAccent};">${t}</span>`).join('');
+
+            // Metrics
+            const metrics = p.metrics.map(m =>
+                `<div class="metric-card" style="border-left-color:${p.heroAccent};">
+                    <div class="metric-value">${m.value}</div>
+                    <div class="metric-label">${m.label}</div>
+                </div>`).join('');
+
+            inner.innerHTML = `
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;flex-wrap:wrap;">
+                    <h2 style="color:white;font-size:26px;font-weight:700;margin:0;">${p.title}</h2>
+                    <span style="background:${badgeBg};color:white;font-size:10px;font-weight:700;letter-spacing:.05em;padding:3px 12px;text-transform:uppercase;">${p.category}</span>
+                </div>
+
+                <h3 style="color:${p.heroAccent};font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;">The Challenge</h3>
+                <p style="color:#94a3b8;font-size:14px;line-height:1.7;margin-bottom:0;">${p.challenge}</p>
+
+                <div class="section-divider"></div>
+
+                <h3 style="color:${p.heroAccent};font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;">Our Solution</h3>
+                <p style="color:#94a3b8;font-size:14px;line-height:1.7;margin-bottom:0;">${p.solution}</p>
+
+                <div class="section-divider"></div>
+
+                <h3 style="color:${p.heroAccent};font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;">Key Deliverables</h3>
+                <ul style="list-style:none;padding:0;margin:0 0 0 0;">${delItems}</ul>
+
+                <div class="section-divider"></div>
+
+                <h3 style="color:${p.heroAccent};font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;">Tech Stack</h3>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:0;">${pills}</div>
+
+                <div class="section-divider"></div>
+
+                <h3 style="color:${p.heroAccent};font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;">Results</h3>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:0;">${metrics}</div>
+
+                <div style="margin-top:32px;">
+                    <button class="btn-primary" style="font-size:15px;padding:12px 28px;" onclick="closeCaseStudy()">
+                        Start Your Project →
+                    </button>
+                </div>
+            `;
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCaseStudy() {
+            const modal = document.getElementById('caseModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close on backdrop click
+        document.getElementById('caseModal').addEventListener('click', function(e) {
+            if (e.target === this) closeCaseStudy();
+        });
+
+        // Close on Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeCaseStudy();
+        });
+
+        // Hex colour → "r,g,b" for rgba()
+        function hexToRgb(hex) {
+            const r = parseInt(hex.slice(1,3),16);
+            const g = parseInt(hex.slice(3,5),16);
+            const b = parseInt(hex.slice(5,7),16);
+            return `${r},${g},${b}`;
+        }
+    </script>
+</body>
+</html>

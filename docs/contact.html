@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - GRIT Web Services Limited</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: Helvetica, Arial, sans-serif; }
+  </style>
+</head>
+<body class="bg-[#0A0E1A] text-white font-sans">
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 h-[72px] bg-[#0B1424]/[.96] backdrop-blur-md border-b border-[#22304a] flex items-center justify-between px-12 z-50 max-md:px-6">
+    <div class="flex items-center gap-3">
+      <div class="w-[42px] h-[42px] bg-[#0D2B5E] border-2 border-[#4A90D9] rounded-lg flex items-center justify-center text-[#4A90D9] font-black text-2xl">G</div>
+      <span class="text-lg font-bold tracking-wide">GRIT</span>
+    </div>
+    <div class="flex flex-col gap-1 cursor-pointer px-2 md:hidden" onclick="toggleMenu()">
+      <span class="w-6 h-0.5 bg-white"></span>
+      <span class="w-6 h-0.5 bg-white"></span>
+      <span class="w-6 h-0.5 bg-white"></span>
+    </div>
+    <div class="flex items-center gap-8 max-md:hidden">
+      <a href="index.html" class="text-white no-underline text-sm font-semibold tracking-widest hover:text-[#4A90D9] transition-colors">HOME</a>
+      <a href="services.html" class="text-white no-underline text-sm font-semibold tracking-widest hover:text-[#4A90D9] transition-colors">SERVICES</a>
+      <a href="portfolio.html" class="text-white no-underline text-sm font-semibold tracking-widest hover:text-[#4A90D9] transition-colors">PORTFOLIO</a>
+      <a href="about.html" class="text-white no-underline text-sm font-semibold tracking-widest hover:text-[#4A90D9] transition-colors">ABOUT</a>
+      <a href="contact.html" class="text-[#4A90D9] no-underline text-sm font-semibold tracking-widest">CONTACT</a>
+      <a href="contact.html" class="bg-[#4A90D9] text-white px-5 py-2.5 rounded text-xs font-bold tracking-widest no-underline hover:bg-[#1A4A9C] transition-colors">REQUEST A QUOTE</a>
+    </div>
+  </nav>
+  
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="hidden fixed top-[72px] left-0 right-0 bg-[#0B1424]/[.98] border-b border-[#22304a] flex-col p-6 gap-5 z-40 md:hidden">
+    <a href="index.html" class="text-white no-underline text-sm font-semibold tracking-widest">HOME</a>
+    <a href="services.html" class="text-white no-underline text-sm font-semibold tracking-widest">SERVICES</a>
+    <a href="portfolio.html" class="text-white no-underline text-sm font-semibold tracking-widest">PORTFOLIO</a>
+    <a href="about.html" class="text-white no-underline text-sm font-semibold tracking-widest">ABOUT</a>
+    <a href="contact.html" class="text-[#4A90D9] no-underline text-sm font-semibold tracking-widest">CONTACT</a>
+    <a href="contact.html" class="bg-[#4A90D9] text-white px-5 py-2.5 rounded text-xs font-bold tracking-widest no-underline text-center">REQUEST A QUOTE</a>
+  </div>
+
+  <!-- Contact Container -->
+  <div class="grid grid-cols-2 min-h-screen pt-[72px] border border-[#22304a] max-md:grid-cols-1">
+    <!-- Left Panel -->
+    <div class="px-12 py-[90px] flex flex-col justify-center max-md:px-6 max-md:py-[60px]">
+      <div class="text-xs tracking-[2.5px] uppercase text-[#4A90D9] mb-4">Get In Touch</div>
+      <h1 class="font-black text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
+        Let's Build Something <span class="text-[#4A90D9] italic">Amazing.</span>
+      </h1>
+      <p class="text-[#A0AEC0] text-[15px] leading-relaxed mb-10 max-w-[450px]">Ready to transform your digital presence? We'd love to hear about your project. Reach out and let's discuss how we can help bring your vision to life.</p>
+
+      <div class="flex flex-col gap-4 mb-10">
+        <div class="flex items-center gap-4 p-4 bg-[#10182A]/[.85] border border-[#22304a] rounded-lg hover:border-[#4A90D9] transition-colors">
+          <div class="w-10 h-10 bg-[#4A90D9]/[.10] rounded-lg flex items-center justify-center text-lg">📱</div>
+          <div class="flex flex-col">
+            <span class="text-xs text-[#A0AEC0] tracking-[1.5px] uppercase mb-1">WhatsApp</span>
+            <span class="text-sm">0978982804</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-4 p-4 bg-[#10182A]/[.85] border border-[#22304a] rounded-lg hover:border-[#4A90D9] transition-colors">
+          <div class="w-10 h-10 bg-[#4A90D9]/[.10] rounded-lg flex items-center justify-center text-lg">📍</div>
+          <div class="flex flex-col">
+            <span class="text-xs text-[#A0AEC0] tracking-[1.5px] uppercase mb-1">Location</span>
+            <span class="text-sm">Kitwe, Zambia</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex gap-4 mb-12 max-md:flex-col">
+        <a href="https://wa.me/260978982804" class="flex items-center gap-2 px-6 py-3 bg-[#25D366]/[.15] border border-[#25D366]/[.3] rounded text-[#25D366] text-xs font-semibold tracking-widest no-underline hover:bg-[#25D366]/[.25] transition-colors">
+          <span>💬</span> WhatsApp
+        </a>
+        <a href="mailto:info@gritwebservices.com" class="flex items-center gap-2 px-6 py-3 bg-[#10182A]/[.85] border border-[#22304a] rounded text-white text-xs font-semibold tracking-widest no-underline hover:border-[#4A90D9] hover:text-[#4A90D9] transition-colors">
+          <span>✉️</span> Email Us
+        </a>
+      </div>
+
+      <div class="flex flex-wrap gap-2">
+        <span class="px-4 py-2 border border-[#22304a] rounded-full text-xs tracking-widest uppercase text-[#A0AEC0] hover:border-[#4A90D9] hover:text-[#4A90D9] transition-colors cursor-pointer">Web Development</span>
+        <span class="px-4 py-2 border border-[#22304a] rounded-full text-xs tracking-widest uppercase text-[#A0AEC0] hover:border-[#4A90D9] hover:text-[#4A90D9] transition-colors cursor-pointer">Mobile Apps</span>
+        <span class="px-4 py-2 border border-[#22304a] rounded-full text-xs tracking-widest uppercase text-[#A0AEC0] hover:border-[#4A90D9] hover:text-[#4A90D9] transition-colors cursor-pointer">UI/UX Design</span>
+        <span class="px-4 py-2 border border-[#22304a] rounded-full text-xs tracking-widest uppercase text-[#A0AEC0] hover:border-[#4A90D9] hover:text-[#4A90D9] transition-colors cursor-pointer">E-Commerce</span>
+        <span class="px-4 py-2 border border-[#22304a] rounded-full text-xs tracking-widest uppercase text-[#A0AEC0] hover:border-[#4A90D9] hover:text-[#4A90D9] transition-colors cursor-pointer">Cloud Solutions</span>
+        <span class="px-4 py-2 border border-[#22304a] rounded-full text-xs tracking-widest uppercase text-[#A0AEC0] hover:border-[#4A90D9] hover:text-[#4A90D9] transition-colors cursor-pointer">Consulting</span>
+      </div>
+    </div>
+
+    <!-- Right Panel - Form -->
+    <div class="px-12 py-[90px] border-l border-[#22304a] flex flex-col justify-center max-md:px-6 max-md:py-[60px] max-md:border-l-0 max-md:border-t">
+      <div class="max-w-[500px]" id="formContainer">
+        <form id="contactForm">
+          <div class="grid grid-cols-2 gap-4 mb-4 max-md:grid-cols-1">
+            <div class="mb-4">
+              <label class="block text-xs tracking-[2px] uppercase text-[#4A90D9] mb-2">Full Name</label>
+              <input type="text" name="fullName" placeholder="John Doe" required class="w-full p-3.5 bg-[#0D2B5E]/[.25] border border-[#22304a] rounded text-white placeholder-[#A0AEC0] focus:outline-none focus:border-[#4A90D9] transition-colors">
+            </div>
+            <div class="mb-4">
+              <label class="block text-xs tracking-[2px] uppercase text-[#4A90D9] mb-2">Company Name</label>
+              <input type="text" name="companyName" placeholder="Your Company Ltd" class="w-full p-3.5 bg-[#0D2B5E]/[.25] border border-[#22304a] rounded text-white placeholder-[#A0AEC0] focus:outline-none focus:border-[#4A90D9] transition-colors">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4 mb-4 max-md:grid-cols-1">
+            <div class="mb-4">
+              <label class="block text-xs tracking-[2px] uppercase text-[#4A90D9] mb-2">Phone Number</label>
+              <input type="tel" name="phone" placeholder="+260 XXX XXX XXX" class="w-full p-3.5 bg-[#0D2B5E]/[.25] border border-[#22304a] rounded text-white placeholder-[#A0AEC0] focus:outline-none focus:border-[#4A90D9] transition-colors">
+            </div>
+            <div class="mb-4">
+              <label class="block text-xs tracking-[2px] uppercase text-[#4A90D9] mb-2">Business Email</label>
+              <input type="email" name="email" placeholder="you@company.com" required class="w-full p-3.5 bg-[#0D2B5E]/[.25] border border-[#22304a] rounded text-white placeholder-[#A0AEC0] focus:outline-none focus:border-[#4A90D9] transition-colors">
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label class="block text-xs tracking-[2px] uppercase text-[#4A90D9] mb-2">Service Required</label>
+            <select name="service" required class="w-full p-3.5 bg-[#0D2B5E]/[.25] border border-[#22304a] rounded text-white focus:outline-none focus:border-[#4A90D9] transition-colors cursor-pointer">
+              <option value="">Select a service...</option>
+              <option value="web-development">Web Development</option>
+              <option value="mobile-apps">Mobile Applications</option>
+              <option value="ui-ux-design">UI/UX Design</option>
+              <option value="e-commerce">E-Commerce Solutions</option>
+              <option value="cloud-solutions">Cloud Solutions</option>
+              <option value="consulting">Digital Consulting</option>
+              <option value="maintenance">Website Maintenance</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="mb-4">
+            <label class="block text-xs tracking-[2px] uppercase text-[#4A90D9] mb-2">Message</label>
+            <textarea name="message" placeholder="Tell us about your project..." required minlength="10" class="w-full p-3.5 bg-[#0D2B5E]/[.25] border border-[#22304a] rounded text-white placeholder-[#A0AEC0] focus:outline-none focus:border-[#4A90D9] transition-colors min-h-[120px] resize-y"></textarea>
+          </div>
+
+          <button type="submit" class="w-full p-4 bg-[#4A90D9] border-none rounded text-white font-semibold tracking-[2px] cursor-pointer hover:bg-[#1A4A9C] transition-colors mt-2">TRANSMIT INQUIRY →</button>
+        </form>
+      </div>
+
+      <div class="hidden text-center p-12" id="successMessage">
+        <div class="w-20 h-20 bg-[#4A90D9]/[.2] rounded-full flex items-center justify-center mx-auto mb-6 text-4xl">✓</div>
+        <h2 class="font-black text-3xl mb-4">Thank You!</h2>
+        <p class="text-[#A0AEC0] text-[15px]">Your inquiry has been received. Our team will get back to you within 24 hours.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="border-t border-[#22304a] px-12 py-8 flex justify-between items-center max-md:flex-col max-md:gap-6 max-md:text-center max-md:px-6">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 bg-[#0D2B5E] border-2 border-[#4A90D9] rounded-lg flex items-center justify-center text-[#4A90D9] font-black text-lg">G</div>
+      <span class="text-sm font-semibold tracking-wide">GRIT / Web Services</span>
+    </div>
+    <div class="text-xs tracking-[1.2px] uppercase text-[#A0AEC0]">© 2026 GRIT WEB SERVICES LIMITED — EXCELLENCE IN EVERY DIGITAL TOOL</div>
+    <div class="flex gap-6 max-md:justify-center">
+      <a href="#" class="text-xs tracking-[1.2px] uppercase text-[#A0AEC0] no-underline hover:text-[#4A90D9] transition-colors">PRIVACY</a>
+      <a href="#" class="text-xs tracking-[1.2px] uppercase text-[#A0AEC0] no-underline hover:text-[#4A90D9] transition-colors">TERMS</a>
+      <a href="#" class="text-xs tracking-[1.2px] uppercase text-[#A0AEC0] no-underline hover:text-[#4A90D9] transition-colors">SYSTEMS</a>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+      menu.classList.toggle('flex');
+    }
+
+    // Form submission handler
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Hide form, show success message
+      document.getElementById('formContainer').classList.add('hidden');
+      document.getElementById('successMessage').classList.remove('hidden');
+      document.getElementById('successMessage').classList.add('block');
+    });
+  </script>
+</body>
+</html>

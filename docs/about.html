@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - GRIT Web Services Limited</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#0D2B5E',
+            'mid-blue': '#1A4A9C',
+            accent: '#4A90D9',
+            highlight: '#7BB8F0',
+            bg: '#0A0E1A',
+            muted: 'rgba(255,255,255,0.45)',
+            border: 'rgba(74,144,217,0.18)',
+          },
+          fontFamily: {
+            sans: ['Helvetica', 'Arial', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: Helvetica, Arial, sans-serif; }
+  </style>
+</head>
+<body class="bg-[#0A0E1A] text-white font-sans">
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 h-[72px] bg-[#0B1424]/[.96] backdrop-blur-md border-b border-[#22304a] flex items-center justify-between px-12 z-50 max-md:px-6">
+    <div class="flex items-center gap-3">
+      <div class="w-[42px] h-[42px] bg-[#0D2B5E] border-2 border-[#4A90D9] rounded-lg flex items-center justify-center text-[#4A90D9] font-black text-2xl">G</div>
+      <span class="text-lg font-bold tracking-wide">GRIT</span>
+    </div>
+    <div class="flex flex-col gap-1 cursor-pointer px-2 md:hidden" onclick="toggleMenu()">
+      <span class="w-6 h-0.5 bg-white"></span>
+      <span class="w-6 h-0.5 bg-white"></span>
+      <span class="w-6 h-0.5 bg-white"></span>
+    </div>
+    <div class="flex items-center gap-8 max-md:hidden">
+      <a href="index.html" class="text-white no-underline text-sm font-semibold tracking-widest hover:text-[#4A90D9] transition-colors">HOME</a>
+      <a href="services.html" class="text-white no-underline text-sm font-semibold tracking-widest hover:text-[#4A90D9] transition-colors">SERVICES</a>
+      <a href="portfolio.html" class="text-white no-underline text-sm font-semibold tracking-widest hover:text-[#4A90D9] transition-colors">PORTFOLIO</a>
+      <a href="about.html" class="text-[#4A90D9] no-underline text-sm font-semibold tracking-widest">ABOUT</a>
+      <a href="contact.html" class="text-white no-underline text-sm font-semibold tracking-widest hover:text-[#4A90D9] transition-colors">CONTACT</a>
+      <a href="contact.html" class="bg-[#4A90D9] text-white px-5 py-2.5 rounded text-xs font-bold tracking-widest no-underline hover:bg-[#1A4A9C] transition-colors">REQUEST A QUOTE</a>
+    </div>
+  </nav>
+  
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="hidden fixed top-[72px] left-0 right-0 bg-[rgba(10,14,26,0.98)] border-b border-border flex-col p-6 gap-5 z-40 md:hidden">
+    <a href="index.html" class="text-white no-underline text-sm font-semibold tracking-widest">HOME</a>
+    <a href="services.html" class="text-white no-underline text-sm font-semibold tracking-widest">SERVICES</a>
+    <a href="portfolio.html" class="text-white no-underline text-sm font-semibold tracking-widest">PORTFOLIO</a>
+    <a href="about.html" class="text-accent no-underline text-sm font-semibold tracking-widest">ABOUT</a>
+    <a href="contact.html" class="text-white no-underline text-sm font-semibold tracking-widest">CONTACT</a>
+    <a href="contact.html" class="bg-accent text-white px-5 py-2.5 rounded text-xs font-bold tracking-widest no-underline text-center">REQUEST A QUOTE</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="pt-[162px] pb-[90px] px-12 max-md:px-6 max-md:pt-[140px] max-md:pb-[60px]">
+    <div class="text-xs tracking-[2.5px] uppercase text-[#4A90D9] mb-4">About GRIT Web Services</div>
+    <div class="w-16 h-[3px] bg-[#4A90D9] mb-6"></div>
+    <h1 class="font-black text-5xl md:text-6xl lg:text-7xl leading-tight mb-6" style="font-size: clamp(42px, 8vw, 80px);">
+      Forward-Thinking Technology <span class="text-[#4A90D9] italic">Worldover.</span>
+    </h1>
+    <p class="text-[#A0AEC0] text-base max-w-[600px] leading-relaxed">We are a premium technology company based in Kitwe, Zambia, delivering cutting-edge digital solutions that empower businesses to thrive in the modern world. Our commitment to excellence and innovation sets us apart as leaders in web development, software solutions, and digital transformation.</p>
+  </section>
+
+  <!-- Who We Are -->
+  <section class="bg-[#10182A]/[.85] px-12 py-[90px] max-md:px-6 max-md:py-[60px]">
+    <div class="grid grid-cols-2 gap-16 items-center max-md:grid-cols-1">
+      <div>
+        <h2 class="font-black text-4xl mb-6">Built on GRIT.</h2>
+        <p class="text-[#A0AEC0] text-[15px] leading-relaxed mb-4">GRIT Web Services Limited was founded with a singular vision: to bridge the technology gap in Zambia and beyond. We believe that every business deserves access to world class digital tools that drive growth and efficiency.</p>
+        <p class="text-[#A0AEC0] text-[15px] leading-relaxed mb-4">Our team comprises passionate technologists, creative designers, and strategic thinkers who work collaboratively to transform complex challenges into elegant solutions. We don't just build websites we craft digital experiences that resonate with your audience.</p>
+        <p class="text-[#A0AEC0] text-[15px] leading-relaxed">With years of experience across multiple industries, we've developed a deep understanding of what it takes to succeed in the digital landscape. Our approach combines technical expertise with business acumen to deliver results that matter.</p>
+      </div>
+      <div class="flex justify-center items-center max-md:hidden">
+        <div class="w-[280px] h-[280px] border-[3px] border-[#4A90D9] rounded-full flex items-center justify-center relative">
+          <span class="text-[140px] font-black text-[#4A90D9] opacity-15">G</span>
+          <div class="absolute w-[240px] h-[240px] border border-[#22304a] rounded-full"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Values -->
+  <section class="px-12 py-[90px] max-md:px-6 max-md:py-[60px]">
+    <div class="text-xs tracking-[2.5px] uppercase text-[#4A90D9] mb-2">What Drives Us</div>
+    <h2 class="font-black text-4xl text-center mb-4">Our Core Values</h2>
+    <div class="w-12 h-[3px] bg-[#4A90D9] rounded-sm mb-12 mx-auto"></div>
+    <div class="grid grid-cols-2 gap-6 max-w-[900px] mx-auto max-md:grid-cols-1">
+      <div class="bg-[#10182A]/[.85] border border-[#22304a] p-8 relative overflow-hidden hover:bg-[#1A4A9C]/[.12] hover:border-[#4A90D9] transition-all">
+        <span class="absolute right-4 top-2 text-[100px] font-black text-[#4A90D9] opacity-[0.08] leading-none">G</span>
+        <div class="w-2 h-2 bg-[#4A90D9] rounded-full mb-4"></div>
+        <h3 class="font-bold text-xl mb-3">Grit</h3>
+        <p class="text-[#A0AEC0] text-sm leading-relaxed">We persevere through challenges, never settling for mediocrore. Every obstacle is an opportunity to grow stronger and deliver better solutions.</p>
+      </div>
+      <div class="bg-[#10182A]/[.85] border border-[#22304a] p-8 relative overflow-hidden hover:bg-[#1A4A9C]/[.12] hover:border-[#4A90D9] transition-all">
+        <span class="absolute right-4 top-2 text-[100px] font-black text-[#4A90D9] opacity-[0.08] leading-none">R</span>
+        <div class="w-2 h-2 bg-[#4A90D9] rounded-full mb-4"></div>
+        <h3 class="font-bold text-xl mb-3">Resilience</h3>
+        <p class="text-[#A0AEC0] text-sm leading-relaxed">We adapt to changing landscapes and bounce back from setbacks. Our commitment to your success remains unwavering regardless of circumstances.</p>
+      </div>
+      <div class="bg-[#10182A]/[.85] border border-[#22304a] p-8 relative overflow-hidden hover:bg-[#1A4A9C]/[.12] hover:border-[#4A90D9] transition-all">
+        <span class="absolute right-4 top-2 text-[100px] font-black text-[#4A90D9] opacity-[0.08] leading-none">I</span>
+        <div class="w-2 h-2 bg-[#4A90D9] rounded-full mb-4"></div>
+        <h3 class="font-bold text-xl mb-3">Innovation</h3>
+        <p class="text-muted text-sm leading-relaxed">We embrace new technologies and creative approaches to solve problems. Innovation isn't just a buzzword, it's the foundation of everything we create.</p>
+      </div>
+      <div class="bg-[#10182A]/[.85] border border-[#22304a] p-8 relative overflow-hidden hover:bg-[#1A4A9C]/[.12] hover:border-[#4A90D9] transition-all">
+        <span class="absolute right-4 top-2 text-[100px] font-black text-[#4A90D9] opacity-[0.08] leading-none">T</span>
+        <div class="w-2 h-2 bg-[#4A90D9] rounded-full mb-4"></div>
+        <h3 class="font-bold text-xl mb-3">Tenacity</h3>
+        <p class="text-[#A0AEC0] text-sm leading-relaxed">We see projects through to completion with determination and focus. Your goals become our mission until they're achieved.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission -->
+  <section class="bg-gradient-to-br from-[#0D2B5E]/[.4] to-[#0A0E1A]/[.9] text-center px-12 py-[100px] max-md:px-6 max-md:py-[60px]">
+    <div class="text-xs tracking-[2.5px] uppercase text-[#4A90D9] mb-6">Our Purpose</div>
+    <h2 class="font-black text-3xl md:text-4xl italic max-w-[900px] mx-auto leading-relaxed" style="font-size: clamp(28px, 4vw, 42px);">
+      To empower businesses with <span class="text-[#4A90D9]">innovative</span> digital solutions that drive growth, enhance efficiency, and create lasting value in the <span class="text-[#4A90D9]">African</span> technology landscape.
+    </h2>
+  </section>
+
+  <!-- Stats -->
+  <section class="px-12 max-md:px-6">
+    <div class="grid grid-cols-4 border-t border-l border-[#22304a] max-md:grid-cols-2">
+      <div class="p-12 text-center border-r border-b border-[#22304a]">
+        <div class="text-[52px] font-black text-[#4A90D9] mb-2">50+</div>
+        <div class="text-[#A0AEC0] text-sm tracking-wide">Projects Delivered</div>
+      </div>
+      <div class="p-12 text-center border-r border-b border-[#22304a]">
+        <div class="text-[52px] font-black text-[#4A90D9] mb-2">4</div>
+        <div class="text-[#A0AEC0] text-sm tracking-wide">Core Service Lines</div>
+      </div>
+      <div class="p-12 text-center border-r border-b border-[#22304a]">
+        <div class="text-[52px] font-black text-[#4A90D9] mb-2">5+</div>
+        <div class="text-[#A0AEC0] text-sm tracking-wide">Industries Served</div>
+      </div>
+      <div class="p-12 text-center border-b border-[#22304a]">
+        <div class="text-[52px] font-black text-[#4A90D9] mb-2">100%</div>
+        <div class="text-[#A0AEC0] text-sm tracking-wide">Client Focused</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-[#22304a] px-12 py-8 flex justify-between items-center max-md:flex-col max-md:gap-6 max-md:text-center max-md:px-6">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 bg-[#0D2B5E] border-2 border-[#4A90D9] rounded-lg flex items-center

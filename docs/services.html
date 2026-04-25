@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - GRIT Web Services Limited</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: #0b0f1e;
+            color: #e2e8f0;
+        }
+
+        .card-hover {
+            transition: all 300ms ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-4px);
+            border-color: #3b82f6;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .service-card {
+            background: #111827;
+            border: 1px solid #1e2a45;
+            border-radius: 0px;
+            padding: 32px;
+            cursor: pointer;
+            transition: all 300ms ease;
+        }
+
+        .modal-overlay {
+            animation: fadeIn 300ms ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            animation: slideUp 300ms ease;
+            border-radius: 0px;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .underline-accent {
+            position: relative;
+            display: inline-block;
+        }
+
+        .underline-accent::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #3b82f6;
+            border-radius: 0px;
+        }
+
+        .hex-logo {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            border-radius: 2px;
+            font-weight: 700;
+            font-size: 20px;
+            color: white;
+        }
+
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 0px;
+            font-weight: 600;
+            transition: all 300ms ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateX(2px);
+        }
+
+        .icon-wrapper {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 0px;
+            margin-bottom: 16px;
+        }
+
+        .icon-wrapper svg {
+            color: #3b82f6;
+            width: 24px;
+            height: 24px;
+            stroke-width: 1.5;
+        }
+
+        .modal-wrapper {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-wrapper.active {
+            display: flex;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: #94a3b8;
+            cursor: pointer;
+            font-size: 24px;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 200ms ease;
+        }
+
+        .close-btn:hover {
+            color: #e2e8f0;
+        }
+    </style>
+</head>
+<body class="bg-[#0b0f1e] text-white">
+    <!-- Navigation -->
+    <nav class="bg-[#0b0f1e] border-b border-[#1e2a45] sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2">
+                    <div class="hex-logo">G</div>
+                    <span class="text-white font-bold text-lg hidden sm:inline">GRIT</span>
+                </div>
+
+                <!-- Nav Links -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-300 hover:text-white text-xs font-semibold tracking-wider transition">HOME</a>
+                    <a href="services.html" class="text-blue-400 hover:text-blue-300 text-xs font-semibold tracking-wider transition">SERVICES</a>
+                    <a href="portfolio.html" class="text-gray-300 hover:text-white text-xs font-semibold tracking-wider transition">PORTFOLIO</a>
+                    <a href="about.html" class="text-gray-300 hover:text-white text-xs font-semibold tracking-wider transition">ABOUT</a>
+                    <a href="contact.html" class="text-gray-300 hover:text-white text-xs font-semibold tracking-wider transition">CONTACT</a>
+                </div>
+
+                <!-- CTA Button -->
+                <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold text-sm transition">
+                    REQUEST A QUOTE
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="bg-[#0b0f1e] pt-16 pb-8 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
+                <div>
+                    <h1 class="text-5xl md:text-6xl font-bold text-white mb-8">
+                        <span class="underline-accent">Services.</span>
+                    </h1>
+                </div>
+                <div class="md:max-w-sm pt-4">
+                    <p class="text-gray-400 text-lg leading-relaxed">
+                        Custom engineering for businesses that refuse to settle for average.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section id="services" class="bg-[#0b0f1e] py-16 px-4">
+        <div class="max-w-7xl mx-auto">
+            <!-- Engineering Category -->
+            <div class="mb-20">
+                <h2 class="text-2xl font-bold text-blue-400 uppercase tracking-wider mb-8">Engineering</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Web Development -->
+                    <div class="service-card card-hover cursor-pointer" onclick="openModal(0)">
+                        <div class="icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 16.5h3m0 0h3m-3 0v3m0-3v-3m0 0h-3m3 0h3M5 12a7 7 0 1 0 14 0 7 7 0 0 0-14 0Z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Web Development</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed">Modern, responsive, lightning-fast websites tailored to your specific business architecture.</p>
+                    </div>
+
+                    <!-- Software Solutions -->
+                    <div class="service-card card-hover cursor-pointer" onclick="openModal(1)">
+                        <div class="icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7.25" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Custom SaaS Development</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed">Custom internal systems that simplify operations and scale effortlessly as your company grows.</p>
+                    </div>
+
+                    <!-- Mobile App Ecosystems -->
+                    <div class="service-card card-hover cursor-pointer" onclick="openModal(2)">
+                        <div class="icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m0 0a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Mobile App Ecosystems</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed">Cross-platform mobile applications built for performance, scale, and seamless user experience.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Intelligence Category -->
+            <div class="mb-20">
+                <h2 class="text-2xl font-bold text-blue-400 uppercase tracking-wider mb-8">Intelligence</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- AI & Automation -->
+                    <div class="service-card card-hover cursor-pointer" onclick="openModal(3)">
+                        <div class="icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">AI & LLM Integration</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed">Integrate LLMs and intelligent workflow triggers to enhance productivity and eliminate repetitive tasks.</p>
+                    </div>
+
+                    <!-- Predictive Analytics -->
+                    <div class="service-card card-hover cursor-pointer" onclick="openModal(4)">
+                        <div class="icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25m0 0H5.25A2.25 2.25 0 017.5 9.75M3 13.125v6.75A2.25 2.25 0 005.25 22h13.5A2.25 2.25 0 0021 20.25V13.125M3 13.125H21m-3 -6.75h.008v.008h-.008V6.375m-2.25 0a2.25 2.25 0 104.5 0 2.25 2.25 0 00-4.5 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Predictive Analytics</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed">Transform your data into actionable intelligence and forecast trends for data-driven decisions.</p>
+                    </div>
+
+                    <!-- Workflow Automation -->
+                    <div class="service-card card-hover cursor-pointer" onclick="openModal(5)">
+                        <div class="icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.592a.75.75 0 0 1 .75.75v.633a.75.75 0 0 0 .75.75H15a.75.75 0 0 0 .75-.75V3.75a.75.75 0 0 1 .75-.75h2.592c.55 0 1.02.398 1.11.94m-9 5.5c0 1.103.912 2 2.037 2 1.126 0 2.037-.897 2.037-2 0-1.102-.911-2-2.037-2-1.125 0-2.037.898-2.037 2z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Workflow Automation</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed">Streamline your business processes and reduce manual effort with intelligent automation solutions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Strategy Category -->
+            <div class="mb-20">
+                <h2 class="text-2xl font-bold text-blue-400 uppercase tracking-wider mb-8">Strategy</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Digital Consulting -->
+                    <div class="service-card card-hover cursor-pointer" onclick="openModal(6)">
+                        <div class="icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Digital Consulting</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed">Expert guidance to transform your business strategy into a roadmap for digital success.</p>
+                    </div>
+
+                    <!-- Infrastructure Audit -->
+                    <div class="service-card card-hover cursor-pointer" onclick="openModal(7)">
+                        <div class="icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Infrastructure Audit</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed">Comprehensive assessment of your IT infrastructure to identify bottlenecks and vulnerabilities.</p>
+                    </div>
+
+                    <!-- SEO & Growth Hacking -->
+                    <div class="service-card card-hover cursor-pointer" onclick="openModal(8)">
+                        <div class="icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M14.828 14.828a4 4 0 1 0-5.656-5.656M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">SEO & Growth Hacking</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed">Maximize your online visibility and drive sustainable growth with data-driven strategies.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="modal" class="modal-wrapper">
+        <div class="bg-[#111827] border border-[#1e2a45] p-8 max-w-2xl w-full modal-content relative">
+            <button class="close-btn absolute top-6 right-6" onclick="closeModal()">
+                ✕
+            </button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-[#0b0f1e] border-t border-[#1e2a45] mt-20 py-12 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="hex-logo">G</div>
+                        <span class="text-white font-bold">GRIT</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">Engineering the Future</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-blue-400 transition">Web Development</a></li>
+                        <li><a href="#" class="hover:text-blue-400 transition">Software Solutions</a></li>
+                        <li><a href="#" class="hover:text-blue-400 transition">AI & Automation</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="about.html" class="hover:text-blue-400 transition">About</a></li>
+                        <li><a href="portfolio.html" class="hover:text-blue-400 transition">Portfolio</a></li>
+                        <li><a href="contact.html" class="hover:text-blue-400 transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Location</h4>
+                    <p class="text-gray-400 text-sm">Lusaka, Zambia</p>
+                </div>
+            </div>
+            <div class="border-t border-[#1e2a45] pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2026 GRIT Web Services Limited. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const servicesData = [
+            {
+                title: 'Web Development',
+                description: 'Modern, responsive, lightning-fast websites tailored to your specific business architecture. We build scalable web solutions that convert visitors into customers and provide exceptional user experiences across all devices.',
+                deliverables: [
+                    'Custom CMS Integration',
+                    'API Development & Integration',
+                    'SEO-Ready Architecture',
+                    'Performance Optimization'
+                ]
+            },
+            {
+                title: 'Custom SaaS Development',
+                description: 'Custom internal systems that simplify operations and scale effortlessly as your company grows. From legacy system modernization to building ground-up enterprise solutions, we engineer software that works.',
+                deliverables: [
+                    'Enterprise System Design',
+                    'Database Architecture',
+                    'Workflow Automation',
+                    'Integration Services'
+                ]
+            },
+            {
+                title: 'Mobile App Ecosystems',
+                description: 'Cross-platform mobile applications built for performance, scale, and seamless user experience. We develop native and cross-platform apps that engage users and drive business growth on iOS and Android.',
+                deliverables: [
+                    'Cross-Platform Development',
+                    'Native Performance',
+                    'App Store Optimization',
+                    'User Analytics Integration'
+                ]
+            },
+            {
+                title: 'AI & LLM Integration',
+                description: 'Integrate LLMs and intelligent workflow triggers to enhance productivity and eliminate repetitive tasks. We leverage cutting-edge AI technology to automate processes, generate insights, and unlock competitive advantages.',
+                deliverables: [
+                    'LLM Integration',
+                    'Intelligent Workflows',
+                    'Process Automation',
+                    'Data Analytics & Insights'
+                ]
+            },
+            {
+                title: 'Predictive Analytics',
+                description: 'Transform your data into actionable intelligence. Our predictive analytics solutions help you forecast trends, identify opportunities, and make data-driven decisions that drive business growth.',
+                deliverables: [
+                    'Predictive Models',
+                    'Data Visualization',
+                    'Business Intelligence',
+                    'Custom Dashboards'
+                ]
+            },
+            {
+                title: 'Workflow Automation',
+                description: 'Streamline your business processes and reduce manual effort. We design and implement intelligent automation solutions that increase efficiency, reduce errors, and free up your team for strategic work.',
+                deliverables: [
+                    'Process Mapping',
+                    'Custom Workflows',
+                    'Integration Layer',
+                    'Monitoring & Optimization'
+                ]
+            },
+            {
+                title: 'Digital Consulting',
+                description: 'Expert guidance to transform your business strategy into a roadmap for digital success. Our consultants work with you to identify opportunities, navigate digital transformation, and achieve measurable business outcomes.',
+                deliverables: [
+                    'Digital Strategy',
+                    'Technology Roadmap',
+                    'Business Process Review',
+                    'Change Management'
+                ]
+            },
+            {
+                title: 'Infrastructure Audit',
+                description: 'Comprehensive assessment of your current IT infrastructure. We identify bottlenecks, security vulnerabilities, and optimization opportunities to ensure your systems are robust, scalable, and efficient.',
+                deliverables: [
+                    'Infrastructure Assessment',
+                    'Security Audit',
+                    'Performance Analysis',
+                    'Improvement Recommendations'
+                ]
+            },
+            {
+                title: 'SEO & Growth Hacking',
+                description: 'Maximize your online visibility and drive sustainable growth. Our SEO and growth strategies are data-driven, focusing on organic reach, conversion optimization, and measurable business results.',
+                deliverables: [
+                    'SEO Optimization',
+                    'Content Strategy',
+                    'Growth Analytics',
+                    'Conversion Optimization'
+                ]
+            }
+        ];
+
+        function openModal(index) {
+            const service = servicesData[index];
+            const modal = document.getElementById('modal');
+            const modalContent = document.getElementById('modalContent');
+
+            const deliverablesList = service.deliverables
+                .map(item => `<li class="text-gray-300 text-sm flex items-start"><span class="text-blue-400 mr-3">•</span>${item}</li>`)
+                .join('');
+
+            modalContent.innerHTML = `
+                <div class="flex items-start gap-4 mb-6">
+                    <div class="icon-wrapper" style="margin-bottom: 0;">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-white">${service.title}</h2>
+                    </div>
+                </div>
+                
+                <p class="text-gray-300 leading-relaxed mb-8">${service.description}</p>
+                
+                <h4 class="text-white font-semibold mb-4">Key Deliverables</h4>
+                <ul class="space-y-2 mb-8">
+                    ${deliverablesList}
+                </ul>
+                
+                <button class="btn-primary" onclick="handleConsultation()">
+                    Book a Consultation →
+                </button>
+            `;
+
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.classList.remove('active');
+        }
+
+        function handleConsultation() {
+            alert('Thank you for your interest! Redirecting to consultation booking...');
+            closeModal();
+        }
+
+        // Close modal on background click
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
