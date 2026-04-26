@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
+      darkMode: 'class',
       theme: {
         extend: {
           colors: {
@@ -17,6 +19,9 @@
             bg: '#0A0E1A',
             muted: 'rgba(255,255,255,0.45)',
             border: 'rgba(74,144,217,0.18)',
+            'navy-obsidian': '#050B18',
+            'navy-muted': '#0A1628',
+            'electric-blue': '#1E90d9',
           },
           fontFamily: {
             sans: ['Helvetica', 'Arial', 'sans-serif'],
@@ -26,49 +31,261 @@
     }
   </script>
   <style>
-    body { font-family: Helvetica, Arial, sans-serif; }
+    body {
+      font-family: Helvetica, Arial, sans-serif;
+    }
+
+    /* Mega Menu Animation */
+    .mega-menu {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .group:hover .mega-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .btn-glow:hover {
+      box-shadow: 0 0 30px rgba(30, 144, 255, 0.4);
+      transform: translateY(-2px);
+    }
+
+    #progress-bar {
+      height: 2px;
+      background: #1E90FF;
+      width: 0%;
+      position: fixed;
+      top: 0;
+      z-index: 100;
+    }
+
+    .no-scroll {
+      overflow: hidden;
+    }
+
+    /* Light Mode Global Overrides */
+    body.light {
+      background-color: #f8fafc !important;
+      color: #0f172a !important;
+    }
+
+    /* Backgrounds */
+    body.light .bg-\[\#0A0E1A\],
+    body.light .bg-\[\#0b0f1e\],
+    body.light .bg-\[\#0B1424\]\/\[\.96\] {
+      background-color: #f8fafc !important;
+    }
+
+    body.light .bg-\[\#10182A\]\/\[\.85\],
+    body.light .bg-\[\#111827\],
+    body.light .bg-\[\#1e2a45\] {
+      background-color: #ffffff !important;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    body.light .bg-\[\#0D2B5E\]\/\[\.25\] {
+      background-color: #ffffff !important;
+    }
+
+    /* Borders */
+    body.light .border-\[\#22304a\],
+    body.light .border-\[\#1e2a45\] {
+      border-color: #e2e8f0 !important;
+    }
+
+    /* Typography */
+    body.light h1,
+    body.light h2,
+    body.light h3,
+    body.light h4,
+    body.light p,
+    body.light div {
+      color: #0f172a;
+    }
+
+    body.light .text-\[\#A0AEC0\],
+    body.light .text-gray-300,
+    body.light .text-gray-400,
+    body.light .text-muted {
+      color: #475569 !important;
+    }
+
+    body.light .text-\[\#4A90D9\] {
+      color: #4A90D9 !important;
+    }
+
+    /* Gradients for Mission Section */
+    body.light .from-\[\#0D2B5E\]\/\[\.4\] {
+      --tw-gradient-from: #e2e8f0 var(--tw-gradient-from-position);
+      --tw-gradient-to: rgba(226, 232, 240, 0) var(--tw-gradient-to-position);
+      --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+    }
+
+    body.light .to-\[\#0A0E1A\]\/\[\.9\] {
+      --tw-gradient-to: #f8fafc var(--tw-gradient-to-position);
+    }
+
+    /* Inputs & Forms */
+    body.light input,
+    body.light textarea,
+    body.light select {
+      color: #0f172a !important;
+      background-color: #ffffff !important;
+      border-color: #cbd5e1 !important;
+    }
+
+    body.light input::placeholder,
+    body.light textarea::placeholder {
+      color: #94a3b8 !important;
+    }
+
+    /* Specifics for Cards & Modals */
+    body.light .project-card,
+    body.light .service-card {
+      background-color: #ffffff !important;
+      border-color: #e2e8f0 !important;
+    }
+
+    body.light .project-card:hover,
+    body.light .service-card:hover {
+      border-color: #3b82f6 !important;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    body.light .filter-tab {
+      color: #475569 !important;
+      border-color: #cbd5e1 !important;
+    }
+
+    body.light .filter-tab.active {
+      background-color: #2563eb !important;
+      color: white !important;
+      border-color: #2563eb !important;
+    }
   </style>
 </head>
-<body class="bg-[#0A0E1A] text-white font-sans">
-  <!-- Navigation -->
-  <nav class="fixed top-0 left-0 right-0 h-[72px] bg-[#0B1424]/[.96] backdrop-blur-md border-b border-[#22304a] flex items-center justify-between px-12 z-50 max-md:px-6">
-    <div class="flex items-center gap-3">
-      <div class="w-[42px] h-[42px] bg-[#0D2B5E] border-2 border-[#4A90D9] rounded-lg flex items-center justify-center text-[#4A90D9] font-black text-2xl">G</div>
-      <span class="text-lg font-bold tracking-wide">GRIT</span>
+
+<body class="dark bg-[#0A0E1A] text-white font-sans">
+  <div id="progress-bar"></div>
+
+  <header id="navbar"
+    class="fixed w-full z-50 transition-all duration-500 border-b dark:border-white/5 border-gray-200 backdrop-blur-xl dark:bg-navy-obsidian/80 bg-white/80">
+    <nav class="max-w-7xl mx-auto flex justify-between items-center p-5 md:px-8">
+      <div class="flex items-center">
+        <a href="index.html">
+          <img src="GRIT_G.png" class="h-16 w-auto" alt="ZDS Logo">
+        </a>
+      </div>
+
+      <div
+        class="hidden lg:flex space-x-10 text-[12px] font-bold tracking-[0.3em] uppercase dark:text-white/70 text-navy-obsidian/70">
+        <a href="index.html" class="hover:text-electric-blue transition-colors">Home</a>
+
+        <div class="group static">
+          <button class="flex items-center hover:text-electric-blue transition-colors uppercase">
+            Services <svg class="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div
+            class="mega-menu absolute top-full left-0 w-full bg-white dark:bg-navy-muted border-b border-white/5 shadow-2xl p-12">
+            <div class="max-w-7xl mx-auto grid grid-cols-4 gap-12">
+              <div>
+                <h4 class="text-electric-blue mb-6 tracking-[0.2em]">Engineering</h4>
+                <ul class="space-y-4 text-sm font-light normal-case tracking-normal dark:text-gray-400 text-gray-600">
+                  <li><a href="services.html" class="hover:text-electric-blue transition-colors">Web Systems &
+                      Portals</a></li>
+                  <li><a href="services.html" class="hover:text-electric-blue transition-colors">Custom SaaS
+                      Development</a></li>
+                  <li><a href="services.html" class="hover:text-electric-blue transition-colors">Mobile App
+                      Ecosystems</a></li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="text-electric-blue mb-6 tracking-[0.2em]">Intelligence</h4>
+                <ul class="space-y-4 text-sm font-light normal-case tracking-normal dark:text-gray-400 text-gray-600">
+                  <li><a href="services.html" class="hover:text-electric-blue transition-colors">AI & LLM
+                      Integration</a></li>
+                  <li><a href="services.html" class="hover:text-electric-blue transition-colors">Predictive
+                      Analytics</a></li>
+                  <li><a href="services.html" class="hover:text-electric-blue transition-colors">Workflow Automation</a>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="text-electric-blue mb-6 tracking-[0.2em]">Strategy</h4>
+                <ul class="space-y-4 text-sm font-light normal-case tracking-normal dark:text-gray-400 text-gray-600">
+                  <li><a href="services.html" class="hover:text-electric-blue transition-colors">Digital Consulting</a>
+                  </li>
+                  <li><a href="services.html" class="hover:text-electric-blue transition-colors">Infrastructure
+                      Audit</a></li>
+                  <li><a href="services.html" class="hover:text-electric-blue transition-colors">SEO & Growth
+                      Hacking</a></li>
+                </ul>
+              </div>
+              <div class="bg-electric-blue/5 p-6 rounded-lg border border-electric-blue/20">
+                <p class="normal-case text-xs font-light mb-4 leading-relaxed">Ready to start your digital
+                  transformation in Zambia?</p>
+                <a href="contact.html" class="text-electric-blue hover:underline">Book a Consultation →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a href="portfolio.html" class="hover:text-electric-blue transition-colors">Portfolio</a>
+        <a href="about.html" class="hover:text-electric-blue transition-colors">About</a>
+        <a href="contact.html" class="hover:text-electric-blue transition-colors">Contact</a>
+      </div>
+
+      <div class="flex items-center space-x-6">
+        <button onclick="toggleTheme()" class="p-2 dark:text-electric-blue text-navy-obsidian" id="theme-btn">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round">
+            <path d="M12 2V12M18.36 5.64A8 8 0 1 1 5.64 18.36" />
+          </svg>
+        </button>
+        <a href="contact.html"
+          class="hidden md:block bg-electric-blue text-white px-6 py-3 rounded-sm font-bold text-[10px] tracking-widest uppercase btn-glow">Request
+          a Quote</a>
+        <button onclick="toggleMobileMenu()" class="lg:hidden">
+          <div class="w-6 h-0.5 bg-electric-blue mb-1.5"></div>
+          <div class="w-4 h-0.5 bg-electric-blue ml-auto"></div>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <div id="menu-overlay" onclick="toggleMobileMenu()"
+    class="fixed inset-0 bg-navy-obsidian/90 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-500 z-[55]">
+  </div>
+  <div id="mobile-menu"
+    class="fixed inset-y-0 right-0 w-[85%] md:w-96 z-[60] translate-x-full lg:hidden flex flex-col p-12 dark:bg-navy-muted bg-white transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]">
+    <button onclick="toggleMobileMenu()" class="self-end text-electric-blue">CLOSE —</button>
+    <div
+      class="flex flex-col space-y-8 mt-20 text-1xl font-extrabold tracking-tighter dark:text-white text-navy-obsidian">
+      <a href="index.html" onclick="toggleMobileMenu()">Home</a>
+      <a href="services.html" onclick="toggleMobileMenu()">Services</a>
+      <a href="portfolio.html" onclick="toggleMobileMenu()">Portfolio</a>
+      <a href="about.html" onclick="toggleMobileMenu()">About</a>
+      <a href="contact.html" onclick="toggleMobileMenu()">Contact</a>
     </div>
-    <div class="flex flex-col gap-1 cursor-pointer px-2 md:hidden" onclick="toggleMenu()">
-      <span class="w-6 h-0.5 bg-white"></span>
-      <span class="w-6 h-0.5 bg-white"></span>
-      <span class="w-6 h-0.5 bg-white"></span>
-    </div>
-    <div class="flex items-center gap-8 max-md:hidden">
-      <a href="index.html" class="text-white no-underline text-sm font-semibold tracking-widest hover:text-[#4A90D9] transition-colors">HOME</a>
-      <a href="services.html" class="text-white no-underline text-sm font-semibold tracking-widest hover:text-[#4A90D9] transition-colors">SERVICES</a>
-      <a href="portfolio.html" class="text-white no-underline text-sm font-semibold tracking-widest hover:text-[#4A90D9] transition-colors">PORTFOLIO</a>
-      <a href="about.html" class="text-[#4A90D9] no-underline text-sm font-semibold tracking-widest">ABOUT</a>
-      <a href="contact.html" class="text-white no-underline text-sm font-semibold tracking-widest hover:text-[#4A90D9] transition-colors">CONTACT</a>
-      <a href="contact.html" class="bg-[#4A90D9] text-white px-5 py-2.5 rounded text-xs font-bold tracking-widest no-underline hover:bg-[#1A4A9C] transition-colors">REQUEST A QUOTE</a>
-    </div>
-  </nav>
-  
-  <!-- Mobile Menu -->
-  <div id="mobileMenu" class="hidden fixed top-[72px] left-0 right-0 bg-[rgba(10,14,26,0.98)] border-b border-border flex-col p-6 gap-5 z-40 md:hidden">
-    <a href="index.html" class="text-white no-underline text-sm font-semibold tracking-widest">HOME</a>
-    <a href="services.html" class="text-white no-underline text-sm font-semibold tracking-widest">SERVICES</a>
-    <a href="portfolio.html" class="text-white no-underline text-sm font-semibold tracking-widest">PORTFOLIO</a>
-    <a href="about.html" class="text-accent no-underline text-sm font-semibold tracking-widest">ABOUT</a>
-    <a href="contact.html" class="text-white no-underline text-sm font-semibold tracking-widest">CONTACT</a>
-    <a href="contact.html" class="bg-accent text-white px-5 py-2.5 rounded text-xs font-bold tracking-widest no-underline text-center">REQUEST A QUOTE</a>
   </div>
 
   <!-- Hero Section -->
   <section class="pt-[162px] pb-[90px] px-12 max-md:px-6 max-md:pt-[140px] max-md:pb-[60px]">
     <div class="text-xs tracking-[2.5px] uppercase text-[#4A90D9] mb-4">About GRIT Web Services</div>
     <div class="w-16 h-[3px] bg-[#4A90D9] mb-6"></div>
-    <h1 class="font-black text-5xl md:text-6xl lg:text-7xl leading-tight mb-6" style="font-size: clamp(42px, 8vw, 80px);">
-      Forward-Thinking Technology <span class="text-[#4A90D9] italic">Worldover.</span>
+    <h1 class="font-black text-2xl md:text-5xl leading-[0.9] tracking-tighter mb-6">
+      Forward-Thinking <br>Technology <span class="text-[#4A90D9]">Worldover.</span>
     </h1>
-    <p class="text-[#A0AEC0] text-base max-w-[600px] leading-relaxed">We are a premium technology company based in Kitwe, Zambia, delivering cutting-edge digital solutions that empower businesses to thrive in the modern world. Our commitment to excellence and innovation sets us apart as leaders in web development, software solutions, and digital transformation.</p>
+    <p class="text-[#A0AEC0] text-base max-w-[600px] leading-relaxed">We are a premium technology company based in
+      Kitwe, Zambia, delivering cutting-edge digital solutions that empower businesses to thrive in the modern world.
+      Our commitment to excellence and innovation sets us apart as leaders in web development, software solutions, and
+      digital transformation.</p>
   </section>
 
   <!-- Who We Are -->
@@ -76,13 +293,20 @@
     <div class="grid grid-cols-2 gap-16 items-center max-md:grid-cols-1">
       <div>
         <h2 class="font-black text-4xl mb-6">Built on GRIT.</h2>
-        <p class="text-[#A0AEC0] text-[15px] leading-relaxed mb-4">GRIT Web Services Limited was founded with a singular vision: to bridge the technology gap in Zambia and beyond. We believe that every business deserves access to world class digital tools that drive growth and efficiency.</p>
-        <p class="text-[#A0AEC0] text-[15px] leading-relaxed mb-4">Our team comprises passionate technologists, creative designers, and strategic thinkers who work collaboratively to transform complex challenges into elegant solutions. We don't just build websites we craft digital experiences that resonate with your audience.</p>
-        <p class="text-[#A0AEC0] text-[15px] leading-relaxed">With years of experience across multiple industries, we've developed a deep understanding of what it takes to succeed in the digital landscape. Our approach combines technical expertise with business acumen to deliver results that matter.</p>
+        <p class="text-[#A0AEC0] text-[15px] leading-relaxed mb-4">GRIT Web Services Limited was founded with a singular
+          vision: to bridge the technology gap in Zambia and beyond. We believe that every business deserves access to
+          world class digital tools that drive growth and efficiency.</p>
+        <p class="text-[#A0AEC0] text-[15px] leading-relaxed mb-4">Our team comprises passionate technologists, creative
+          designers, and strategic thinkers who work collaboratively to transform complex challenges into elegant
+          solutions. We don't just build websites we craft digital experiences that resonate with your audience.</p>
+        <p class="text-[#A0AEC0] text-[15px] leading-relaxed">With years of experience across multiple industries, we've
+          developed a deep understanding of what it takes to succeed in the digital landscape. Our approach combines
+          technical expertise with business acumen to deliver results that matter.</p>
       </div>
       <div class="flex justify-center items-center max-md:hidden">
-        <div class="w-[280px] h-[280px] border-[3px] border-[#4A90D9] rounded-full flex items-center justify-center relative">
-          <span class="text-[140px] font-black text-[#4A90D9] opacity-15">G</span>
+        <div
+          class="w-[280px] h-[280px] border-[3px] border-[#4A90D9] rounded-full flex items-center justify-center relative">
+          <img src="GRIT_G.png" alt="GRIT Logo" class="w-32 h-auto opacity-40 z-10 relative">
           <div class="absolute w-[240px] h-[240px] border border-[#22304a] rounded-full"></div>
         </div>
       </div>
@@ -95,38 +319,49 @@
     <h2 class="font-black text-4xl text-center mb-4">Our Core Values</h2>
     <div class="w-12 h-[3px] bg-[#4A90D9] rounded-sm mb-12 mx-auto"></div>
     <div class="grid grid-cols-2 gap-6 max-w-[900px] mx-auto max-md:grid-cols-1">
-      <div class="bg-[#10182A]/[.85] border border-[#22304a] p-8 relative overflow-hidden hover:bg-[#1A4A9C]/[.12] hover:border-[#4A90D9] transition-all">
+      <div
+        class="bg-[#10182A]/[.85] border border-[#22304a] p-8 relative overflow-hidden hover:bg-[#1A4A9C]/[.12] hover:border-[#4A90D9] transition-all">
         <span class="absolute right-4 top-2 text-[100px] font-black text-[#4A90D9] opacity-[0.08] leading-none">G</span>
         <div class="w-2 h-2 bg-[#4A90D9] rounded-full mb-4"></div>
         <h3 class="font-bold text-xl mb-3">Grit</h3>
-        <p class="text-[#A0AEC0] text-sm leading-relaxed">We persevere through challenges, never settling for mediocrore. Every obstacle is an opportunity to grow stronger and deliver better solutions.</p>
+        <p class="text-[#A0AEC0] text-sm leading-relaxed">We persevere through challenges, never settling for
+          mediocrore. Every obstacle is an opportunity to grow stronger and deliver better solutions.</p>
       </div>
-      <div class="bg-[#10182A]/[.85] border border-[#22304a] p-8 relative overflow-hidden hover:bg-[#1A4A9C]/[.12] hover:border-[#4A90D9] transition-all">
+      <div
+        class="bg-[#10182A]/[.85] border border-[#22304a] p-8 relative overflow-hidden hover:bg-[#1A4A9C]/[.12] hover:border-[#4A90D9] transition-all">
         <span class="absolute right-4 top-2 text-[100px] font-black text-[#4A90D9] opacity-[0.08] leading-none">R</span>
         <div class="w-2 h-2 bg-[#4A90D9] rounded-full mb-4"></div>
         <h3 class="font-bold text-xl mb-3">Resilience</h3>
-        <p class="text-[#A0AEC0] text-sm leading-relaxed">We adapt to changing landscapes and bounce back from setbacks. Our commitment to your success remains unwavering regardless of circumstances.</p>
+        <p class="text-[#A0AEC0] text-sm leading-relaxed">We adapt to changing landscapes and bounce back from setbacks.
+          Our commitment to your success remains unwavering regardless of circumstances.</p>
       </div>
-      <div class="bg-[#10182A]/[.85] border border-[#22304a] p-8 relative overflow-hidden hover:bg-[#1A4A9C]/[.12] hover:border-[#4A90D9] transition-all">
+      <div
+        class="bg-[#10182A]/[.85] border border-[#22304a] p-8 relative overflow-hidden hover:bg-[#1A4A9C]/[.12] hover:border-[#4A90D9] transition-all">
         <span class="absolute right-4 top-2 text-[100px] font-black text-[#4A90D9] opacity-[0.08] leading-none">I</span>
         <div class="w-2 h-2 bg-[#4A90D9] rounded-full mb-4"></div>
         <h3 class="font-bold text-xl mb-3">Innovation</h3>
-        <p class="text-muted text-sm leading-relaxed">We embrace new technologies and creative approaches to solve problems. Innovation isn't just a buzzword, it's the foundation of everything we create.</p>
+        <p class="text-muted text-sm leading-relaxed">We embrace new technologies and creative approaches to solve
+          problems. Innovation isn't just a buzzword, it's the foundation of everything we create.</p>
       </div>
-      <div class="bg-[#10182A]/[.85] border border-[#22304a] p-8 relative overflow-hidden hover:bg-[#1A4A9C]/[.12] hover:border-[#4A90D9] transition-all">
+      <div
+        class="bg-[#10182A]/[.85] border border-[#22304a] p-8 relative overflow-hidden hover:bg-[#1A4A9C]/[.12] hover:border-[#4A90D9] transition-all">
         <span class="absolute right-4 top-2 text-[100px] font-black text-[#4A90D9] opacity-[0.08] leading-none">T</span>
         <div class="w-2 h-2 bg-[#4A90D9] rounded-full mb-4"></div>
         <h3 class="font-bold text-xl mb-3">Tenacity</h3>
-        <p class="text-[#A0AEC0] text-sm leading-relaxed">We see projects through to completion with determination and focus. Your goals become our mission until they're achieved.</p>
+        <p class="text-[#A0AEC0] text-sm leading-relaxed">We see projects through to completion with determination and
+          focus. Your goals become our mission until they're achieved.</p>
       </div>
     </div>
   </section>
 
   <!-- Mission -->
-  <section class="bg-gradient-to-br from-[#0D2B5E]/[.4] to-[#0A0E1A]/[.9] text-center px-12 py-[100px] max-md:px-6 max-md:py-[60px]">
+  <section
+    class="bg-gradient-to-br from-[#0D2B5E]/[.4] to-[#0A0E1A]/[.9] text-center px-12 py-[100px] max-md:px-6 max-md:py-[60px]">
     <div class="text-xs tracking-[2.5px] uppercase text-[#4A90D9] mb-6">Our Purpose</div>
-    <h2 class="font-black text-3xl md:text-4xl italic max-w-[900px] mx-auto leading-relaxed" style="font-size: clamp(28px, 4vw, 42px);">
-      To empower businesses with <span class="text-[#4A90D9]">innovative</span> digital solutions that drive growth, enhance efficiency, and create lasting value in the <span class="text-[#4A90D9]">African</span> technology landscape.
+    <h2 class="font-black text-2xl md:text-2xl max-w-[900px] mx-auto leading-relaxed">
+      To empower businesses with <span class="text-[#4A90D9]">innovative</span> digital solutions that drive growth,
+      enhance efficiency, and create lasting value in the <span class="text-[#4A90D9]">African</span> technology
+      landscape.
     </h2>
   </section>
 
@@ -153,6 +388,58 @@
   </section>
 
   <!-- Footer -->
-  <footer class="border-t border-[#22304a] px-12 py-8 flex justify-between items-center max-md:flex-col max-md:gap-6 max-md:text-center max-md:px-6">
-    <div class="flex items-center gap-3">
-      <div class="w-8 h-8 bg-[#0D2B5E] border-2 border-[#4A90D9] rounded-lg flex items-center
+  <footer class="py-20 px-6 dark:bg-navy-obsidian bg-white border-t dark:border-white/5 border-gray-100">
+    <div class="max-w-7xl mx-auto flex flex-col items-center">
+        <div class="mb-12">
+            <img src="GRIT_transparent.png" class="h-120 w-auto dark:hidden" alt="ZDS">
+            <img src="GRIT_transparent.png" class="hidden dark:block h-120 w-auto" alt="ZDS">
+        </div>
+
+        <div class="w-full flex flex-col md:flex-row justify-between items-center text-[10px] tracking-[0.4em] font-bold uppercase dark:text-electric-blue text-navy-obsidian border-t dark:border-white/5 border-gray-100 pt-10">
+            <p class="mb-8 md:mb-0 text-center">© 2026 GRIT Web Services Limited — Excellence In every Digital Tool</p>
+            
+            <div class="flex space-x-12 justify-between">
+                <a href="#" class="hover:text-gray-500 transition-colors">Privacy</a>
+                <a href="#" class="hover:text-gray-500 transition-colors">Terms</a>
+                <a href="portfolio.html" class="hover:text-gray-500 transition-colors">Systems</a>
+            </div>
+        </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+        const body = document.body;
+        if (body.classList.contains('dark')) {
+            body.classList.replace('dark', 'light');
+            body.classList.replace('bg-[#0A0E1A]', 'bg-white');
+            body.classList.replace('text-white', 'text-navy-obsidian');
+            localStorage.setItem('theme', 'light');
+        } else {
+            body.classList.replace('light', 'dark');
+            body.classList.replace('bg-white', 'bg-[#0A0E1A]');
+            body.classList.replace('text-navy-obsidian', 'text-white');
+            localStorage.setItem('theme', 'dark');
+        }
+    }
+
+    function toggleMobileMenu() {
+        const body = document.body;
+        const menu = document.getElementById('mobile-menu');
+        const overlay = document.getElementById('menu-overlay');
+        body.classList.toggle('no-scroll');
+        menu.classList.toggle('translate-x-full');
+        overlay.classList.toggle('opacity-0');
+        overlay.classList.toggle('pointer-events-none');
+    }
+
+    window.addEventListener("scroll", () => {
+        let winScroll = document.documentElement.scrollTop;
+        let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        if (document.getElementById("progress-bar")) {
+            document.getElementById("progress-bar").style.width = (winScroll / height) * 100 + "%";
+        }
+    });
+  </script>
+</body>
+</html>

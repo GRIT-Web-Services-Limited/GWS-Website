@@ -1,13 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - GRIT Web Services Limited</title>
-    <meta name="description" content="Explore GRIT Web Services Limited's portfolio of real-world tech projects built for Zambian businesses — from fintech portals to AI dashboards.">
+    <meta name="description"
+        content="Explore GRIT Web Services Limited's portfolio of real-world tech projects built for Zambian businesses — from fintech portals to AI dashboards.">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'navy-obsidian': '#050B18',
+                        'navy-muted': '#0A1628',
+                        'electric-blue': '#1E90d9',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        /* Mega Menu Animation */
+        .mega-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .group:hover .mega-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .btn-glow:hover {
+            box-shadow: 0 0 30px rgba(30, 144, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        #progress-bar {
+            height: 2px;
+            background: #1E90FF;
+            width: 0%;
+            position: fixed;
+            top: 0;
+            z-index: 100;
+        }
+
+        .no-scroll {
+            overflow: hidden;
+        }
+
+        /* Light Mode Global Overrides */
+        body.light {
+            background-color: #f8fafc !important;
+            color: #0f172a !important;
+        }
+
+        /* Backgrounds */
+        body.light .bg-\[\#0A0E1A\],
+        body.light .bg-\[\#0b0f1e\],
+        body.light .bg-\[\#0B1424\]\/\[\.96\] {
+            background-color: #f8fafc !important;
+        }
+
+        body.light .bg-\[\#10182A\]\/\[\.85\],
+        body.light .bg-\[\#111827\],
+        body.light .bg-\[\#1e2a45\] {
+            background-color: #ffffff !important;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        body.light .bg-\[\#0D2B5E\]\/\[\.25\] {
+            background-color: #ffffff !important;
+        }
+
+        /* Borders */
+        body.light .border-\[\#22304a\],
+        body.light .border-\[\#1e2a45\] {
+            border-color: #e2e8f0 !important;
+        }
+
+        /* Typography */
+        body.light h1,
+        body.light h2,
+        body.light h3,
+        body.light h4,
+        body.light p,
+        body.light div {
+            color: #0f172a;
+        }
+
+        body.light .text-\[\#A0AEC0\],
+        body.light .text-gray-300,
+        body.light .text-gray-400,
+        body.light .text-muted {
+            color: #475569 !important;
+        }
+
+        body.light .text-\[\#4A90D9\] {
+            color: #4A90D9 !important;
+        }
+
+        /* Inputs & Forms */
+        body.light input,
+        body.light textarea,
+        body.light select {
+            color: #0f172a !important;
+            background-color: #ffffff !important;
+            border-color: #cbd5e1 !important;
+        }
+
+        body.light input::placeholder,
+        body.light textarea::placeholder {
+            color: #94a3b8 !important;
+        }
+
+        /* Specifics for Cards & Modals */
+        body.light .project-card,
+        body.light .service-card {
+            background-color: #ffffff !important;
+            border-color: #e2e8f0 !important;
+        }
+
+        body.light .project-card:hover,
+        body.light .service-card:hover {
+            border-color: #3b82f6 !important;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        body.light .filter-tab {
+            color: #475569 !important;
+            border-color: #cbd5e1 !important;
+        }
+
+        body.light .filter-tab.active {
+            background-color: #2563eb !important;
+            color: white !important;
+            border-color: #2563eb !important;
+        }
+
+        /* Inline Style Overrides */
+        body.light div[style*="background:#0f172a"],
+        body.light div[style*="background:#111827"] {
+            background-color: #ffffff !important;
+        }
+
+        body.light div[style*="border:1px solid #1e2a45"] {
+            border-color: #e2e8f0 !important;
+        }
+
+        body.light span[style*="color:#cbd5e1"],
+        body.light span[style*="color:#94a3b8"] {
+            color: #475569 !important;
+        }
+
+        body.light h2[style*="color:white"],
+        body.light h1[style*="color:white"],
+        body.light h3[style*="color:white"] {
+            color: #0f172a !important;
+        }
+
+        body.light p[style*="color:#cbd5e1"],
+        body.light p[style*="color:#94a3b8"] {
+            color: #475569 !important;
+        }
+
+        body.light li[style*="border-bottom:1px solid #1e2a45"] {
+            border-color: #e2e8f0 !important;
+        }
+
+        body.light svg[stroke="white"] {
+            stroke: #0f172a !important;
+        }
+
+        body.light button.close-btn {
+            color: #0f172a !important;
+        }
+
+        body.light button.close-btn:hover {
+            color: #ef4444 !important;
+        }
 
         * {
             font-family: 'Inter', sans-serif;
@@ -151,11 +330,25 @@
         }
 
         /* Unique gradient per card category */
-        .thumb-web    { background: linear-gradient(135deg, #0f1f3d 0%, #0b0f1e 60%, #1a2744 100%); }
-        .thumb-soft   { background: linear-gradient(135deg, #0d1f2d 0%, #0b0f1e 60%, #112233 100%); }
-        .thumb-ai     { background: linear-gradient(135deg, #120e2d 0%, #0b0f1e 60%, #1a1040 100%); }
-        .thumb-mobile { background: linear-gradient(135deg, #0d1a2d 0%, #0b0f1e 60%, #1a2030 100%); }
-        .thumb-consult{ background: linear-gradient(135deg, #0f1e20 0%, #0b0f1e 60%, #112026 100%); }
+        .thumb-web {
+            background: linear-gradient(135deg, #0f1f3d 0%, #0b0f1e 60%, #1a2744 100%);
+        }
+
+        .thumb-soft {
+            background: linear-gradient(135deg, #0d1f2d 0%, #0b0f1e 60%, #112233 100%);
+        }
+
+        .thumb-ai {
+            background: linear-gradient(135deg, #120e2d 0%, #0b0f1e 60%, #1a1040 100%);
+        }
+
+        .thumb-mobile {
+            background: linear-gradient(135deg, #0d1a2d 0%, #0b0f1e 60%, #1a2030 100%);
+        }
+
+        .thumb-consult {
+            background: linear-gradient(135deg, #0f1e20 0%, #0b0f1e 60%, #112026 100%);
+        }
 
         /* Geometric SVG pattern overlay */
         .thumb-pattern {
@@ -299,11 +492,15 @@
         }
 
         @media (max-width: 1024px) {
-            .projects-grid { grid-template-columns: repeat(2, 1fr); }
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 640px) {
-            .projects-grid { grid-template-columns: 1fr; }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .project-card {
@@ -333,8 +530,13 @@
         }
 
         @keyframes overlayFadeIn {
-            from { opacity: 0; }
-            to   { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         .modal-box {
@@ -349,13 +551,29 @@
         }
 
         @keyframes modalEntrance {
-            from { opacity: 0; transform: scale(0.95) translateY(16px); }
-            to   { opacity: 1; transform: scale(1) translateY(0); }
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(16px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
         }
 
-        .modal-box::-webkit-scrollbar { width: 4px; }
-        .modal-box::-webkit-scrollbar-track { background: #0b0f1e; }
-        .modal-box::-webkit-scrollbar-thumb { background: #1e2a45; border-radius: 2px; }
+        .modal-box::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .modal-box::-webkit-scrollbar-track {
+            background: #0b0f1e;
+        }
+
+        .modal-box::-webkit-scrollbar-thumb {
+            background: #1e2a45;
+            border-radius: 2px;
+        }
 
         .modal-hero {
             height: 220px;
@@ -464,40 +682,131 @@
             transition: color 200ms ease;
         }
 
-        .close-btn:hover { color: #e2e8f0; }
+        .close-btn:hover {
+            color: #e2e8f0;
+        }
     </style>
 </head>
-<body class="bg-[#0b0f1e] text-white">
 
-    <!-- ══════════════════════════════════════ NAVBAR ══ -->
-    <nav class="bg-[#0b0f1e] border-b border-[#1e2a45] sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <!-- Logo -->
-                <div class="flex items-center space-x-2">
-                    <div class="hex-logo">G</div>
-                    <span class="text-white font-bold text-lg hidden sm:inline">GRIT</span>
+<body class="dark bg-[#0b0f1e] text-white overflow-x-hidden">
+
+    <div id="progress-bar"></div>
+
+    <header id="navbar"
+        class="fixed w-full z-50 transition-all duration-500 border-b dark:border-white/5 border-gray-200 backdrop-blur-xl dark:bg-navy-obsidian/80 bg-white/80">
+        <nav class="max-w-7xl mx-auto flex justify-between items-center p-5 md:px-8">
+            <div class="flex items-center">
+                <a href="index.html">
+                    <img src="GRIT_G.png" class="h-16 w-auto" alt="ZDS Logo">
+                </a>
+            </div>
+
+            <div
+                class="hidden lg:flex space-x-10 text-[12px] font-bold tracking-[0.3em] uppercase dark:text-white/70 text-navy-obsidian/70">
+                <a href="index.html" class="hover:text-electric-blue transition-colors">Home</a>
+
+                <div class="group static">
+                    <button class="flex items-center hover:text-electric-blue transition-colors uppercase">
+                        Services <svg class="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div
+                        class="mega-menu absolute top-full left-0 w-full bg-white dark:bg-navy-muted border-b border-white/5 shadow-2xl p-12">
+                        <div class="max-w-7xl mx-auto grid grid-cols-4 gap-12">
+                            <div>
+                                <h4 class="text-electric-blue mb-6 tracking-[0.2em]">Engineering</h4>
+                                <ul
+                                    class="space-y-4 text-sm font-light normal-case tracking-normal dark:text-gray-400 text-gray-600">
+                                    <li><a href="services.html" class="hover:text-electric-blue transition-colors">Web
+                                            Systems & Portals</a></li>
+                                    <li><a href="services.html"
+                                            class="hover:text-electric-blue transition-colors">Custom SaaS
+                                            Development</a></li>
+                                    <li><a href="services.html"
+                                            class="hover:text-electric-blue transition-colors">Mobile App Ecosystems</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-electric-blue mb-6 tracking-[0.2em]">Intelligence</h4>
+                                <ul
+                                    class="space-y-4 text-sm font-light normal-case tracking-normal dark:text-gray-400 text-gray-600">
+                                    <li><a href="services.html" class="hover:text-electric-blue transition-colors">AI &
+                                            LLM Integration</a></li>
+                                    <li><a href="services.html"
+                                            class="hover:text-electric-blue transition-colors">Predictive Analytics</a>
+                                    </li>
+                                    <li><a href="services.html"
+                                            class="hover:text-electric-blue transition-colors">Workflow Automation</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-electric-blue mb-6 tracking-[0.2em]">Strategy</h4>
+                                <ul
+                                    class="space-y-4 text-sm font-light normal-case tracking-normal dark:text-gray-400 text-gray-600">
+                                    <li><a href="services.html"
+                                            class="hover:text-electric-blue transition-colors">Digital Consulting</a>
+                                    </li>
+                                    <li><a href="services.html"
+                                            class="hover:text-electric-blue transition-colors">Infrastructure Audit</a>
+                                    </li>
+                                    <li><a href="services.html" class="hover:text-electric-blue transition-colors">SEO &
+                                            Growth Hacking</a></li>
+                                </ul>
+                            </div>
+                            <div class="bg-electric-blue/5 p-6 rounded-lg border border-electric-blue/20">
+                                <p class="normal-case text-xs font-light mb-4 leading-relaxed">Ready to start your
+                                    digital transformation in Zambia?</p>
+                                <a href="contact.html" class="text-electric-blue hover:underline">Book a Consultation
+                                    →</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Nav Links -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="index.html" class="text-gray-300 hover:text-white text-xs font-semibold tracking-wider transition">HOME</a>
-                    <a href="services.html" class="text-gray-300 hover:text-white text-xs font-semibold tracking-wider transition">SERVICES</a>
-                    <a href="portfolio.html" class="text-blue-400 hover:text-blue-300 text-xs font-semibold tracking-wider transition">PORTFOLIO</a>
-                    <a href="about.html" class="text-gray-300 hover:text-white text-xs font-semibold tracking-wider transition">ABOUT</a>
-                    <a href="contact.html" class="text-gray-300 hover:text-white text-xs font-semibold tracking-wider transition">CONTACT</a>
-                </div>
+                <a href="portfolio.html" class="hover:text-electric-blue transition-colors">Portfolio</a>
+                <a href="about.html" class="hover:text-electric-blue transition-colors">About</a>
+                <a href="contact.html" class="hover:text-electric-blue transition-colors">Contact</a>
+            </div>
 
-                <!-- CTA -->
-                <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold text-sm transition">
-                    REQUEST A QUOTE
+            <div class="flex items-center space-x-6">
+                <button onclick="toggleTheme()" class="p-2 dark:text-electric-blue text-navy-obsidian" id="theme-btn">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round">
+                        <path d="M12 2V12M18.36 5.64A8 8 0 1 1 5.64 18.36" />
+                    </svg>
+                </button>
+                <a href="contact.html"
+                    class="hidden md:block bg-electric-blue text-white px-6 py-3 rounded-sm font-bold text-[10px] tracking-widest uppercase btn-glow">Request
+                    a Quote</a>
+                <button onclick="toggleMobileMenu()" class="lg:hidden">
+                    <div class="w-6 h-0.5 bg-electric-blue mb-1.5"></div>
+                    <div class="w-4 h-0.5 bg-electric-blue ml-auto"></div>
                 </button>
             </div>
+        </nav>
+    </header>
+
+    <div id="menu-overlay" onclick="toggleMobileMenu()"
+        class="fixed inset-0 bg-navy-obsidian/90 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-500 z-[55]">
+    </div>
+    <div id="mobile-menu"
+        class="fixed inset-y-0 right-0 w-[85%] md:w-96 z-[60] translate-x-full lg:hidden flex flex-col p-12 dark:bg-navy-muted bg-white transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]">
+        <button onclick="toggleMobileMenu()" class="self-end text-electric-blue">CLOSE —</button>
+        <div
+            class="flex flex-col space-y-8 mt-20 text-1xl font-extrabold tracking-tighter dark:text-white text-navy-obsidian">
+            <a href="index.html" onclick="toggleMobileMenu()">Home</a>
+            <a href="services.html" onclick="toggleMobileMenu()">Services</a>
+            <a href="portfolio.html" onclick="toggleMobileMenu()">Portfolio</a>
+            <a href="about.html" onclick="toggleMobileMenu()">About</a>
+            <a href="contact.html" onclick="toggleMobileMenu()">Contact</a>
         </div>
-    </nav>
+    </div>
 
     <!-- ══════════════════════════════════════ PAGE HEADER ══ -->
-    <section class="bg-[#0b0f1e] pt-16 pb-8 px-4">
+    <section class="bg-[#0b0f1e] pt-[144px] pb-8 px-4">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
                 <div>
@@ -519,12 +828,18 @@
         <div class="max-w-7xl mx-auto">
             <div class="filter-scroll">
                 <div class="flex items-center gap-3 py-2" id="filterBar">
-                    <button class="filter-tab active" data-filter="all" onclick="filterProjects('all', this)">All</button>
-                    <button class="filter-tab" data-filter="Web Development"    onclick="filterProjects('Web Development', this)">Web Development</button>
-                    <button class="filter-tab" data-filter="Software Solutions" onclick="filterProjects('Software Solutions', this)">Software Solutions</button>
-                    <button class="filter-tab" data-filter="AI & Automation"    onclick="filterProjects('AI & Automation', this)">AI &amp; Automation</button>
-                    <button class="filter-tab" data-filter="Mobile Apps"        onclick="filterProjects('Mobile Apps', this)">Mobile Apps</button>
-                    <button class="filter-tab" data-filter="Consulting"         onclick="filterProjects('Consulting', this)">Consulting</button>
+                    <button class="filter-tab active" data-filter="all"
+                        onclick="filterProjects('all', this)">All</button>
+                    <button class="filter-tab" data-filter="Web Development"
+                        onclick="filterProjects('Web Development', this)">Web Development</button>
+                    <button class="filter-tab" data-filter="Software Solutions"
+                        onclick="filterProjects('Software Solutions', this)">Software Solutions</button>
+                    <button class="filter-tab" data-filter="AI & Automation"
+                        onclick="filterProjects('AI & Automation', this)">AI &amp; Automation</button>
+                    <button class="filter-tab" data-filter="Mobile Apps"
+                        onclick="filterProjects('Mobile Apps', this)">Mobile Apps</button>
+                    <button class="filter-tab" data-filter="Consulting"
+                        onclick="filterProjects('Consulting', this)">Consulting</button>
                 </div>
             </div>
         </div>
@@ -540,16 +855,17 @@
                     <div class="card-thumb">
                         <div class="thumb-gradient thumb-web">
                             <!-- SVG geometric pattern -->
-                            <svg class="thumb-pattern" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                            <svg class="thumb-pattern" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg"
+                                preserveAspectRatio="xMidYMid slice">
                                 <defs>
                                     <pattern id="grid1" width="40" height="40" patternUnits="userSpaceOnUse">
-                                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#3b82f6" stroke-width="0.5"/>
+                                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#3b82f6" stroke-width="0.5" />
                                     </pattern>
                                 </defs>
-                                <rect width="400" height="200" fill="url(#grid1)"/>
-                                <circle cx="320" cy="60" r="60" fill="none" stroke="#3b82f6" stroke-width="0.5"/>
-                                <circle cx="320" cy="60" r="35" fill="none" stroke="#3b82f6" stroke-width="0.5"/>
-                                <line x1="0" y1="0" x2="200" y2="200" stroke="#3b82f6" stroke-width="0.5"/>
+                                <rect width="400" height="200" fill="url(#grid1)" />
+                                <circle cx="320" cy="60" r="60" fill="none" stroke="#3b82f6" stroke-width="0.5" />
+                                <circle cx="320" cy="60" r="35" fill="none" stroke="#3b82f6" stroke-width="0.5" />
+                                <line x1="0" y1="0" x2="200" y2="200" stroke="#3b82f6" stroke-width="0.5" />
                             </svg>
                             <!-- Mock browser chrome -->
                             <div class="mock-browser">
@@ -557,13 +873,17 @@
                                     <div class="mock-dot" style="background:#ef4444"></div>
                                     <div class="mock-dot" style="background:#f59e0b"></div>
                                     <div class="mock-dot" style="background:#22c55e"></div>
-                                    <div style="flex:1; height:10px; background:#0b0f1e; border-radius:2px; margin-left:6px;"></div>
+                                    <div
+                                        style="flex:1; height:10px; background:#0b0f1e; border-radius:2px; margin-left:6px;">
+                                    </div>
                                 </div>
                                 <div class="mock-browser-content">
                                     <div class="mock-line" style="width:55%; background:#2563eb; opacity:.6;"></div>
                                     <div style="display:flex;gap:6px;">
-                                        <div class="mock-line" style="width:30%; height:28px; background:#1e2a45;"></div>
-                                        <div style="flex:1; display:flex; flex-direction:column; gap:4px; padding-top:4px;">
+                                        <div class="mock-line" style="width:30%; height:28px; background:#1e2a45;">
+                                        </div>
+                                        <div
+                                            style="flex:1; display:flex; flex-direction:column; gap:4px; padding-top:4px;">
                                             <div class="mock-line" style="width:80%;"></div>
                                             <div class="mock-line" style="width:60%;"></div>
                                         </div>
@@ -575,7 +895,8 @@
                     </div>
                     <div class="card-body">
                         <div class="card-title">ZamPay Gateway</div>
-                        <p class="card-desc">A secure online payment portal built for a Lusaka-based fintech startup, handling 10,000+ monthly transactions.</p>
+                        <p class="card-desc">A secure online payment portal built for a Lusaka-based fintech startup,
+                            handling 10,000+ monthly transactions.</p>
                         <button class="card-link" onclick="openCaseStudy(0)">View Case Study <span>→</span></button>
                     </div>
                 </div>
@@ -584,27 +905,33 @@
                 <div class="project-card" data-category="Software Solutions">
                     <div class="card-thumb">
                         <div class="thumb-gradient thumb-soft">
-                            <svg class="thumb-pattern" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                            <svg class="thumb-pattern" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg"
+                                preserveAspectRatio="xMidYMid slice">
                                 <defs>
                                     <pattern id="dots2" width="20" height="20" patternUnits="userSpaceOnUse">
-                                        <circle cx="10" cy="10" r="1" fill="#3b82f6"/>
+                                        <circle cx="10" cy="10" r="1" fill="#3b82f6" />
                                     </pattern>
                                 </defs>
-                                <rect width="400" height="200" fill="url(#dots2)"/>
-                                <rect x="50" y="30" width="120" height="80" rx="2" fill="none" stroke="#3b82f6" stroke-width="0.7"/>
-                                <rect x="60" y="40" width="20" height="20" rx="1" fill="#3b82f6" opacity=".15"/>
-                                <line x1="0" y1="200" x2="400" y2="0" stroke="#3b82f6" stroke-width="0.4"/>
+                                <rect width="400" height="200" fill="url(#dots2)" />
+                                <rect x="50" y="30" width="120" height="80" rx="2" fill="none" stroke="#3b82f6"
+                                    stroke-width="0.7" />
+                                <rect x="60" y="40" width="20" height="20" rx="1" fill="#3b82f6" opacity=".15" />
+                                <line x1="0" y1="200" x2="400" y2="0" stroke="#3b82f6" stroke-width="0.4" />
                             </svg>
                             <div class="mock-browser">
                                 <div class="mock-browser-bar">
                                     <div class="mock-dot" style="background:#ef4444"></div>
                                     <div class="mock-dot" style="background:#f59e0b"></div>
                                     <div class="mock-dot" style="background:#22c55e"></div>
-                                    <div style="flex:1; height:10px; background:#0b0f1e; border-radius:2px; margin-left:6px;"></div>
+                                    <div
+                                        style="flex:1; height:10px; background:#0b0f1e; border-radius:2px; margin-left:6px;">
+                                    </div>
                                 </div>
                                 <div class="mock-browser-content">
                                     <div style="display:flex;gap:6px;align-items:center;">
-                                        <div class="mock-line" style="width:14px;height:14px;background:#3b82f6; opacity:.5; flex-shrink:0;"></div>
+                                        <div class="mock-line"
+                                            style="width:14px;height:14px;background:#3b82f6; opacity:.5; flex-shrink:0;">
+                                        </div>
                                         <div class="mock-line" style="width:50%;"></div>
                                     </div>
                                     <div class="mock-line" style="width:90%;"></div>
@@ -616,7 +943,8 @@
                     </div>
                     <div class="card-body">
                         <div class="card-title">MedTrack Zambia</div>
-                        <p class="card-desc">A hospital inventory and patient records management system deployed across 3 clinics in Copperbelt Province.</p>
+                        <p class="card-desc">A hospital inventory and patient records management system deployed across
+                            3 clinics in Copperbelt Province.</p>
                         <button class="card-link" onclick="openCaseStudy(1)">View Case Study <span>→</span></button>
                     </div>
                 </div>
@@ -625,30 +953,45 @@
                 <div class="project-card" data-category="AI & Automation">
                     <div class="card-thumb">
                         <div class="thumb-gradient thumb-ai">
-                            <svg class="thumb-pattern" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                            <svg class="thumb-pattern" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg"
+                                preserveAspectRatio="xMidYMid slice">
                                 <defs>
                                     <pattern id="hex3" width="30" height="26" patternUnits="userSpaceOnUse">
-                                        <polygon points="15,1 28,8 28,22 15,29 2,22 2,8" fill="none" stroke="#8b5cf6" stroke-width="0.5"/>
+                                        <polygon points="15,1 28,8 28,22 15,29 2,22 2,8" fill="none" stroke="#8b5cf6"
+                                            stroke-width="0.5" />
                                     </pattern>
                                 </defs>
-                                <rect width="400" height="200" fill="url(#hex3)"/>
-                                <polyline points="20,180 80,120 140,150 200,80 260,110 320,50 380,90" fill="none" stroke="#8b5cf6" stroke-width="1.5"/>
-                                <circle cx="200" cy="80" r="4" fill="#8b5cf6" opacity=".7"/>
+                                <rect width="400" height="200" fill="url(#hex3)" />
+                                <polyline points="20,180 80,120 140,150 200,80 260,110 320,50 380,90" fill="none"
+                                    stroke="#8b5cf6" stroke-width="1.5" />
+                                <circle cx="200" cy="80" r="4" fill="#8b5cf6" opacity=".7" />
                             </svg>
                             <div class="mock-browser">
                                 <div class="mock-browser-bar">
                                     <div class="mock-dot" style="background:#ef4444"></div>
                                     <div class="mock-dot" style="background:#f59e0b"></div>
                                     <div class="mock-dot" style="background:#22c55e"></div>
-                                    <div style="flex:1; height:10px; background:#0b0f1e; border-radius:2px; margin-left:6px;"></div>
+                                    <div
+                                        style="flex:1; height:10px; background:#0b0f1e; border-radius:2px; margin-left:6px;">
+                                    </div>
                                 </div>
                                 <div class="mock-browser-content">
                                     <div style="display:flex;gap:4px;height:50px;align-items:flex-end;">
-                                        <div style="flex:1;background:#8b5cf6;opacity:.35;border-radius:1px 1px 0 0;height:60%;"></div>
-                                        <div style="flex:1;background:#8b5cf6;opacity:.35;border-radius:1px 1px 0 0;height:80%;"></div>
-                                        <div style="flex:1;background:#8b5cf6;opacity:.35;border-radius:1px 1px 0 0;height:45%;"></div>
-                                        <div style="flex:1;background:#8b5cf6;opacity:.6;border-radius:1px 1px 0 0;height:95%;"></div>
-                                        <div style="flex:1;background:#8b5cf6;opacity:.35;border-radius:1px 1px 0 0;height:70%;"></div>
+                                        <div
+                                            style="flex:1;background:#8b5cf6;opacity:.35;border-radius:1px 1px 0 0;height:60%;">
+                                        </div>
+                                        <div
+                                            style="flex:1;background:#8b5cf6;opacity:.35;border-radius:1px 1px 0 0;height:80%;">
+                                        </div>
+                                        <div
+                                            style="flex:1;background:#8b5cf6;opacity:.35;border-radius:1px 1px 0 0;height:45%;">
+                                        </div>
+                                        <div
+                                            style="flex:1;background:#8b5cf6;opacity:.6;border-radius:1px 1px 0 0;height:95%;">
+                                        </div>
+                                        <div
+                                            style="flex:1;background:#8b5cf6;opacity:.35;border-radius:1px 1px 0 0;height:70%;">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -657,7 +1000,8 @@
                     </div>
                     <div class="card-body">
                         <div class="card-title">AgroSense Dashboard</div>
-                        <p class="card-desc">An AI-powered crop monitoring dashboard that uses predictive analytics to advise smallholder farmers on yield optimization.</p>
+                        <p class="card-desc">An AI-powered crop monitoring dashboard that uses predictive analytics to
+                            advise smallholder farmers on yield optimization.</p>
                         <button class="card-link" onclick="openCaseStudy(2)">View Case Study <span>→</span></button>
                     </div>
                 </div>
@@ -665,19 +1009,22 @@
                 <!-- ── Card 4: RentEase App ── -->
                 <div class="project-card" data-category="Mobile Apps">
                     <div class="card-thumb">
-                        <div class="thumb-gradient thumb-mobile" style="display:flex;align-items:flex-end;justify-content:center;gap:8px;padding-bottom:0;">
-                            <svg class="thumb-pattern" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                        <div class="thumb-gradient thumb-mobile"
+                            style="display:flex;align-items:flex-end;justify-content:center;gap:8px;padding-bottom:0;">
+                            <svg class="thumb-pattern" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg"
+                                preserveAspectRatio="xMidYMid slice">
                                 <defs>
                                     <pattern id="cross4" width="20" height="20" patternUnits="userSpaceOnUse">
-                                        <line x1="10" y1="0" x2="10" y2="20" stroke="#22d3ee" stroke-width="0.4"/>
-                                        <line x1="0" y1="10" x2="20" y2="10" stroke="#22d3ee" stroke-width="0.4"/>
+                                        <line x1="10" y1="0" x2="10" y2="20" stroke="#22d3ee" stroke-width="0.4" />
+                                        <line x1="0" y1="10" x2="20" y2="10" stroke="#22d3ee" stroke-width="0.4" />
                                     </pattern>
                                 </defs>
-                                <rect width="400" height="200" fill="url(#cross4)"/>
-                                <circle cx="80" cy="100" r="50" fill="none" stroke="#22d3ee" stroke-width="0.5"/>
+                                <rect width="400" height="200" fill="url(#cross4)" />
+                                <circle cx="80" cy="100" r="50" fill="none" stroke="#22d3ee" stroke-width="0.5" />
                             </svg>
                             <!-- Two phones side by side -->
-                            <div class="mock-phone" style="bottom:-4px; right:auto; left:50%; transform:translateX(-65px);">
+                            <div class="mock-phone"
+                                style="bottom:-4px; right:auto; left:50%; transform:translateX(-65px);">
                                 <div class="mock-phone-notch"></div>
                                 <div class="mock-phone-content">
                                     <div style="height:5px;background:#22d3ee;opacity:.4;border-radius:1px;"></div>
@@ -687,7 +1034,8 @@
                                     <div style="height:4px;background:#22d3ee;opacity:.25;border-radius:1px;"></div>
                                 </div>
                             </div>
-                            <div class="mock-phone" style="bottom:-4px; right:auto; left:50%; transform:translateX(10px); height:110px;">
+                            <div class="mock-phone"
+                                style="bottom:-4px; right:auto; left:50%; transform:translateX(10px); height:110px;">
                                 <div class="mock-phone-notch"></div>
                                 <div class="mock-phone-content">
                                     <div style="height:5px;background:#22d3ee;opacity:.4;border-radius:1px;"></div>
@@ -702,7 +1050,8 @@
                     </div>
                     <div class="card-body">
                         <div class="card-title">RentEase App</div>
-                        <p class="card-desc">A cross-platform property rental app for the Zambian market, connecting landlords and tenants with in-app lease management.</p>
+                        <p class="card-desc">A cross-platform property rental app for the Zambian market, connecting
+                            landlords and tenants with in-app lease management.</p>
                         <button class="card-link" onclick="openCaseStudy(3)">View Case Study <span>→</span></button>
                     </div>
                 </div>
@@ -711,27 +1060,32 @@
                 <div class="project-card" data-category="Web Development">
                     <div class="card-thumb">
                         <div class="thumb-gradient thumb-web">
-                            <svg class="thumb-pattern" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                            <svg class="thumb-pattern" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg"
+                                preserveAspectRatio="xMidYMid slice">
                                 <defs>
                                     <pattern id="grid5" width="40" height="40" patternUnits="userSpaceOnUse">
-                                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#3b82f6" stroke-width="0.5"/>
+                                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#3b82f6" stroke-width="0.5" />
                                     </pattern>
                                 </defs>
-                                <rect width="400" height="200" fill="url(#grid5)"/>
-                                <rect x="200" y="20" width="160" height="110" fill="none" stroke="#3b82f6" stroke-width="0.6"/>
-                                <line x1="200" y1="45" x2="360" y2="45" stroke="#3b82f6" stroke-width="0.4"/>
+                                <rect width="400" height="200" fill="url(#grid5)" />
+                                <rect x="200" y="20" width="160" height="110" fill="none" stroke="#3b82f6"
+                                    stroke-width="0.6" />
+                                <line x1="200" y1="45" x2="360" y2="45" stroke="#3b82f6" stroke-width="0.4" />
                             </svg>
                             <div class="mock-browser">
                                 <div class="mock-browser-bar">
                                     <div class="mock-dot" style="background:#ef4444"></div>
                                     <div class="mock-dot" style="background:#f59e0b"></div>
                                     <div class="mock-dot" style="background:#22c55e"></div>
-                                    <div style="flex:1; height:10px; background:#0b0f1e; border-radius:2px; margin-left:6px;"></div>
+                                    <div
+                                        style="flex:1; height:10px; background:#0b0f1e; border-radius:2px; margin-left:6px;">
+                                    </div>
                                 </div>
                                 <div class="mock-browser-content">
                                     <div style="display:flex;gap:6px;">
                                         <div style="width:60px;display:flex;flex-direction:column;gap:3px;">
-                                            <div class="mock-line" style="width:100%;height:6px;background:#2563eb;opacity:.4;"></div>
+                                            <div class="mock-line"
+                                                style="width:100%;height:6px;background:#2563eb;opacity:.4;"></div>
                                             <div class="mock-line" style="width:80%;"></div>
                                             <div class="mock-line" style="width:90%;"></div>
                                             <div class="mock-line" style="width:70%;"></div>
@@ -749,7 +1103,8 @@
                     </div>
                     <div class="card-body">
                         <div class="card-title">LegalEdge Portal</div>
-                        <p class="card-desc">A client-facing document management portal for a Lusaka law firm, with role-based access and e-signature integration.</p>
+                        <p class="card-desc">A client-facing document management portal for a Lusaka law firm, with
+                            role-based access and e-signature integration.</p>
                         <button class="card-link" onclick="openCaseStudy(4)">View Case Study <span>→</span></button>
                     </div>
                 </div>
@@ -758,28 +1113,34 @@
                 <div class="project-card" data-category="Software Solutions">
                     <div class="card-thumb">
                         <div class="thumb-gradient thumb-soft">
-                            <svg class="thumb-pattern" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                            <svg class="thumb-pattern" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg"
+                                preserveAspectRatio="xMidYMid slice">
                                 <defs>
                                     <pattern id="dots6" width="20" height="20" patternUnits="userSpaceOnUse">
-                                        <circle cx="10" cy="10" r="1" fill="#3b82f6"/>
+                                        <circle cx="10" cy="10" r="1" fill="#3b82f6" />
                                     </pattern>
                                 </defs>
-                                <rect width="400" height="200" fill="url(#dots6)"/>
-                                <polygon points="200,20 360,110 280,180 120,180 40,110" fill="none" stroke="#3b82f6" stroke-width="0.6"/>
+                                <rect width="400" height="200" fill="url(#dots6)" />
+                                <polygon points="200,20 360,110 280,180 120,180 40,110" fill="none" stroke="#3b82f6"
+                                    stroke-width="0.6" />
                             </svg>
                             <div class="mock-browser">
                                 <div class="mock-browser-bar">
                                     <div class="mock-dot" style="background:#ef4444"></div>
                                     <div class="mock-dot" style="background:#f59e0b"></div>
                                     <div class="mock-dot" style="background:#22c55e"></div>
-                                    <div style="flex:1; height:10px; background:#0b0f1e; border-radius:2px; margin-left:6px;"></div>
+                                    <div
+                                        style="flex:1; height:10px; background:#0b0f1e; border-radius:2px; margin-left:6px;">
+                                    </div>
                                 </div>
                                 <div class="mock-browser-content">
                                     <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;height:55px;">
-                                        <div style="background:#1e2a45;border-radius:2px;display:flex;align-items:center;justify-content:center;">
+                                        <div
+                                            style="background:#1e2a45;border-radius:2px;display:flex;align-items:center;justify-content:center;">
                                             <div style="width:12px;height:12px;background:#3b82f6;opacity:.5;"></div>
                                         </div>
-                                        <div style="background:#1e2a45;border-radius:2px;display:flex;align-items:center;justify-content:center;">
+                                        <div
+                                            style="background:#1e2a45;border-radius:2px;display:flex;align-items:center;justify-content:center;">
                                             <div style="width:12px;height:12px;background:#3b82f6;opacity:.5;"></div>
                                         </div>
                                         <div style="background:#2563eb;opacity:.3;border-radius:2px;"></div>
@@ -792,7 +1153,8 @@
                     </div>
                     <div class="card-body">
                         <div class="card-title">SmartStock POS</div>
-                        <p class="card-desc">A cloud-based point-of-sale and inventory system tailored for Zambian SMEs in the retail sector.</p>
+                        <p class="card-desc">A cloud-based point-of-sale and inventory system tailored for Zambian SMEs
+                            in the retail sector.</p>
                         <button class="card-link" onclick="openCaseStudy(5)">View Case Study <span>→</span></button>
                     </div>
                 </div>
@@ -801,39 +1163,47 @@
                 <div class="project-card" data-category="AI & Automation">
                     <div class="card-thumb">
                         <div class="thumb-gradient thumb-ai">
-                            <svg class="thumb-pattern" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                            <svg class="thumb-pattern" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg"
+                                preserveAspectRatio="xMidYMid slice">
                                 <defs>
                                     <pattern id="hex7" width="30" height="26" patternUnits="userSpaceOnUse">
-                                        <polygon points="15,1 28,8 28,22 15,29 2,22 2,8" fill="none" stroke="#8b5cf6" stroke-width="0.5"/>
+                                        <polygon points="15,1 28,8 28,22 15,29 2,22 2,8" fill="none" stroke="#8b5cf6"
+                                            stroke-width="0.5" />
                                     </pattern>
                                 </defs>
-                                <rect width="400" height="200" fill="url(#hex7)"/>
-                                <circle cx="200" cy="100" r="70" fill="none" stroke="#8b5cf6" stroke-width="0.6"/>
-                                <line x1="150" y1="60" x2="200" y2="100" stroke="#8b5cf6" stroke-width="0.8"/>
-                                <line x1="260" y1="70" x2="200" y2="100" stroke="#8b5cf6" stroke-width="0.8"/>
-                                <line x1="180" y1="155" x2="200" y2="100" stroke="#8b5cf6" stroke-width="0.8"/>
-                                <circle cx="150" cy="60" r="6" fill="#8b5cf6" opacity=".4"/>
-                                <circle cx="260" cy="70" r="6" fill="#8b5cf6" opacity=".4"/>
-                                <circle cx="180" cy="155" r="6" fill="#8b5cf6" opacity=".4"/>
-                                <circle cx="200" cy="100" r="8" fill="#8b5cf6" opacity=".5"/>
+                                <rect width="400" height="200" fill="url(#hex7)" />
+                                <circle cx="200" cy="100" r="70" fill="none" stroke="#8b5cf6" stroke-width="0.6" />
+                                <line x1="150" y1="60" x2="200" y2="100" stroke="#8b5cf6" stroke-width="0.8" />
+                                <line x1="260" y1="70" x2="200" y2="100" stroke="#8b5cf6" stroke-width="0.8" />
+                                <line x1="180" y1="155" x2="200" y2="100" stroke="#8b5cf6" stroke-width="0.8" />
+                                <circle cx="150" cy="60" r="6" fill="#8b5cf6" opacity=".4" />
+                                <circle cx="260" cy="70" r="6" fill="#8b5cf6" opacity=".4" />
+                                <circle cx="180" cy="155" r="6" fill="#8b5cf6" opacity=".4" />
+                                <circle cx="200" cy="100" r="8" fill="#8b5cf6" opacity=".5" />
                             </svg>
                             <div class="mock-browser">
                                 <div class="mock-browser-bar">
                                     <div class="mock-dot" style="background:#ef4444"></div>
                                     <div class="mock-dot" style="background:#f59e0b"></div>
                                     <div class="mock-dot" style="background:#22c55e"></div>
-                                    <div style="flex:1; height:10px; background:#0b0f1e; border-radius:2px; margin-left:6px;"></div>
+                                    <div
+                                        style="flex:1; height:10px; background:#0b0f1e; border-radius:2px; margin-left:6px;">
+                                    </div>
                                 </div>
                                 <div class="mock-browser-content">
                                     <div style="display:flex;gap:5px;align-items:flex-start;">
                                         <div style="flex:1;display:flex;flex-direction:column;gap:3px;">
                                             <div class="mock-line" style="width:90%;"></div>
                                             <div class="mock-line" style="width:70%;"></div>
-                                            <div style="height:18px;background:#8b5cf6;opacity:.2;width:60%;border-radius:8px;margin-top:2px;"></div>
+                                            <div
+                                                style="height:18px;background:#8b5cf6;opacity:.2;width:60%;border-radius:8px;margin-top:2px;">
+                                            </div>
                                         </div>
-                                        <div style="flex:1;display:flex;flex-direction:column;gap:3px;padding-top:14px;">
+                                        <div
+                                            style="flex:1;display:flex;flex-direction:column;gap:3px;padding-top:14px;">
                                             <div class="mock-line" style="width:80%;"></div>
-                                            <div style="height:18px;background:#1e2a45;width:70%;border-radius:8px;"></div>
+                                            <div style="height:18px;background:#1e2a45;width:70%;border-radius:8px;">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -843,7 +1213,8 @@
                     </div>
                     <div class="card-body">
                         <div class="card-title">AutoBot CRM</div>
-                        <p class="card-desc">An intelligent CRM with automated WhatsApp follow-ups and lead scoring built for a real estate agency.</p>
+                        <p class="card-desc">An intelligent CRM with automated WhatsApp follow-ups and lead scoring
+                            built for a real estate agency.</p>
                         <button class="card-link" onclick="openCaseStudy(6)">View Case Study <span>→</span></button>
                     </div>
                 </div>
@@ -852,34 +1223,42 @@
                 <div class="project-card" data-category="Consulting">
                     <div class="card-thumb">
                         <div class="thumb-gradient thumb-consult">
-                            <svg class="thumb-pattern" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                            <svg class="thumb-pattern" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg"
+                                preserveAspectRatio="xMidYMid slice">
                                 <defs>
                                     <pattern id="diag8" width="20" height="20" patternUnits="userSpaceOnUse">
-                                        <line x1="0" y1="20" x2="20" y2="0" stroke="#10b981" stroke-width="0.5"/>
+                                        <line x1="0" y1="20" x2="20" y2="0" stroke="#10b981" stroke-width="0.5" />
                                     </pattern>
                                 </defs>
-                                <rect width="400" height="200" fill="url(#diag8)"/>
-                                <rect x="30" y="40" width="80" height="60" rx="2" fill="none" stroke="#10b981" stroke-width="0.7"/>
-                                <rect x="140" y="60" width="80" height="60" rx="2" fill="none" stroke="#10b981" stroke-width="0.7"/>
-                                <rect x="250" y="40" width="80" height="60" rx="2" fill="none" stroke="#10b981" stroke-width="0.7"/>
-                                <line x1="110" y1="70" x2="140" y2="90" stroke="#10b981" stroke-width="0.7"/>
-                                <line x1="220" y1="90" x2="250" y2="70" stroke="#10b981" stroke-width="0.7"/>
-                                <line x1="70" y1="140" x2="70" y2="100" stroke="#10b981" stroke-width="0.7"/>
-                                <line x1="180" y1="140" x2="180" y2="120" stroke="#10b981" stroke-width="0.7"/>
-                                <line x1="290" y1="140" x2="290" y2="100" stroke="#10b981" stroke-width="0.7"/>
+                                <rect width="400" height="200" fill="url(#diag8)" />
+                                <rect x="30" y="40" width="80" height="60" rx="2" fill="none" stroke="#10b981"
+                                    stroke-width="0.7" />
+                                <rect x="140" y="60" width="80" height="60" rx="2" fill="none" stroke="#10b981"
+                                    stroke-width="0.7" />
+                                <rect x="250" y="40" width="80" height="60" rx="2" fill="none" stroke="#10b981"
+                                    stroke-width="0.7" />
+                                <line x1="110" y1="70" x2="140" y2="90" stroke="#10b981" stroke-width="0.7" />
+                                <line x1="220" y1="90" x2="250" y2="70" stroke="#10b981" stroke-width="0.7" />
+                                <line x1="70" y1="140" x2="70" y2="100" stroke="#10b981" stroke-width="0.7" />
+                                <line x1="180" y1="140" x2="180" y2="120" stroke="#10b981" stroke-width="0.7" />
+                                <line x1="290" y1="140" x2="290" y2="100" stroke="#10b981" stroke-width="0.7" />
                             </svg>
                             <div class="mock-browser">
                                 <div class="mock-browser-bar">
                                     <div class="mock-dot" style="background:#ef4444"></div>
                                     <div class="mock-dot" style="background:#f59e0b"></div>
                                     <div class="mock-dot" style="background:#22c55e"></div>
-                                    <div style="flex:1; height:10px; background:#0b0f1e; border-radius:2px; margin-left:6px;"></div>
+                                    <div
+                                        style="flex:1; height:10px; background:#0b0f1e; border-radius:2px; margin-left:6px;">
+                                    </div>
                                 </div>
                                 <div class="mock-browser-content">
                                     <div class="mock-line" style="width:65%;background:#10b981;opacity:.35;"></div>
                                     <div class="mock-line" style="width:90%;"></div>
                                     <div class="mock-line" style="width:75%;"></div>
-                                    <div style="height:16px;background:#10b981;opacity:.2;width:40%;border-radius:1px;margin-top:2px;"></div>
+                                    <div
+                                        style="height:16px;background:#10b981;opacity:.2;width:40%;border-radius:1px;margin-top:2px;">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -887,7 +1266,8 @@
                     </div>
                     <div class="card-body">
                         <div class="card-title">EduPath Zambia</div>
-                        <p class="card-desc">A digital transformation roadmap and tech infrastructure audit delivered for a national e-learning initiative.</p>
+                        <p class="card-desc">A digital transformation roadmap and tech infrastructure audit delivered
+                            for a national e-learning initiative.</p>
                         <button class="card-link" onclick="openCaseStudy(7)">View Case Study <span>→</span></button>
                     </div>
                 </div>
@@ -937,7 +1317,7 @@
                 </div>
                 <div>
                     <h4 class="text-white font-semibold mb-4">Location</h4>
-                    <p class="text-gray-400 text-sm">Lusaka, Zambia</p>
+                    <p class="text-gray-400 text-sm">Kitwe, Zambia</p>
                 </div>
             </div>
             <div class="border-t border-[#1e2a45] pt-8 text-center text-gray-500 text-sm">
@@ -1300,22 +1680,57 @@
         }
 
         // Close on backdrop click
-        document.getElementById('caseModal').addEventListener('click', function(e) {
+        document.getElementById('caseModal').addEventListener('click', function (e) {
             if (e.target === this) closeCaseStudy();
         });
 
         // Close on Escape
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') closeCaseStudy();
         });
 
         // Hex colour → "r,g,b" for rgba()
         function hexToRgb(hex) {
-            const r = parseInt(hex.slice(1,3),16);
-            const g = parseInt(hex.slice(3,5),16);
-            const b = parseInt(hex.slice(5,7),16);
+            const r = parseInt(hex.slice(1, 3), 16);
+            const g = parseInt(hex.slice(3, 5), 16);
+            const b = parseInt(hex.slice(5, 7), 16);
             return `${r},${g},${b}`;
         }
     </script>
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            if (body.classList.contains('dark')) {
+                body.classList.replace('dark', 'light');
+                body.classList.replace('bg-[#0b0f1e]', 'bg-white');
+                body.classList.replace('text-white', 'text-navy-obsidian');
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.classList.replace('light', 'dark');
+                body.classList.replace('bg-white', 'bg-[#0b0f1e]');
+                body.classList.replace('text-navy-obsidian', 'text-white');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        function toggleMobileMenu() {
+            const body = document.body;
+            const menu = document.getElementById('mobile-menu');
+            const overlay = document.getElementById('menu-overlay');
+            body.classList.toggle('no-scroll');
+            menu.classList.toggle('translate-x-full');
+            overlay.classList.toggle('opacity-0');
+            overlay.classList.toggle('pointer-events-none');
+        }
+
+        window.addEventListener("scroll", () => {
+            let winScroll = document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            if (document.getElementById("progress-bar")) {
+                document.getElementById("progress-bar").style.width = (winScroll / height) * 100 + "%";
+            }
+        });
+    </script>
 </body>
+
 </html>
