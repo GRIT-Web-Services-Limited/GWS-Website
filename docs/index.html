@@ -5,40 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GRIT Web Services | Engineering the Future</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        // Official Corporate Palette
-                        'navy-obsidian': '#003366', // Brand Navy
-                        'navy-muted': '#002244',    // Deeper Navy for contrast
-                        'electric-blue': '#D4AF37', // Brand Gold
-                    },
-                    fontFamily: {
-                        sans: ['Segoe UI', 'Tahoma', 'Verdana', 'sans-serif'],
+                        'navy-obsidian': '#050B18', // Deep Space Navy
+                        'navy-muted': '#0A1628',    // Lighter Navy for cards
+                        'electric-blue': '#1E90d9',
                     }
                 }
             }
         }
+
+
+        
     </script>
     <style>
-        /* Corporate Font Overhaul */
-        body { 
-            font-family: 'Segoe UI', Tahoma, Helvetica, Arial, sans-serif; 
-            transition: background-color 0.5s ease; 
-        }
-        h1, h2, h3, h4 { font-family: 'Segoe UI', Tahoma, sans-serif; font-weight: 700; }
+        body { font-family: 'Open Sans', sans-serif; transition: background-color 0.5s ease; }
+        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
         
-        /* Grid Backgrounds Updated for Brand Palette */
+        /* Grid Backgrounds */
         .tech-grid {
             background-image: linear-gradient(var(--grid-color) 1px, transparent 1px), 
                               linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
             background-size: 80px 80px;
         }
-        .dark .tech-grid { --grid-color: rgba(212, 175, 55, 0.07); } /* Gold grid */
-        .light .tech-grid { --grid-color: rgba(0, 51, 102, 0.04); } /* Navy grid */
+        .dark .tech-grid { --grid-color: rgba(30, 144, 255, 0.07); }
+        .light .tech-grid { --grid-color: rgba(5, 11, 24, 0.04); }
 
         /* Mega Menu Animation */
         .mega-menu {
@@ -53,63 +49,64 @@
             transform: translateY(0);
         }
 
-        .btn-glow:hover { box-shadow: 0 0 30px rgba(212, 175, 55, 0.4); transform: translateY(-2px); }
-        #progress-bar { height: 2px; background: #D4AF37; width: 0%; position: fixed; top: 0; z-index: 100; }
+        .btn-glow:hover { box-shadow: 0 0 30px rgba(30, 144, 255, 0.4); transform: translateY(-2px); }
+        #progress-bar { height: 2px; background: #1E90FF; width: 0%; position: fixed; top: 0; z-index: 100; }
         
         .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
         .no-scroll { overflow: hidden; }
 
-        /* Portfolio Glass Panels */
-        .glass-panel {
-            background: rgba(0, 34, 68, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
+/* Portfolio Specific Styles */
+.glass-panel {
+    background: rgba(10, 22, 40, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
 
-        .portfolio-item {
-            position: relative;
-            overflow: hidden;
-        }
+.portfolio-item {
+    position: relative;
+    overflow: hidden;
+}
 
-        .portfolio-item img {
-            transition: transform 0.8s cubic-bezier(0.2, 0, 0.2, 1);
-        }
+.portfolio-item img {
+    transition: transform 0.8s cubic-bezier(0.2, 0, 0.2, 1);
+}
 
-        .portfolio-item:hover img {
-            transform: scale(1.1);
-        }
+.portfolio-item:hover img {
+    transform: scale(1.1);
+}
 
-        .portfolio-content {
-            background: linear-gradient(0deg, #003366 0%, rgba(0, 51, 102, 0) 100%);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.5s ease;
-        }
+.portfolio-content {
+    background: linear-gradient(0deg, #050B18 0%, rgba(5, 11, 24, 0) 100%);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
 
-        .portfolio-item:hover .portfolio-content {
-            opacity: 1;
-            transform: translateY(0);
-        }
+.portfolio-item:hover .portfolio-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
     </style>
 </head>
 
-<body class="dark bg-navy-obsidian text-white transition-colors duration-500 overflow-x-hidden font-sans">
+<body class="dark bg-navy-obsidian text-white transition-colors duration-500 overflow-x-hidden">
 
     <div id="progress-bar"></div>
 
     <header id="navbar" class="fixed w-full z-50 transition-all duration-500 border-b dark:border-white/5 border-gray-200 backdrop-blur-xl dark:bg-navy-obsidian/80 bg-white/80">
         <nav class="max-w-7xl mx-auto flex justify-between items-center p-5 md:px-8">
             <div class="flex items-center">
-                <a href="index.html">
-                    <img src="GRIT_G.png" class="h-16 w-auto" alt="Logo">
+                <a href="#">
+                    <img src="GRIT_G.png" class="h-16 w-auto" alt="ZDS Logo">
                 </a>
-            </div>
+                </div>
             
             <div class="hidden lg:flex space-x-10 text-[12px] font-bold tracking-[0.3em] uppercase dark:text-white/70 text-navy-obsidian/70">
-                <a href="index.html" class="text-electric-blue">Home</a>
+                <a href="#" class="hover:text-electric-blue transition-colors">Home</a>
                 
                 <div class="group static">
                     <button class="flex items-center hover:text-electric-blue transition-colors uppercase">
@@ -142,23 +139,23 @@
                                 </ul>
                             </div>
                             <div class="bg-electric-blue/5 p-6 rounded-lg border border-electric-blue/20">
-                                <p class="normal-case text-xs font-light mb-4 leading-relaxed text-navy-obsidian dark:text-white">Ready to start your digital transformation in Zambia?</p>
-                                <a href="#" class="text-electric-blue hover:underline">Book a Consultation →</a>
+                                <p class="normal-case text-xs font-light mb-4 leading-relaxed">Ready to start your digital transformation in Zambia?</p>
+                                <a href="contact.html" class="text-electric-blue hover:underline">Book a Consultation →</a>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <a href="#" class="hover:text-electric-blue transition-colors">Portfolio</a>
-                <a href="#" class="hover:text-electric-blue transition-colors">About</a>
-                <a href="#" class="hover:text-electric-blue transition-colors">Contact</a>
+                <a href="portfolio.html" class="hover:text-electric-blue transition-colors">Portfolio</a>
+                <a href="about.html" class="hover:text-electric-blue transition-colors">About</a>
+                <a href="contact.html" class="hover:text-electric-blue transition-colors">Contact</a>
             </div>
 
             <div class="flex items-center space-x-6">
                 <button onclick="toggleTheme()" class="p-2 dark:text-electric-blue text-navy-obsidian" id="theme-btn">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2V12M18.36 5.64A8 8 0 1 1 5.64 18.36"/></svg>
                 </button>
-                <a href="contact.html" class="hidden md:block bg-electric-blue text-white px-6 py-3 rounded-sm font-bold text-[10px] tracking-widest uppercase btn-glow">Request a Quote</a>
+                <a href="#contact" class="hidden md:block bg-electric-blue text-white px-6 py-3 rounded-sm font-bold text-[10px] tracking-widest uppercase btn-glow">Request a Quote</a>
                 <button onclick="toggleMobileMenu()" class="lg:hidden">
                     <div class="w-6 h-0.5 bg-electric-blue mb-1.5"></div>
                     <div class="w-4 h-0.5 bg-electric-blue ml-auto"></div>
@@ -169,13 +166,13 @@
 
     <div id="menu-overlay" onclick="toggleMobileMenu()" class="fixed inset-0 bg-navy-obsidian/90 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-500 z-[55]"></div>
     <div id="mobile-menu" class="fixed inset-y-0 right-0 w-[85%] md:w-96 z-[60] translate-x-full lg:hidden flex flex-col p-12 dark:bg-navy-muted bg-white transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]">
-        <button onclick="toggleMobileMenu()" class="self-end text-electric-blue font-bold">CLOSE —</button>
+        <button onclick="toggleMobileMenu()" class="self-end text-electric-blue">CLOSE —</button>
         <div class="flex flex-col space-y-8 mt-20 text-1xl font-extrabold tracking-tighter dark:text-white text-navy-obsidian">
             <a href="#" onclick="toggleMobileMenu()">Home</a>
-            <a href="#" onclick="toggleMobileMenu()">Services</a>
-            <a href="#" onclick="toggleMobileMenu()">Portfolio</a>
-            <a href="#" onclick="toggleMobileMenu()">About</a>
-            <a href="#" onclick="toggleMobileMenu()">Contact</a>
+            <a href="services.html" onclick="toggleMobileMenu()">Services</a>
+            <a href="portfolio.html" onclick="toggleMobileMenu()">Portfolio</a>
+            <a href="about.html" onclick="toggleMobileMenu()">About</a>
+            <a href="contact.html" onclick="toggleMobileMenu()">Contact</a>
         </div>
     </div>
 
@@ -188,15 +185,15 @@
                 <span class="w-8 h-px bg-electric-blue"></span>
                 <span class="text-electric-blue text-[10px] font-bold tracking-[0.5em] uppercase">Commercial Grade Innovations</span>
             </div>
-            <h1 class="text-5xl md:text-7xl font-extrabold leading-[0.9] tracking-tighter mb-10 dark:text-white text-navy-obsidian">
-                Empowering <br> Businesses <br>with <span class="text-transparent bg-clip-text bg-gradient-to-r from-electric-blue to-yellow-600">Digital Solutions</span>
+            <h1 class="text-5xl md:text-6xl font-extrabold leading-[0.9] tracking-tighter mb-10 dark:text-white text-navy-obsidian">
+                Empowering <br> Businesses <br>with <span class="text-transparent bg-clip-text bg-gradient-to-r from-electric-blue to-blue-300">Digital Solutions</span>
             </h1>
             <p class="dark:text-gray-400 text-gray-600 text-lg md:text-2xl max-w-2xl mb-12 font-light leading-relaxed reveal">
-                Building high-performance web systems, intelligent automation, and custom software solutions that drive growth for enterprises worldwide.
+                Building high-performance web systems, intelligent automation, and custom software solutions that drive growth and efficiency for enterprises worldwide.
             </p>
             <div class="flex flex-wrap gap-6 reveal">
-                <a href="#" class="bg-electric-blue text-white px-12 py-6 rounded-sm font-bold text-[10px] tracking-[0.2em] uppercase btn-glow transition-all">Work With Us</a>
-                <a href="#l" class="flex items-center space-x-4 dark:text-white text-navy-obsidian font-bold text-[10px] tracking-[0.2em] uppercase group">
+                <a href="#contact" class="bg-electric-blue text-white px-12 py-6 rounded-sm font-bold text-[10px] tracking-[0.2em] uppercase btn-glow transition-all">Work With Us</a>
+                <a href="#portfolio" class="flex items-center space-x-4 dark:text-white text-navy-obsidian font-bold text-[10px] tracking-[0.2em] uppercase group">
                     <span>View Projects</span>
                     <span class="w-10 h-px bg-current group-hover:w-16 transition-all"></span>
                 </a>
@@ -204,7 +201,6 @@
         </div>
     </section>
 
-    <!-- Services Section -->
     <section id="services" class="py-32 px-6 dark:bg-navy-obsidian bg-gray-50">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-end mb-24 reveal">
@@ -234,71 +230,191 @@
                         <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                     </div>
                     <h3 class="text-2xl font-bold mb-4 dark:text-white group-hover:text-white">AI & Automation</h3>
-                    <p class="dark:text-gray-400 text-gray-500 group-hover:text-white/80 font-light text-sm leading-relaxed">Integrate LLMs and intelligent workflow triggers to enhance productivity and eliminate tasks.[cite: 1]</p>
+                    <p class="dark:text-gray-400 text-gray-500 group-hover:text-white/80 font-light text-sm leading-relaxed">Integrate LLMs and intelligent workflow triggers to enhance productivity and eliminate repetitive tasks.</p>
+                </div>
+                <div class="p-12 dark:bg-navy-obsidian bg-white group hover:bg-electric-blue transition-all duration-700 reveal">
+                    <div class="mb-10 text-electric-blue group-hover:text-white transition-colors">
+                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 dark:text-white group-hover:text-white">Digital Consulting</h3>
+                    <p class="dark:text-gray-400 text-gray-500 group-hover:text-white/80 font-light text-sm leading-relaxed">Expert guidance to transform your business strategy into a roadmap for digital success.</p>
+                </div>
+                <div class="md:col-span-2 p-12 dark:bg-navy-obsidian bg-white group hover:bg-electric-blue transition-all duration-700 reveal">
+                    <div class="mb-10 text-electric-blue group-hover:text-white transition-colors">
+                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.5" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 dark:text-white group-hover:text-white">Tech Support & Maintenance</h3>
+                    <p class="dark:text-gray-400 text-gray-500 group-hover:text-white/80 font-light text-sm leading-relaxed">Reliable, ongoing support to keep your systems running smoothly with zero downtime.</p>
                 </div>
             </div>
             <div class="p-12 flex justify-end">
-                <a href="#" class="bg-electric-blue text-white px-10 py-5 rounded-sm font-bold text-[10px] tracking-widest uppercase btn-glow">Explore all Services</a>
+                <a href="services.html" class="bg-electric-blue text-white px-10 py-5 rounded-sm font-bold text-[10px] tracking-widest uppercase btn-glow">Explore all Services</a>
             </div>
         </div>
     </section>
 
-    <!-- Portfolio Section -->
     <section id="portfolio" class="py-32 px-6 dark:bg-navy-obsidian bg-white transition-colors">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-24 reveal">
-                <div class="max-w-xl">
-                    <span class="text-electric-blue text-[10px] font-bold tracking-[0.4em] uppercase mb-4 block">Case Studies</span>
-                    <h2 class="text-5xl md:text-5xl font-extrabold tracking-tighter dark:text-white text-navy-obsidian mb-6 underline decoration-electric-blue decoration-4 underline-offset-8">System <span class="text-electric-blue">Gallery.</span></h2>
-                </div>
-                <p class="text-gray-500 font-light max-w-xs">A showcase of high-performance digital architecture built for enterprises.</p>
+    <div class="max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-24 reveal">
+            <div class="max-w-xl">
+                <span class="text-electric-blue text-[10px] font-bold tracking-[0.4em] uppercase mb-4 block">Case Studies</span>
+                <h2 class="text-5xl md:text-5xl font-extrabold tracking-tighter dark:text-white text-navy-obsidian mb-6 underline decoration-electric-blue decoration-4 underline-offset-8">System <span class="text-electric-blue">Gallery.</span></h2>
             </div>
+            <p class="text-gray-500 font-light max-w-xs">A showcase of high-performance digital architecture built for enterprises.</p>
+        </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="portfolio-item group aspect-[4/5] rounded-sm reveal">
-                    <img src="time-verze-screenshot.png" alt="FinTech Dashboard" class="w-full h-full object-cover">
-                    <div class="portfolio-content absolute inset-0 flex flex-col justify-end p-8">
-                        <span class="text-electric-blue text-[12px] font-bold tracking-[0.3em] uppercase mb-2">Web Application</span>
-                        <h3 class="text-2xl font-bold text-white mb-4">FinTech Portal</h3>
-                        <p class="text-gray-300 text-sm font-light mb-6">Secure, high-traffic financial management system with real-time analytics.[cite: 1]</p>
-                        <div class="flex gap-4">
-                            <span class="text-[9px] border border-white/20 px-3 py-1 rounded-full text-white/50 uppercase">React</span>
-                            <span class="text-[9px] border border-white/20 px-3 py-1 rounded-full text-white/50 uppercase">Node.js</span>
-                        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="portfolio-item group aspect-[4/5] rounded-sm reveal">
+                <img src="time-verze-screenshot.png" alt="FinTech Dashboard" class="w-120 h-auto object-cover">
+                <div class="portfolio-content absolute inset-0 flex flex-col justify-end p-8">
+                    <span class="text-electric-blue text-[12px] font-bold tracking-[0.3em] opacity-100  uppercase mb-2">Web Application</span>
+                    <h3 class="text-2xl font-bold text-white mb-4">FinTech Portal</h3>
+                    <p class="text-gray-300 text-sm font-light mb-6">A secure, high-traffic financial management system with real-time analytics.</p>
+                    <div class="flex gap-4">
+                        <span class="text-[9px] border border-white/20 px-3 py-1 rounded-full text-white/50 uppercase">React</span>
+                        <span class="text-[9px] border border-white/20 px-3 py-1 rounded-full text-white/50 uppercase">Node.js</span>
                     </div>
                 </div>
-                <!-- Additional portfolio items remain as per your file structure -->
             </div>
 
-            <div class="mt-20 p-12 flex flex-col md:flex-row justify-between items-center reveal">
-                <a href="#" class="bg-electric-blue text-white px-10 py-5 rounded-sm font-bold text-[10px] tracking-widest uppercase btn-glow">View More Projects</a>
-                <div class="text-center md:text-left my-8 md:my-0">
-                    <h4 class="text-2xl font-bold dark:text-white text-electric-blue mb-2">Have a project in mind?</h4>
-                    <p class="dark:text-white text-navy-obsidian font-light">We specialize in turning complex requirements into elegant code.[cite: 1]</p>
+            <div class="portfolio-item group aspect-[4/5] rounded-sm reveal">
+                <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=800&q=80" alt="E-Commerce Ecosystem" class="w-full h-full object-cover">
+                <div class="portfolio-content absolute inset-0 flex flex-col justify-end p-8">
+                    <span class="text-electric-blue text-[10px] font-bold tracking-[0.3em] uppercase mb-2">Infrastructure</span>
+                    <h3 class="text-2xl font-bold text-white mb-4">Supply Chain AI</h3>
+                    <p class="text-gray-300 text-sm font-light mb-6">Automated logistics platform integrating predictive stock modeling for retailers.</p>
+                    <div class="flex gap-4">
+                        <span class="text-[9px] border border-white/20 px-3 py-1 rounded-full text-white/50 uppercase">Python</span>
+                        <span class="text-[9px] border border-white/20 px-3 py-1 rounded-full text-white/50 uppercase">AWS</span>
+                    </div>
                 </div>
-                <a href="#" class="bg-electric-blue text-white px-10 py-5 rounded-sm font-bold text-[10px] tracking-widest uppercase btn-glow">Start a Project</a>
+            </div>
+
+            <div class="portfolio-item group aspect-[4/5] rounded-sm reveal">
+                <img src="king-kayo-screenshot.png" alt="Mobile Experience" class="w-120 h-auto object-cover">
+                <div class="portfolio-content absolute inset-0 flex flex-col justify-end p-8">
+                    <span class="text-electric-blue text-[10px] font-bold tracking-[0.3em] uppercase mb-2">Mobile Development</span>
+                    <h3 class="text-2xl font-bold text-white mb-4">Enterprise Connect</h3>
+                    <p class="text-gray-300 text-sm font-light mb-6">Native mobile ecosystem designed for cross-departmental communication.</p>
+                    <div class="flex gap-4">
+                        <span class="text-[9px] border border-white/20 px-3 py-1 rounded-full text-white/50 uppercase">Flutter</span>
+                        <span class="text-[9px] border border-white/20 px-3 py-1 rounded-full text-white/50 uppercase">Firebase</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="mt-20  p-12 flex flex-col md:flex-row justify-between items-center reveal">
+    <a href="portfolio.html" class="bg-electric-blue text-white px-10 py-5 rounded-sm font-bold text-[10px] tracking-widest uppercase btn-glow">View More Projects</a>
+
+    <div class="text-center md:text-left my-8 md:my-0">
+        <h4 class="text-2xl font-bold dark:text-white text-electric-blue mb-2">Have a project in mind?</h4>
+        <p class="dark:text-white text-navy-obsidian font-light">We specialize in turning complex requirements into elegant code.</p>
+    </div>
+    
+    <a href="contact.html" class="bg-electric-blue text-white px-10 py-5 rounded-sm font-bold text-[10px] tracking-widest uppercase btn-glow">Start a Project</a>
+</div>
+    </div>
+</section>
+
+    <section id="about" class="py-32 px-6 dark:bg-navy-muted bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-20">
+            <div class="lg:w-1/2 reveal">
+                <span class="text-electric-blue text-[10px] font-bold tracking-[0.4em] uppercase mb-6 block">Our Mission</span>
+                <h2 class="text-4xl md:text-5xl font-extrabold tracking-tighter mb-10 dark:text-white text-navy-obsidian leading-tight">
+                    Forward-Thinking <br>Technology <span class="text-electric-blue italic">Worldover.</span>
+                </h2>
+                <div class="space-y-6 text-gray-500 dark:text-gray-400 font-light text-lg">
+                    <p>GRIT Web Services Limited is a specialized technology company that reflects its <span class="dark:text-white text-navy-obsidian font-bold">Determination</span>, <span class="dark:text-white text-navy-obsidian font-bold">Resilience</span>, <span class="dark:text-white text-navy-obsidian font-bold">Innovation</span>, and <span class="dark:text-white text-navy-obsidian font-bold">Relentless</span> Execution.</p>
+                    <p>We combine global engineering standards with local market expertise to build world-class digital tools. Our mission is simple: to help businesses leverage high-performance technology to achieve more.</p>
+                </div>
+            </div>
+            <div class="lg:w-1/2 relative reveal">
+                <div class="aspect-square bg-navy-obsidian rounded-2xl overflow-hidden relative group">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-1000" alt="">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-24 h-24 border border-electric-blue/30 rounded-full flex items-center justify-center animate-ping"></div>
+                        <span class="absolute text-white font-black text-6xl opacity-10">GWS</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-20 px-6 dark:bg-navy-obsidian bg-white border-t dark:border-white/5 border-gray-100">
-        <div class="max-w-7xl mx-auto flex flex-col items-center">
-            <div class="mb-12 reveal">
-                <img src="GRIT_transparent.png" class="h-24 w-auto" alt="Logo">
-            </div>
-            <div class="w-full flex flex-col md:flex-row justify-between items-center text-[10px] tracking-[0.4em] font-bold uppercase dark:text-electric-blue text-navy-obsidian border-t dark:border-white/5 border-gray-100 pt-10">
-                <p class="mb-8 md:mb-0 text-center">© 2026 GRIT Web Services — Excellence In Every Digital Tool[cite: 1]</p>
-                <div class="flex space-x-12">
-                    <a href="#" class="hover:text-electric-blue transition-colors">Privacy</a>
-                    <a href="#" class="hover:text-electric-blue transition-colors">Terms</a>
-                    <a href="#" class="hover:text-electric-blue transition-colors">Systems</a>
+    <section id="contact" class="py-32 px-6 dark:bg-navy-obsidian bg-white border-t dark:border-white/5 border-gray-100">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+            <div class="reveal">
+                <h2 class="text-5xl md:text-5xl font-extrabold tracking-tighter mb-8 dark:text-white text-navy-obsidian">Let's Build <br>Something <span class="text-electric-blue">Amazing.</span></h2>
+                <p class="text-gray-500 font-light text-xl mb-12">Fill out the form below or reach us directly via WhatsApp or Email.</p>
+                
+                <div class="flex items-center space-x-6">
+                    <a href="https://wa.me/+260978982804" class="bg-green-600/10 text-electric-blue px-8 py-4 rounded-full font-bold text-xs tracking-widest uppercase flex items-center gap-3 hover:bg-green-600/20 transition-all">
+                        <span>WhatsApp</span>
+                    </a>
+                    <a href="mailto:hello@zambezidigital.com" class="bg-blue-600/10 text-electric-blue px-8 py-4 rounded-full font-bold text-xs tracking-widest uppercase flex items-center gap-3 hover:bg-blue-600/20 transition-all">
+                        <span>Email</span>
+                    </a>
                 </div>
             </div>
-        </div>
-    </footer>
 
-    <!-- Theme & Animation Scripts -->
+            <div class="reveal dark:bg-navy-muted bg-gray-50 p-8 md:p-12 rounded-sm border dark:border-white/5 border-gray-200">
+                <form class="space-y-6">
+                    <input type="text" placeholder="Full Name" class="w-full bg-transparent border-b dark:border-white/10 border-gray-300 py-4 focus:outline-none focus:border-electric-blue transition-colors placeholder:text-gray-600">
+                    <input type="email" placeholder="Business Email" class="w-full bg-transparent border-b dark:border-white/10 border-gray-300 py-4 focus:outline-none focus:border-electric-blue transition-colors placeholder:text-gray-600">
+                    <select class="w-full bg-transparent border-b dark:border-white/10 border-gray-300 py-4 focus:outline-none focus:border-electric-blue transition-colors text-gray-500">
+                        <option>Web Development</option>
+                        <option>Software Solution</option>
+                        <option>AI Integration</option>
+                    </select>
+                    <textarea rows="4" placeholder="Briefly describe your project" class="w-full bg-transparent border-b dark:border-white/10 border-gray-300 py-4 focus:outline-none focus:border-electric-blue transition-colors placeholder:text-gray-600"></textarea>
+                    <button class="w-full bg-electric-blue py-6 text-white font-bold tracking-[0.3em] uppercase text-xs btn-glow">Transmit Inquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+   <footer class="py-20 px-6 dark:bg-navy-obsidian bg-white border-t dark:border-white/5 border-gray-100">
+    <div class="max-w-7xl mx-auto flex flex-col items-center">
+        <div class="mb-12 reveal">
+            <img src="GRIT_transparent.png" class="h-120 w-auto dark:hidden" alt="ZDS">
+            <img src="GRIT_transparent.png" class="hidden dark:block h-120 w-auto" alt="ZDS">
+        </div>
+
+        <div class="w-full flex flex-col md:flex-row justify-between items-center text-[10px] tracking-[0.4em] font-bold uppercase dark:text-electric-blue text-navy-obsidian border-t dark:border-white/5 border-gray-100 pt-10">
+            <p class="mb-8 md:mb-0 text-center">© 2026 GRIT Web Services Limited — Excellence In every Digital Tool</p>
+            
+            <div class="flex space-x-12 justify-between">
+                <a href="#" class="hover:text-white transition-colors">Privacy</a>
+                <a href="#" class="hover:text-white transition-colors">Terms</a>
+                <a href="#portfolio" class="hover:text-white transition-colors">Systems</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<div id="projects-modal" class="fixed inset-0 z-[100] flex items-center justify-center opacity-0 pointer-events-none transition-all duration-500">
+    <div class="absolute inset-0 bg-navy-obsidian/80 backdrop-blur-xl" onclick="toggleModal('projects-modal')"></div>
+    
+    <div class="relative glass-panel p-12 max-w-lg w-[90%] text-center border border-electric-blue/20 shadow-2xl transform scale-90 transition-transform duration-500 modal-content">
+        <button onclick="toggleModal('projects-modal')" class="absolute top-6 right-6 text-gray-500 hover:text-electric-blue transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        
+        <div class="mb-8 inline-flex p-4 rounded-full bg-electric-blue/10 text-electric-blue">
+            <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.5" d="M19.428 15.341A8 8 0 1114.658 4.052M19.428 15.341L15 12M19.428 15.341l3.072 3.072"></path></svg>
+        </div>
+        
+        <h3 class="text-3xl font-bold dark:text-white text-navy-obsidian mb-4 tracking-tighter">Expanding the Archives.</h3>
+        <p class="text-gray-500 font-light leading-relaxed mb-8">
+            Our engineering team is currently documenting several new systems across Lusaka and the Copperbelt. Check back soon to explore our latest deployments.
+        </p>
+        
+    <a href="contact.html" class="bg-electric-blue text-white px-10 py-5 rounded-sm font-bold text-[10px] tracking-widest uppercase btn-glow">Start a Project</a>
+    </div>
+</div>
+
     <script>
         function toggleTheme() {
             const body = document.body;
@@ -334,30 +450,32 @@
             });
         }
 
+        function toggleModal(id) {
+            const modal = document.getElementById(id);
+            const content = modal.querySelector('.modal-content');
+            const isHidden = modal.classList.contains('opacity-0');
+
+            if (isHidden) {
+                modal.classList.remove('opacity-0', 'pointer-events-none');
+                content.classList.remove('scale-90');
+                content.classList.add('scale-100');
+                document.body.classList.add('no-scroll');
+            } else {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                content.classList.remove('scale-100');
+                content.classList.add('scale-90');
+                document.body.classList.remove('no-scroll');
+            }
+        }
+
         window.addEventListener("scroll", () => {
             let winScroll = document.documentElement.scrollTop;
             let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            let scrolled = (winScroll / height) * 100;
-            document.getElementById("progress-bar").style.width = scrolled + "%";
-            
-            const navbar = document.getElementById('navbar');
-            if (winScroll > 50) {
-                navbar.classList.add('py-2', 'shadow-xl');
-                navbar.classList.remove('p-5');
-            } else {
-                navbar.classList.remove('py-2', 'shadow-xl');
-                navbar.classList.add('p-5');
-            }
+            document.getElementById("progress-bar").style.width = (winScroll / height) * 100 + "%";
             reveal();
         });
 
-        window.onload = () => {
-            const savedTheme = localStorage.getItem('theme') || 'dark';
-            if (savedTheme === 'light' && document.body.classList.contains('dark')) {
-                toggleTheme();
-            }
-            reveal();
-        };
+        window.onload = () => { reveal(); };
     </script>
 </body>
 </html>
