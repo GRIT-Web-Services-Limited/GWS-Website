@@ -19,7 +19,7 @@
             bg: '#0A0E1A',
             muted: 'rgba(255,255,255,0.45)',
             border: 'rgba(74,144,217,0.18)',
-            'navy-obsidian': '#050B18',
+            'navy-obsidian': '#0A1628',
             'navy-muted': '#0A1628',
             'electric-blue': '#1E90d9',
           },
@@ -82,19 +82,21 @@
 
     body.light .bg-\[\#10182A\]\/\[\.85\],
     body.light .bg-\[\#111827\],
-    body.light .bg-\[\#1e2a45\] {
+    body.light .bg-\[\#1e2a45\],
+    body.light .bg-\[\#0A1628\],
+    body.light .bg-navy-obsidian\/80 {
       background-color: #ffffff !important;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     }
 
     body.light .bg-\[\#0D2B5E\]\/\[\.25\] {
-      background-color: #ffffff !important;
+      background-color: #f1f5f9 !important;
     }
 
     /* Borders */
     body.light .border-\[\#22304a\],
-    body.light .border-\[\#1e2a45\] {
-      border-color: #e2e8f0 !important;
+    body.light .border-\[\#1e2a45\],
+    body.light .border-l {
+      border-color: #cbd5e1 !important;
     }
 
     /* Typography */
@@ -103,8 +105,9 @@
     body.light h3,
     body.light h4,
     body.light p,
-    body.light div {
-      color: #0f172a;
+    body.light div,
+    body.light span:not(.text-\[\#4A90D9\]):not(.text-\[\#25D366\]) {
+      color: #0f172a !important;
     }
 
     body.light .text-\[\#A0AEC0\],
@@ -138,27 +141,10 @@
       background-color: #ffffff !important;
       border-color: #e2e8f0 !important;
     }
-
-    body.light .project-card:hover,
-    body.light .service-card:hover {
-      border-color: #3b82f6 !important;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    }
-
-    body.light .filter-tab {
-      color: #475569 !important;
-      border-color: #cbd5e1 !important;
-    }
-
-    body.light .filter-tab.active {
-      background-color: #2563eb !important;
-      color: white !important;
-      border-color: #2563eb !important;
-    }
   </style>
 </head>
 
-<body class="dark bg-[#0A0E1A] text-white font-sans">
+<body class="dark bg-[#0A1628] text-white font-sans transition-colors duration-500 overflow-x-hidden antialiased">
   <div id="progress-bar"></div>
 
   <header id="navbar"
@@ -186,39 +172,29 @@
               <div>
                 <h4 class="text-electric-blue mb-6 tracking-[0.2em]">Engineering</h4>
                 <ul class="space-y-4 text-sm font-light normal-case tracking-normal dark:text-gray-400 text-gray-600">
-                  <li><a href="services.html" class="hover:text-electric-blue transition-colors">Web Systems &
-                      Portals</a></li>
-                  <li><a href="services.html" class="hover:text-electric-blue transition-colors">Custom SaaS
-                      Development</a></li>
-                  <li><a href="services.html" class="hover:text-electric-blue transition-colors">Mobile App
-                      Ecosystems</a></li>
+                  <li><a href="services.html" class="hover:text-electric-blue transition-colors">Web Systems & Portals</a></li>
+                  <li><a href="services.html" class="hover:text-electric-blue transition-colors">Custom SaaS Development</a></li>
+                  <li><a href="services.html" class="hover:text-electric-blue transition-colors">Mobile App Ecosystems</a></li>
                 </ul>
               </div>
               <div>
                 <h4 class="text-electric-blue mb-6 tracking-[0.2em]">Intelligence</h4>
                 <ul class="space-y-4 text-sm font-light normal-case tracking-normal dark:text-gray-400 text-gray-600">
-                  <li><a href="services.html" class="hover:text-electric-blue transition-colors">AI & LLM
-                      Integration</a></li>
-                  <li><a href="services.html" class="hover:text-electric-blue transition-colors">Predictive
-                      Analytics</a></li>
-                  <li><a href="services.html" class="hover:text-electric-blue transition-colors">Workflow Automation</a>
-                  </li>
+                  <li><a href="services.html" class="hover:text-electric-blue transition-colors">AI & LLM Integration</a></li>
+                  <li><a href="services.html" class="hover:text-electric-blue transition-colors">Predictive Analytics</a></li>
+                  <li><a href="services.html" class="hover:text-electric-blue transition-colors">Workflow Automation</a></li>
                 </ul>
               </div>
               <div>
                 <h4 class="text-electric-blue mb-6 tracking-[0.2em]">Strategy</h4>
                 <ul class="space-y-4 text-sm font-light normal-case tracking-normal dark:text-gray-400 text-gray-600">
-                  <li><a href="services.html" class="hover:text-electric-blue transition-colors">Digital Consulting</a>
-                  </li>
-                  <li><a href="services.html" class="hover:text-electric-blue transition-colors">Infrastructure
-                      Audit</a></li>
-                  <li><a href="services.html" class="hover:text-electric-blue transition-colors">SEO & Growth
-                      Hacking</a></li>
+                  <li><a href="services.html" class="hover:text-electric-blue transition-colors">Digital Consulting</a></li>
+                  <li><a href="services.html" class="hover:text-electric-blue transition-colors">Infrastructure Audit</a></li>
+                  <li><a href="services.html" class="hover:text-electric-blue transition-colors">SEO & Growth Hacking</a></li>
                 </ul>
               </div>
               <div class="bg-electric-blue/5 p-6 rounded-lg border border-electric-blue/20">
-                <p class="normal-case text-xs font-light mb-4 leading-relaxed">Ready to start your digital
-                  transformation in Zambia?</p>
+                <p class="normal-case text-xs font-light mb-4 leading-relaxed text-gray-600 dark:text-gray-300">Ready to start your digital transformation in Zambia?</p>
                 <a href="contact.html" class="text-electric-blue hover:underline">Book a Consultation →</a>
               </div>
             </div>
@@ -238,8 +214,7 @@
           </svg>
         </button>
         <a href="contact.html"
-          class="hidden md:block bg-electric-blue text-white px-6 py-3 rounded-sm font-bold text-[10px] tracking-widest uppercase btn-glow">Request
-          a Quote</a>
+          class="hidden md:block bg-electric-blue text-white px-6 py-3 rounded-sm font-bold text-[10px] tracking-widest uppercase btn-glow">Request a Quote</a>
         <button onclick="toggleMobileMenu()" class="lg:hidden">
           <div class="w-6 h-0.5 bg-electric-blue mb-1.5"></div>
           <div class="w-4 h-0.5 bg-electric-blue ml-auto"></div>
@@ -254,8 +229,7 @@
   <div id="mobile-menu"
     class="fixed inset-y-0 right-0 w-[85%] md:w-96 z-[60] translate-x-full lg:hidden flex flex-col p-12 dark:bg-navy-muted bg-white transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]">
     <button onclick="toggleMobileMenu()" class="self-end text-electric-blue">CLOSE —</button>
-    <div
-      class="flex flex-col space-y-8 mt-20 text-1xl font-extrabold tracking-tighter dark:text-white text-navy-obsidian">
+    <div class="flex flex-col space-y-8 mt-20 text-1xl font-extrabold tracking-tighter dark:text-white text-navy-obsidian">
       <a href="index.html" onclick="toggleMobileMenu()">Home</a>
       <a href="services.html" onclick="toggleMobileMenu()">Services</a>
       <a href="portfolio.html" onclick="toggleMobileMenu()">Portfolio</a>
@@ -264,81 +238,56 @@
     </div>
   </div>
 
-  <!-- Contact Container -->
-  <div class="grid grid-cols-2 min-h-screen pt-[72px] border border-[#22304a] max-md:grid-cols-1">
-    <!-- Left Panel -->
-    <div class="px-12 py-[90px] flex flex-col justify-center max-md:px-6 max-md:py-[60px]">
+  <div class="max-w-7xl mx-auto grid grid-cols-2 min-h-screen pt-[100px] border-x border-[#22304a] max-md:grid-cols-1">
+    <div class="px-12 py-[60px] flex flex-col justify-center max-md:px-6">
       <div class="text-xs tracking-[2.5px] uppercase text-[#4A90D9] mb-4">Get In Touch</div>
-          <div class="w-16 h-[3px] bg-[#4A90D9] mb-6"></div>
-      <h1 class="font-black text-2xl md:text-2xl lg:text-3xl leading-tight mb-6">
+      <div class="w-16 h-[3px] bg-[#4A90D9] mb-6"></div>
+      <h1 class="font-black text-2xl md:text-3xl lg:text-4xl leading-tight mb-6">
         Let's Build Something <span class="text-[#4A90D9]">Amazing.</span>
       </h1>
-      <p class="text-[#A0AEC0] text-[15px] leading-relaxed mb-10 max-w-[450px]">Ready to transform your digital
-        presence? We'd love to hear about your project. Reach out and let's discuss how we can help bring your vision to
-        life.</p>
+      <p class="text-[#A0AEC0] text-[15px] leading-relaxed mb-10 max-w-[450px]">
+        Ready to transform your digital presence? We'd love to hear about your project. Reach out and let's discuss how we can help bring your vision to life.
+      </p>
 
-      <div class="flex flex-col gap-4 mb-10">
-        <div
-          class="flex items-center gap-4 p-4 bg-[#10182A]/[.85] border border-[#22304a] rounded-lg hover:border-[#4A90D9] transition-colors">
-          <div class="w-10 h-10 bg-[#4A90D9]/[.10] rounded-lg flex items-center justify-center text-lg">📱</div>
-          <div class="flex flex-col">
-            <span class="text-xs text-[#A0AEC0] tracking-[1.5px] uppercase mb-1">WhatsApp</span>
-            <span class="text-sm">0978982804</span>
-          </div>
-        </div>
-        <div
-          class="flex items-center gap-4 p-4 bg-[#10182A]/[.85] border border-[#22304a] rounded-lg hover:border-[#4A90D9] transition-colors">
-          <div class="w-10 h-10 bg-[#4A90D9]/[.10] rounded-lg flex items-center justify-center text-lg">📍</div>
-          <div class="flex flex-col">
-            <span class="text-xs text-[#A0AEC0] tracking-[1.5px] uppercase mb-1">Location</span>
-            <span class="text-sm">Kitwe, Zambia</span>
+      <div class="flex flex-col gap-4 mb-10 max-w-[450px]">
+
+        <div class="flex items-center gap-4 p-4 bg-[#10182A]/[.85] border border-[#22304a] rounded-lg hover:border-[#4A90D9] transition-colors">
+          <div class="flex">
+            <span class="text-sm text-[#A0AEC0] tracking-[1.5px] uppercase">Location:</span>
+            <span class="text-sm tracking-[2.5px] uppercase mb-1">Kitwe, Zambia</span>
           </div>
         </div>
       </div>
 
-      <div class="flex gap-4 mb-12 max-md:flex-col">
-        <a href="https://wa.me/260978982804"
-          class="flex items-center gap-2 px-6 py-3 bg-[#25D366]/[.15] border border-[#25D366]/[.3] rounded text-[#25D366] text-xs font-semibold tracking-widest no-underline hover:bg-[#25D366]/[.25] transition-colors">
-          <span>💬</span> WhatsApp
-        </a>
-        <a href="mailto:info@gritwebservices.com"
-          class="flex items-center gap-2 px-6 py-3 bg-[#10182A]/[.85] border border-[#22304a] rounded text-white text-xs font-semibold tracking-widest no-underline hover:border-[#4A90D9] hover:text-[#4A90D9] transition-colors">
-          <span>✉️</span> Email Us
-        </a>
+      <div class="flex gap-4 mb-12 max-md:flex-col max-w-[450px]">
+        <a href="https://wa.me/+260978982804" target="_blank" rel="noopener" class="bg-green-600/10 text-green-500 dark:text-green-400 px-8 py-4 rounded-full font-bold text-xs tracking-widest uppercase flex items-center gap-3 hover:bg-green-600/20 transition-all">
+                        <span>WhatsApp</span>
+                    </a>
+                    <a href="mailto:info@gritwebservices.com" class="bg-blue-600/10 text-electric-blue px-8 py-4 rounded-full font-bold text-xs tracking-widest uppercase flex items-center gap-3 hover:bg-blue-600/20 transition-all">
+                        <span>Email</span>
+                    </a>
       </div>
 
-      <div class="flex flex-wrap gap-2">
-        <span
-          class="px-4 py-2 border border-[#22304a] rounded-full text-xs tracking-widest uppercase text-[#A0AEC0] hover:border-[#4A90D9] hover:text-[#4A90D9] transition-colors cursor-pointer">Web
-          Development</span>
-        <span
-          class="px-4 py-2 border border-[#22304a] rounded-full text-xs tracking-widest uppercase text-[#A0AEC0] hover:border-[#4A90D9] hover:text-[#4A90D9] transition-colors cursor-pointer">Mobile
-          Apps</span>
-        <span
-          class="px-4 py-2 border border-[#22304a] rounded-full text-xs tracking-widest uppercase text-[#A0AEC0] hover:border-[#4A90D9] hover:text-[#4A90D9] transition-colors cursor-pointer">UI/UX
-          Design</span>
-        <span
-          class="px-4 py-2 border border-[#22304a] rounded-full text-xs tracking-widest uppercase text-[#A0AEC0] hover:border-[#4A90D9] hover:text-[#4A90D9] transition-colors cursor-pointer">E-Commerce</span>
-        <span
-          class="px-4 py-2 border border-[#22304a] rounded-full text-xs tracking-widest uppercase text-[#A0AEC0] hover:border-[#4A90D9] hover:text-[#4A90D9] transition-colors cursor-pointer">Cloud
-          Solutions</span>
-        <span
-          class="px-4 py-2 border border-[#22304a] rounded-full text-xs tracking-widest uppercase text-[#A0AEC0] hover:border-[#4A90D9] hover:text-[#4A90D9] transition-colors cursor-pointer">Consulting</span>
+      <div class="flex flex-wrap gap-2 max-w-[450px]">
+        <span class="px-4 py-2 border border-[#22304a] rounded-full text-xs tracking-widest uppercase text-[#A0AEC0] hover:border-[#4A90D9] hover:text-[#4A90D9] transition-colors cursor-pointer">Web Development</span>
+        <span class="px-4 py-2 border border-[#22304a] rounded-full text-xs tracking-widest uppercase text-[#A0AEC0] hover:border-[#4A90D9] hover:text-[#4A90D9] transition-colors cursor-pointer">Mobile Apps</span>
+        <span class="px-4 py-2 border border-[#22304a] rounded-full text-xs tracking-widest uppercase text-[#A0AEC0] hover:border-[#4A90D9] hover:text-[#4A90D9] transition-colors cursor-pointer">UI/UX Design</span>
+        <span class="px-4 py-2 border border-[#22304a] rounded-full text-xs tracking-widest uppercase text-[#A0AEC0] hover:border-[#4A90D9] hover:text-[#4A90D9] transition-colors cursor-pointer">E-Commerce</span>
+        <span class="px-4 py-2 border border-[#22304a] rounded-full text-xs tracking-widest uppercase text-[#A0AEC0] hover:border-[#4A90D9] hover:text-[#4A90D9] transition-colors cursor-pointer">Cloud Solutions</span>
+        <span class="px-4 py-2 border border-[#22304a] rounded-full text-xs tracking-widest uppercase text-[#A0AEC0] hover:border-[#4A90D9] hover:text-[#4A90D9] transition-colors cursor-pointer">Consulting</span>
       </div>
     </div>
 
-    <!-- Right Panel - Form -->
-    <div
-      class="px-12 py-[90px] border-l border-[#22304a] flex flex-col justify-center max-md:px-6 max-md:py-[60px] max-md:border-l-0 max-md:border-t">
-      <div class="max-w-[500px]" id="formContainer">
+    <div class="px-12 py-[60px] border-l border-[#22304a] flex flex-col justify-center max-md:px-6 max-md:border-l-0 max-md:border-t">
+      <div class="max-w-[500px] w-full mx-auto" id="formContainer">
         <form id="contactForm">
           <div class="grid grid-cols-2 gap-4 mb-4 max-md:grid-cols-1">
-            <div class="mb-4">
+            <div>
               <label class="block text-xs tracking-[2px] uppercase text-[#4A90D9] mb-2">Full Name</label>
               <input type="text" name="fullName" placeholder="John Doe" required
                 class="w-full p-3.5 bg-[#0D2B5E]/[.25] border border-[#22304a] rounded text-white placeholder-[#A0AEC0] focus:outline-none focus:border-[#4A90D9] transition-colors">
             </div>
-            <div class="mb-4">
+            <div>
               <label class="block text-xs tracking-[2px] uppercase text-[#4A90D9] mb-2">Company Name</label>
               <input type="text" name="companyName" placeholder="Your Company Ltd"
                 class="w-full p-3.5 bg-[#0D2B5E]/[.25] border border-[#22304a] rounded text-white placeholder-[#A0AEC0] focus:outline-none focus:border-[#4A90D9] transition-colors">
@@ -346,12 +295,12 @@
           </div>
 
           <div class="grid grid-cols-2 gap-4 mb-4 max-md:grid-cols-1">
-            <div class="mb-4">
+            <div>
               <label class="block text-xs tracking-[2px] uppercase text-[#4A90D9] mb-2">Phone Number</label>
               <input type="tel" name="phone" placeholder="+260 XXX XXX XXX"
                 class="w-full p-3.5 bg-[#0D2B5E]/[.25] border border-[#22304a] rounded text-white placeholder-[#A0AEC0] focus:outline-none focus:border-[#4A90D9] transition-colors">
             </div>
-            <div class="mb-4">
+            <div>
               <label class="block text-xs tracking-[2px] uppercase text-[#4A90D9] mb-2">Business Email</label>
               <input type="email" name="email" placeholder="you@company.com" required
                 class="w-full p-3.5 bg-[#0D2B5E]/[.25] border border-[#22304a] rounded text-white placeholder-[#A0AEC0] focus:outline-none focus:border-[#4A90D9] transition-colors">
@@ -361,16 +310,16 @@
           <div class="mb-4">
             <label class="block text-xs tracking-[2px] uppercase text-[#4A90D9] mb-2">Service Required</label>
             <select name="service" required
-              class="w-full p-3.5 bg-[#0D2B5E]/[.25] border border-[#22304a] rounded text-white focus:outline-none focus:border-[#4A90D9] transition-colors cursor-pointer">
-              <option value="">Select a service...</option>
-              <option value="web-development">Web Development</option>
-              <option value="mobile-apps">Mobile Applications</option>
-              <option value="ui-ux-design">UI/UX Design</option>
-              <option value="e-commerce">E-Commerce Solutions</option>
-              <option value="cloud-solutions">Cloud Solutions</option>
-              <option value="consulting">Digital Consulting</option>
-              <option value="maintenance">Website Maintenance</option>
-              <option value="other">Other</option>
+              class="w-full p-3.5 bg-[#0D2B5E]/[.25] border border-[#22304a] rounded text-white focus:outline-none focus:border-[#4A90D9] transition-colors cursor-pointer dark:bg-navy-obsidian">
+              <option value="" class="dark:text-white text-navy-obsidian">Select a service...</option>
+              <option value="web-development" class="dark:text-white text-navy-obsidian">Web Development</option>
+              <option value="mobile-apps" class="dark:text-white text-navy-obsidian">Mobile Applications</option>
+              <option value="ui-ux-design" class="dark:text-white text-navy-obsidian">UI/UX Design</option>
+              <option value="e-commerce" class="dark:text-white text-navy-obsidian">E-Commerce Solutions</option>
+              <option value="cloud-solutions" class="dark:text-white text-navy-obsidian">Cloud Solutions</option>
+              <option value="consulting" class="dark:text-white text-navy-obsidian">Digital Consulting</option>
+              <option value="maintenance" class="dark:text-white text-navy-obsidian">Website Maintenance</option>
+              <option value="other" class="dark:text-white text-navy-obsidian">Other</option>
             </select>
           </div>
 
@@ -381,67 +330,71 @@
           </div>
 
           <button type="submit"
-            class="w-full p-4 bg-[#4A90D9] border-none rounded text-white font-semibold tracking-[2px] cursor-pointer hover:bg-[#1A4A9C] transition-colors mt-2">TRANSMIT
-            INQUIRY →</button>
+            class="w-full p-4 bg-[#4A90D9] border-none rounded text-white font-semibold tracking-[2px] cursor-pointer hover:bg-[#1A4A9C] transition-colors mt-2">
+            TRANSMIT INQUIRY →
+          </button>
         </form>
       </div>
 
       <div class="hidden text-center p-12" id="successMessage">
-        <div class="w-20 h-20 bg-[#4A90D9]/[.2] rounded-full flex items-center justify-center mx-auto mb-6 text-4xl">✓
-        </div>
+        <div class="w-20 h-20 bg-[#4A90D9]/[.2] rounded-full flex items-center justify-center mx-auto mb-6 text-4xl">✓</div>
         <h2 class="font-black text-3xl mb-4">Thank You!</h2>
-        <p class="text-[#A0AEC0] text-[15px]">Your inquiry has been received. Our team will get back to you within 24
-          hours.</p>
+        <p class="text-[#A0AEC0] text-[15px]">Your inquiry has been received. Our team will get back to you within 24 hours.</p>
       </div>
     </div>
   </div>
 
-  <footer class="bg-[#050b18] border-t border-[#1e2a45] py-12 px-4">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-                <div>
-                    <div class="flex items-center">
-                <a href="#">
-                    <img src="GRIT_G.png" class="h-16 w-auto" alt="ZDS Logo">
-                </a>
-                GRIT WEB SERVICES
-                </div>
-                    <p class="text-gray-400 text-sm">Engineering the Future</p>
-                </div>
-                <div>
-                    <h4 class="text-white font-semibold mb-4">Services</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="services.html" class="hover:text-blue-400 transition">Web Development</a></li>
-                        <li><a href="services.html" class="hover:text-blue-400 transition">Software Solutions</a></li>
-                        <li><a href="services.html" class="hover:text-blue-400 transition">AI &amp; Automation</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white font-semibold mb-4">Company</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="about.html" class="hover:text-blue-400 transition">About</a></li>
-                        <li><a href="portfolio.html" class="hover:text-blue-400 transition">Portfolio</a></li>
-                        <li><a href="contact.html" class="hover:text-blue-400 transition">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white font-semibold mb-4">Location</h4>
-                    <p class="text-gray-400 text-sm">Kitwe, Zambia</p>
-                </div>
-            </div>
-            <div class="w-full flex flex-col md:flex-row justify-between items-center text-[10px] tracking-[0.4em] font-bold uppercase dark:text-electric-blue text-navy-obsidian border-t dark:border-white/5 border-gray-100 pt-10">
-            <p class="mb-8 md:mb-0 text-center">© 2026 GRIT Web Services Limited — Excellence In every Digital Tool</p>
-            
-            <div class="flex space-x-12 justify-between">
-                <a href="#" class="hover:text-gray-500 transition-colors">Privacy</a>
-                <a href="#" class="hover:text-gray-500 transition-colors">Terms</a>
-                <a href="portfolio.html" class="hover:text-gray-500 transition-colors">Systems</a>
-            </div>
+  <footer class="dark:bg-[#050b18] bg-gray-50 border-t dark:border-[#1e2a45] border-gray-200 py-12 px-6 transition-colors duration-300">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+      <div>
+        <div class="flex items-center gap-3 font-bold text-sm tracking-widest mb-4 dark:text-white text-navy-obsidian">
+          <img src="GRIT_G.png" class="h-10 w-auto" alt="ZDS Logo">
+          <span>GRIT WEB SERVICES</span>
         </div>
-        </div>
-    </footer>
+        <p class="dark:text-gray-400 text-slate-600 text-sm">Engineering the Future</p>
+      </div>
+      <div>
+        <h4 class="dark:text-white text-navy-obsidian font-semibold mb-4 text-sm tracking-wide">Services</h4>
+        <ul class="space-y-2 text-sm dark:text-gray-400 text-slate-600">
+          <li><a href="services.html" class="dark:hover:text-blue-400 hover:text-electric-blue transition">Web Development</a></li>
+          <li><a href="services.html" class="dark:hover:text-blue-400 hover:text-electric-blue transition">Software Solutions</a></li>
+          <li><a href="services.html" class="dark:hover:text-blue-400 hover:text-electric-blue transition">AI &amp; Automation</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="dark:text-white text-navy-obsidian font-semibold mb-4 text-sm tracking-wide">Company</h4>
+        <ul class="space-y-2 text-sm dark:text-gray-400 text-slate-600">
+          <li><a href="about.html" class="dark:hover:text-blue-400 hover:text-electric-blue transition">About</a></li>
+          <li><a href="portfolio.html" class="dark:hover:text-blue-400 hover:text-electric-blue transition">Portfolio</a></li>
+          <li><a href="contact.html" class="dark:hover:text-blue-400 hover:text-electric-blue transition">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="dark:text-white text-navy-obsidian font-semibold mb-4 text-sm tracking-wide">Location</h4>
+        <p class="dark:text-gray-400 text-slate-600 text-sm">Kitwe, Zambia</p>
+      </div>
+    </div>
+    
+    <div class="w-full flex flex-col md:flex-row justify-between items-center text-[10px] tracking-[0.4em] font-bold uppercase dark:text-electric-blue text-navy-obsidian border-t dark:border-white/5 border-slate-200 pt-10">
+      <p class="mb-8 md:mb-0 text-center dark:text-electric-blue text-navy-obsidian">© 2026 GRIT Web Services Limited — Excellence In every Digital Tool</p>
+      <div class="flex space-x-12 justify-between dark:text-gray-400 text-slate-600">
+        <a href="#" class="dark:hover:text-white hover:text-electric-blue transition-colors">Privacy</a>
+        <a href="#" class="dark:hover:text-white hover:text-electric-blue transition-colors">Terms</a>
+        <a href="portfolio.html" class="dark:hover:text-white hover:text-electric-blue transition-colors">Systems</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
   <script>
+    // System Theme Management
+    if (localStorage.getItem('theme') === 'light') {
+      document.body.classList.replace('dark', 'light');
+      document.body.classList.replace('bg-[#0A0E1A]', 'bg-white');
+      document.body.classList.replace('text-white', 'text-navy-obsidian');
+    }
+
     function toggleTheme() {
       const body = document.body;
       if (body.classList.contains('dark')) {
@@ -478,8 +431,6 @@
     // Form submission handler
     document.getElementById('contactForm').addEventListener('submit', function (e) {
       e.preventDefault();
-
-      // Hide form, show success message
       document.getElementById('formContainer').classList.add('hidden');
       document.getElementById('successMessage').classList.remove('hidden');
       document.getElementById('successMessage').classList.add('block');
