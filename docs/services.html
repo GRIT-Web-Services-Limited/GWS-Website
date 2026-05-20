@@ -1,29 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services - GRIT Web Services Limited</title>
+    <title>Services — GRIT Web Services Limited</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        'navy-obsidian': '#050B18',
-                        'navy-muted': '#0A1628',
-                        'electric-blue': '#1E90d9',
+                        'navy-obsidian': '#0A1628', // Deep Space Navy
+                        'navy-muted': '#0A1628',    // Lighter Navy for cards
+                        'electric-blue': '#1E90d9', // Active Brand Core
                     }
                 }
             }
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Open Sans', sans-serif; transition: background-color 0.5s ease, color 0.5s ease; }
+        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
         
-        /* Mega Menu Animation */
+        /* Premium Structural Tech Grid Pattern */
+        .tech-grid {
+            background-image: linear-gradient(var(--grid-color) 1px, transparent 1px), 
+                              linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 80px 80px;
+        }
+        .dark .tech-grid { --grid-color: rgba(30, 144, 217, 0.07); }
+        .light .tech-grid { --grid-color: rgba(5, 11, 24, 0.04); }
+
+        /* Mega Menu Animation Mechanics */
         .mega-menu {
             opacity: 0;
             visibility: hidden;
@@ -36,195 +46,41 @@
             transform: translateY(0);
         }
 
-        .btn-glow:hover { box-shadow: 0 0 30px rgba(30, 144, 255, 0.4); transform: translateY(-2px); }
-        #progress-bar { height: 2px; background: #1E90FF; width: 0%; position: fixed; top: 0; z-index: 100; }
+        .btn-glow:hover { box-shadow: 0 0 30px rgba(30, 144, 217, 0.4); transform: translateY(-2px); }
+        #progress-bar { height: 2px; background: #1E90d9; width: 0%; position: fixed; top: 0; z-index: 100; }
+        
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
         .no-scroll { overflow: hidden; }
 
-        /* Light Mode Global Overrides */
-        body.light { background-color: #f8fafc !important; color: #0f172a !important; }
-        
-        /* Backgrounds */
-        body.light .bg-\[\#0A0E1A\], body.light .bg-\[\#0b0f1e\], body.light .bg-\[\#0B1424\]\/\[\.96\] { background-color: #f8fafc !important; }
-        body.light .bg-\[\#10182A\]\/\[\.85\], body.light .bg-\[\#111827\], body.light .bg-\[\#1e2a45\] { background-color: #ffffff !important; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
-        body.light .bg-\[\#0D2B5E\]\/\[\.25\] { background-color: #ffffff !important; }
-        
-        /* Borders */
-        body.light .border-\[\#22304a\], body.light .border-\[\#1e2a45\] { border-color: #e2e8f0 !important; }
-        
-        /* Typography */
-        body.light h1, body.light h2, body.light h3, body.light h4, body.light p, body.light div { color: #0f172a; }
-        body.light .text-\[\#A0AEC0\], body.light .text-gray-300, body.light .text-gray-400, body.light .text-muted { color: #475569 !important; }
-        body.light .text-\[\#4A90D9\] { color: #4A90D9 !important; }
-        
-        /* Inputs & Forms */
-        body.light input, body.light textarea, body.light select { color: #0f172a !important; background-color: #ffffff !important; border-color: #cbd5e1 !important; }
-        body.light input::placeholder, body.light textarea::placeholder { color: #94a3b8 !important; }
-
-        /* Specifics for Cards & Modals */
-        body.light .project-card, body.light .service-card { background-color: #ffffff !important; border-color: #e2e8f0 !important; }
-        body.light .project-card:hover, body.light .service-card:hover { border-color: #3b82f6 !important; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
-        body.light .filter-tab { color: #475569 !important; border-color: #cbd5e1 !important; }
-        body.light .filter-tab.active { background-color: #2563eb !important; color: white !important; border-color: #2563eb !important; }
-
-        * {
-            font-family: 'Inter', sans-serif;
-        }
-
-        body {
-            background: #0b0f1e;
-            color: #e2e8f0;
-        }
-
-        .card-hover {
-            transition: all 300ms ease;
-        }
-
-        .card-hover:hover {
-            transform: translateY(-4px);
-            border-color: #3b82f6;
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
-        }
-
+        /* Interactive Service Grid Cards Styling Matrix */
         .service-card {
-            background: #111827;
-            border: 1px solid #1e2a45;
-            border-radius: 0px;
-            padding: 32px;
-            cursor: pointer;
-            transition: all 300ms ease;
+            transition: all 400ms cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+        .dark .service-card:hover {
+            border-color: rgba(30, 144, 217, 0.4);
+            background: #0D1B3A;
+        }
+        .light .service-card:hover {
+            border-color: rgba(30, 144, 217, 0.4);
+            background: #F4F8FC;
         }
 
-        .modal-overlay {
-            animation: fadeIn 300ms ease;
+        /* Detail Modal Panel Glassmorphism Overlay */
+        .glass-panel {
+            background: rgba(10, 22, 40, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
         }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        .modal-content {
-            animation: slideUp 300ms ease;
-            border-radius: 0px;
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(20px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .underline-accent {
-            position: relative;
-            display: inline-block;
-        }
-
-        .underline-accent::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: #3b82f6;
-            border-radius: 0px;
-        }
-
-        .hex-logo {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #2563eb, #3b82f6);
-            border-radius: 2px;
-            font-weight: 700;
-            font-size: 20px;
-            color: white;
-        }
-
-        .btn-primary {
-            background: #3b82f6;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 0px;
-            font-weight: 600;
-            transition: all 300ms ease;
-            cursor: pointer;
-            border: none;
-        }
-
-        .btn-primary:hover {
-            background: #2563eb;
-            transform: translateX(2px);
-        }
-
-        .icon-wrapper {
-            width: 48px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(59, 130, 246, 0.1);
-            border-radius: 0px;
-            margin-bottom: 16px;
-        }
-
-        .icon-wrapper svg {
-            color: #3b82f6;
-            width: 24px;
-            height: 24px;
-            stroke-width: 1.5;
-        }
-
-        .modal-wrapper {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .modal-wrapper.active {
-            display: flex;
-        }
-
-        .close-btn {
-            background: none;
-            border: none;
-            color: #94a3b8;
-            cursor: pointer;
-            font-size: 24px;
-            padding: 0;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: color 200ms ease;
-        }
-
-        .close-btn:hover {
-            color: #e2e8f0;
+        .light .glass-panel {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
         }
     </style>
 </head>
-<body class="dark bg-[#050b18] text-white overflow-x-hidden">
+
+<body class="dark bg-navy-obsidian text-white transition-colors duration-500 overflow-x-hidden antialiased">
 
     <div id="progress-bar"></div>
 
@@ -232,24 +88,62 @@
         <nav class="max-w-7xl mx-auto flex justify-between items-center p-5 md:px-8">
             <div class="flex items-center">
                 <a href="index.html">
-                    <img src="GRIT_G.png" class="h-16 w-auto" alt="ZDS Logo">
+                    <img src="GRIT_G.png" class="h-16 w-auto object-contain" alt="GRIT Logo">
                 </a>
-                </div>
+            </div>
             
             <div class="hidden lg:flex space-x-10 text-[12px] font-bold tracking-[0.3em] uppercase dark:text-white/70 text-navy-obsidian/70">
                 <a href="index.html" class="hover:text-electric-blue transition-colors">Home</a>
-                <a href="#" class="hover:text-electric-blue transition-colors">Services</a>
+                
+                <div class="group static">
+                    <button class="flex items-center text-electric-blue hover:text-electric-blue transition-colors uppercase font-bold tracking-[0.3em]">
+                        Services <svg class="ml-1.5 w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="mega-menu absolute top-full left-0 w-full bg-white dark:bg-navy-muted border-b border-gray-200 dark:border-white/5 shadow-2xl p-12">
+                        <div class="max-w-7xl mx-auto grid grid-cols-4 gap-12">
+                            <div>
+                                <h4 class="text-electric-blue mb-6 tracking-[0.2em] font-bold uppercase text-xs">Engineering</h4>
+                                <ul class="space-y-4 text-sm font-light normal-case tracking-normal dark:text-gray-400 text-gray-600">
+                                    <li><a href="#engineering" class="hover:text-electric-blue transition-colors">Web Systems & Portals</a></li>
+                                    <li><a href="#engineering" class="hover:text-electric-blue transition-colors">Custom SaaS Development</a></li>
+                                    <li><a href="#engineering" class="hover:text-electric-blue transition-colors">Mobile App Ecosystems</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-electric-blue mb-6 tracking-[0.2em] font-bold uppercase text-xs">Intelligence</h4>
+                                <ul class="space-y-4 text-sm font-light normal-case tracking-normal dark:text-gray-400 text-gray-600">
+                                    <li><a href="#intelligence" class="hover:text-electric-blue transition-colors">AI & LLM Integration</a></li>
+                                    <li><a href="#intelligence" class="hover:text-electric-blue transition-colors">Predictive Analytics</a></li>
+                                    <li><a href="#intelligence" class="hover:text-electric-blue transition-colors">Workflow Automation</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-electric-blue mb-6 tracking-[0.2em] font-bold uppercase text-xs">Strategy</h4>
+                                <ul class="space-y-4 text-sm font-light normal-case tracking-normal dark:text-gray-400 text-gray-600">
+                                    <li><a href="#strategy" class="hover:text-electric-blue transition-colors">Digital Consulting</a></li>
+                                    <li><a href="#strategy" class="hover:text-electric-blue transition-colors">Infrastructure Audit</a></li>
+                                    <li><a href="#strategy" class="hover:text-electric-blue transition-colors">SEO & Growth Hacking</a></li>
+                                </ul>
+                            </div>
+                            <div class="bg-electric-blue/5 p-6 rounded-lg border border-electric-blue/20">
+                                <p class="normal-case text-xs font-light mb-4 leading-relaxed dark:text-gray-300 text-gray-600">Ready to start your digital transformation journey in Africa?</p>
+                                <a href="contact.html" class="text-electric-blue font-bold tracking-wide hover:underline text-xs">Book a Consultation &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <a href="portfolio.html" class="hover:text-electric-blue transition-colors">Portfolio</a>
                 <a href="about.html" class="hover:text-electric-blue transition-colors">About</a>
                 <a href="contact.html" class="hover:text-electric-blue transition-colors">Contact</a>
             </div>
 
             <div class="flex items-center space-x-6">
-                <button onclick="toggleTheme()" class="p-2 dark:text-electric-blue text-navy-obsidian" id="theme-btn">
+                <button onclick="toggleTheme()" class="p-2 dark:text-electric-blue text-navy-obsidian transition-transform hover:scale-105" id="theme-btn" title="Toggle Environment Theme">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2V12M18.36 5.64A8 8 0 1 1 5.64 18.36"/></svg>
                 </button>
-                <a href="contact.html" class="hidden md:block bg-electric-blue text-white px-6 py-3 rounded-sm font-bold text-[10px] tracking-widest uppercase btn-glow">Request a Quote</a>
-                <button onclick="toggleMobileMenu()" class="lg:hidden">
+                <a href="contact.html" class="hidden md:block bg-electric-blue text-white px-6 py-3 rounded-sm font-bold text-[10px] tracking-widest uppercase btn-glow transition-all">Request a Quote</a>
+                <button onclick="toggleMobileMenu()" class="lg:hidden focus:outline-none" aria-label="Toggle Menu">
                     <div class="w-6 h-0.5 bg-electric-blue mb-1.5"></div>
                     <div class="w-4 h-0.5 bg-electric-blue ml-auto"></div>
                 </button>
@@ -258,9 +152,9 @@
     </header>
 
     <div id="menu-overlay" onclick="toggleMobileMenu()" class="fixed inset-0 bg-navy-obsidian/90 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-500 z-[55]"></div>
-    <div id="mobile-menu" class="fixed inset-y-0 right-0 w-[85%] md:w-96 z-[60] translate-x-full lg:hidden flex flex-col p-12 dark:bg-navy-muted bg-white transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]">
-        <button onclick="toggleMobileMenu()" class="self-end text-electric-blue">CLOSE —</button>
-        <div class="flex flex-col space-y-8 mt-20 text-1xl font-extrabold tracking-tighter dark:text-white text-navy-obsidian">
+    <div id="mobile-menu" class="fixed inset-y-0 right-0 w-[85%] md:w-96 z-[60] translate-x-full lg:hidden flex flex-col p-12 dark:bg-navy-muted bg-white transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] shadow-2xl">
+        <button onclick="toggleMobileMenu()" class="self-end text-electric-blue font-bold tracking-widest uppercase text-xs hover:opacity-80">CLOSE &mdash;</button>
+        <div class="flex flex-col space-y-8 mt-20 text-xl font-extrabold tracking-tighter dark:text-white text-navy-obsidian">
             <a href="index.html" onclick="toggleMobileMenu()">Home</a>
             <a href="services.html" onclick="toggleMobileMenu()">Services</a>
             <a href="portfolio.html" onclick="toggleMobileMenu()">Portfolio</a>
@@ -269,381 +163,274 @@
         </div>
     </div>
 
-    <!-- Page Header -->
-    <section class="bg-[#050b18 pt-[144px] pb-8 px-4">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
-                <div>
-                    <h1 class="text-5xl md:text-6xl font-bold text-white mb-8">
-                        <span class="underline-accent">Services.</span>
-                    </h1>
-                </div>
-                <div class="md:max-w-sm pt-4">
-                    <p class="text-gray-400 text-lg leading-relaxed">
-                        Custom engineering for businesses that refuse to settle for average.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <main class="relative min-h-screen overflow-hidden">
+        <div class="absolute inset-0 z-0 tech-grid"></div>
 
-    <!-- Services Grid -->
-    <section id="services" class="bg-[#050b18] py-16 px-4">
-        <div class="max-w-7xl mx-auto">
-            <!-- Engineering Category -->
-            <div class="mb-20">
-                <h2 class="text-2xl font-bold text-blue-400 uppercase tracking-wider mb-8">Engineering</h2>
+        <section class="pt-48 pb-16 px-6 md:px-12 relative z-10 max-w-7xl mx-auto">
+            <div class="inline-flex items-center space-x-3 mb-6 reveal">
+                <span class="w-8 h-px bg-electric-blue"></span>
+                <span class="text-electric-blue text-[10px] font-bold tracking-[0.5em] uppercase">Engineered Solutions Matrix</span>
+            </div>
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between border-b dark:border-white/5 border-gray-200 pb-16 gap-8 reveal">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight dark:text-white text-navy-obsidian">
+                    Our Services<span class="text-electric-blue">.</span>
+                </h1>
+                <p class="dark:text-gray-400 text-gray-600 text-base md:text-lg max-w-xl font-light leading-relaxed">
+                    Custom programming specifications, enterprise scalability metrics, and automated system deployments forged for mission-critical reliability.
+                </p>
+            </div>
+        </section>
+
+        <section class="pb-32 px-6 md:px-12 relative z-10 max-w-7xl mx-auto space-y-24">
+            
+            <div id="engineering" class="space-y-10">
+                <div class="flex items-center space-x-4 reveal">
+                    <span class="text-electric-blue font-mono text-xs tracking-widest font-bold">01 /</span>
+                    <h2 class="text-xs font-bold tracking-[0.3em] uppercase dark:text-white/40 text-navy-obsidian/50">Core Engineering Frameworks</h2>
+                    <span class="flex-1 h-px bg-gray-200 dark:bg-white/5"></span>
+                </div>
+                
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Web Development -->
-                    <div class="service-card card-hover cursor-pointer" onclick="openModal(0)">
-                        <div class="icon-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 16.5h3m0 0h3m-3 0v3m0-3v-3m0 0h-3m3 0h3M5 12a7 7 0 1 0 14 0 7 7 0 0 0-14 0Z" />
-                            </svg>
+                    <div class="service-card group p-8 bg-white dark:bg-navy-muted rounded-sm border border-gray-200 dark:border-white/5 flex flex-col justify-between shadow-sm cursor-pointer reveal" onclick="openServiceDetail(0)">
+                        <div>
+                            <div class="w-12 h-12 bg-electric-blue/10 rounded-sm text-electric-blue flex items-center justify-center mb-8">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2 2 0 01-2 2H5a2 2 0 01-2-2V5.25A2 2 0 015 3.25h14a2 2 0 012 2z"/></svg>
+                            </div>
+                            <h3 class="text-xl font-bold dark:text-white text-navy-obsidian mb-4 tracking-wide">Web Development</h3>
+                            <p class="dark:text-gray-400 text-gray-500 font-light text-sm leading-relaxed mb-6">Modern, highly optimized standalone application single-page ecosystems custom configured for performance runtimes.</p>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3">Web Development</h3>
-                        <p class="text-gray-300 text-sm leading-relaxed">Modern, responsive, lightning-fast websites tailored to your specific business architecture.</p>
-                        <h2 class="text-blue-400 hover:text-blue-300 cursor-pointer">Click to Know More</h2>
+                        <div class="text-[10px] font-bold tracking-widest text-electric-blue uppercase flex items-center">Inspect Specification Protocol &rarr;</div>
                     </div>
-
-                    <!-- Software Solutions -->
-                    <div class="service-card card-hover cursor-pointer" onclick="openModal(1)">
-                        <div class="icon-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7.25" />
-                            </svg>
+                    <div class="service-card group p-8 bg-white dark:bg-navy-muted rounded-sm border border-gray-200 dark:border-white/5 flex flex-col justify-between shadow-sm cursor-pointer reveal" onclick="openServiceDetail(1)">
+                        <div>
+                            <div class="w-12 h-12 bg-electric-blue/10 rounded-sm text-electric-blue flex items-center justify-center mb-8">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125m0-3.75v3.75m0 0v3.75"/></svg>
+                            </div>
+                            <h3 class="text-xl font-bold dark:text-white text-navy-obsidian mb-4 tracking-wide">Custom SaaS Development</h3>
+                            <p class="dark:text-gray-400 text-gray-500 font-light text-sm leading-relaxed mb-6">Bespoke distributed operational platforms engineered to secure data dependencies and logic workflows cleanly.</p>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3">Custom SaaS Development</h3>
-                        <p class="text-gray-300 text-sm leading-relaxed">Custom internal systems that simplify operations and scale effortlessly as your company grows.</p>
-                        <h2 class="text-blue-400 hover:text-blue-300 cursor-pointer">Click to Know More</h2>
+                        <div class="text-[10px] font-bold tracking-widest text-electric-blue uppercase flex items-center">Inspect Specification Protocol &rarr;</div>
                     </div>
-
-                    <!-- Mobile App Ecosystems -->
-                    <div class="service-card card-hover cursor-pointer" onclick="openModal(2)">
-                        <div class="icon-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m0 0a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
-                            </svg>
+                    <div class="service-card group p-8 bg-white dark:bg-navy-muted rounded-sm border border-gray-200 dark:border-white/5 flex flex-col justify-between shadow-sm cursor-pointer reveal" onclick="openServiceDetail(2)">
+                        <div>
+                            <div class="w-12 h-12 bg-electric-blue/10 rounded-sm text-electric-blue flex items-center justify-center mb-8">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-6 15h9"/></svg>
+                            </div>
+                            <h3 class="text-xl font-bold dark:text-white text-navy-obsidian mb-4 tracking-wide">Mobile App Ecosystems</h3>
+                            <p class="dark:text-gray-400 text-gray-500 font-light text-sm leading-relaxed mb-6">High-fidelity functional native mobile portals written for fluid layout performance and absolute database alignment.</p>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3">Mobile App Ecosystems</h3>
-                        <p class="text-gray-300 text-sm leading-relaxed">Cross-platform mobile applications built for performance, scale, and seamless user experience.</p>
-                        <h2 class="text-blue-400 hover:text-blue-300 cursor-pointer">Click to Know More</h2>
+                        <div class="text-[10px] font-bold tracking-widest text-electric-blue uppercase flex items-center">Inspect Specification Protocol &rarr;</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Intelligence Category -->
-            <div class="mb-20">
-                <h2 class="text-2xl font-bold text-blue-400 uppercase tracking-wider mb-8">Intelligence</h2>
+            <div id="intelligence" class="space-y-10">
+                <div class="flex items-center space-x-4 reveal">
+                    <span class="text-electric-blue font-mono text-xs tracking-widest font-bold">02 /</span>
+                    <h2 class="text-xs font-bold tracking-[0.3em] uppercase dark:text-white/40 text-navy-obsidian/50">Data Telemetry & Intelligence</h2>
+                    <span class="flex-1 h-px bg-gray-200 dark:bg-white/5"></span>
+                </div>
+                
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- AI & Automation -->
-                    <div class="service-card card-hover cursor-pointer" onclick="openModal(3)">
-                        <div class="icon-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                            </svg>
+                    <div class="service-card group p-8 bg-white dark:bg-navy-muted rounded-sm border border-gray-200 dark:border-white/5 flex flex-col justify-between shadow-sm cursor-pointer reveal" onclick="openServiceDetail(3)">
+                        <div>
+                            <div class="w-12 h-12 bg-electric-blue/10 rounded-sm text-electric-blue flex items-center justify-center mb-8">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9.813 15.904L9 21l8.941-8.94M15 15h.008v.008H15V15zm0-2.25h.008v.008H15v-.008zM13.5 15h.008v.008H13.5V15zm0-2.25h.008v.008H13.5v-.008zM12 15h.008v.008H12V15zm0-2.25h.008v.008H12v-.008zm0-2.25h.008v.008H12V10.5zm-1.5 4.5h.008v.008H10.5V15zm0-2.25h.008v.008H10.5v-.008zm0-2.25h.008v.008H10.5V10.5zm-1.5 2.25h.008v.008H9V12.75zm0-2.25h.008v.008H9V10.5zM2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12z"/></svg>
+                            </div>
+                            <h3 class="text-xl font-bold dark:text-white text-navy-obsidian mb-4 tracking-wide">AI & LLM Integration</h3>
+                            <p class="dark:text-gray-400 text-gray-500 font-light text-sm leading-relaxed mb-6">Integrating adaptive assistant models into codebases to execute contextual parsing objectives efficiently.</p>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3">AI & LLM Integration</h3>
-                        <p class="text-gray-300 text-sm leading-relaxed">Integrate LLMs and intelligent workflow triggers to enhance productivity and eliminate repetitive tasks.</p>
-                        <h2 class="text-blue-400 hover:text-blue-300 cursor-pointer">Click to Know More</h2>
+                        <div class="text-[10px] font-bold tracking-widest text-electric-blue uppercase flex items-center">Inspect Specification Protocol &rarr;</div>
                     </div>
-
-                    <!-- Predictive Analytics -->
-                    <div class="service-card card-hover cursor-pointer" onclick="openModal(4)">
-                        <div class="icon-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25m0 0H5.25A2.25 2.25 0 017.5 9.75M3 13.125v6.75A2.25 2.25 0 005.25 22h13.5A2.25 2.25 0 0021 20.25V13.125M3 13.125H21m-3 -6.75h.008v.008h-.008V6.375m-2.25 0a2.25 2.25 0 104.5 0 2.25 2.25 0 00-4.5 0z" />
-                            </svg>
+                    <div class="service-card group p-8 bg-white dark:bg-navy-muted rounded-sm border border-gray-200 dark:border-white/5 flex flex-col justify-between shadow-sm cursor-pointer reveal" onclick="openServiceDetail(4)">
+                        <div>
+                            <div class="w-12 h-12 bg-electric-blue/10 rounded-sm text-electric-blue flex items-center justify-center mb-8">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z"/></svg>
+                            </div>
+                            <h3 class="text-xl font-bold dark:text-white text-navy-obsidian mb-4 tracking-wide">Predictive Analytics</h3>
+                            <p class="dark:text-gray-400 text-gray-500 font-light text-sm leading-relaxed mb-6">Transforming transaction telemetry metrics into dynamic visual score dashboards tracking potential compliance patterns.</p>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3">Predictive Analytics</h3>
-                        <p class="text-gray-300 text-sm leading-relaxed">Transform your data into actionable intelligence and forecast trends for data-driven decisions.</p>
-                        <h2 class="text-blue-400 hover:text-blue-300 cursor-pointer">Click to Know More</h2>
+                        <div class="text-[10px] font-bold tracking-widest text-electric-blue uppercase flex items-center">Inspect Specification Protocol &rarr;</div>
                     </div>
-
-                    <!-- Workflow Automation -->
-                    <div class="service-card card-hover cursor-pointer" onclick="openModal(5)">
-                        <div class="icon-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.592a.75.75 0 0 1 .75.75v.633a.75.75 0 0 0 .75.75H15a.75.75 0 0 0 .75-.75V3.75a.75.75 0 0 1 .75-.75h2.592c.55 0 1.02.398 1.11.94m-9 5.5c0 1.103.912 2 2.037 2 1.126 0 2.037-.897 2.037-2 0-1.102-.911-2-2.037-2-1.125 0-2.037.898-2.037 2z" />
-                            </svg>
+                    <div class="service-card group p-8 bg-white dark:bg-navy-muted rounded-sm border border-gray-200 dark:border-white/5 flex flex-col justify-between shadow-sm cursor-pointer reveal" onclick="openServiceDetail(5)">
+                        <div>
+                            <div class="w-12 h-12 bg-electric-blue/10 rounded-sm text-electric-blue flex items-center justify-center mb-8">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+                            </div>
+                            <h3 class="text-xl font-bold dark:text-white text-navy-obsidian mb-4 tracking-wide">Workflow Automation</h3>
+                            <p class="dark:text-gray-400 text-gray-500 font-light text-sm leading-relaxed mb-6">Wiring secure database triggers and webhook logic chains to run background operations cleanly without manual interaction.</p>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3">Workflow Automation</h3>
-                        <p class="text-gray-300 text-sm leading-relaxed">Streamline your business processes and reduce manual effort with intelligent automation solutions.</p>
-                        <h2 class="text-blue-400 hover:text-blue-300 cursor-pointer">Click to Know More</h2>
+                        <div class="text-[10px] font-bold tracking-widest text-electric-blue uppercase flex items-center">Inspect Specification Protocol &rarr;</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Strategy Category -->
-            <div class="mb-20">
-                <h2 class="text-2xl font-bold text-blue-400 uppercase tracking-wider mb-8">Strategy</h2>
+            <div id="strategy" class="space-y-10">
+                <div class="flex items-center space-x-4 reveal">
+                    <span class="text-electric-blue font-mono text-xs tracking-widest font-bold">03 /</span>
+                    <h2 class="text-xs font-bold tracking-[0.3em] uppercase dark:text-white/40 text-navy-obsidian/50">Strategy & System Audits</h2>
+                    <span class="flex-1 h-px bg-gray-200 dark:bg-white/5"></span>
+                </div>
+                
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Digital Consulting -->
-                    <div class="service-card card-hover cursor-pointer" onclick="openModal(6)">
-                        <div class="icon-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2z" />
-                            </svg>
+                    <div class="service-card group p-8 bg-white dark:bg-navy-muted rounded-sm border border-gray-200 dark:border-white/5 flex flex-col justify-between shadow-sm cursor-pointer reveal" onclick="openServiceDetail(6)">
+                        <div>
+                            <div class="w-12 h-12 bg-electric-blue/10 rounded-sm text-electric-blue flex items-center justify-center mb-8">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+                            </div>
+                            <h3 class="text-xl font-bold dark:text-white text-navy-obsidian mb-4 tracking-wide">Digital Consulting</h3>
+                            <p class="dark:text-gray-400 text-gray-500 font-light text-sm leading-relaxed mb-6">Mapping conceptual requirements down into hardened software architecture blue sheets and database selection maps.</p>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3">Digital Consulting</h3>
-                        <p class="text-gray-300 text-sm leading-relaxed">Expert guidance to transform your business strategy into a roadmap for digital success.</p>
-                        <h2 class="text-blue-400 hover:text-blue-300 cursor-pointer">Click to Know More</h2>
+                        <div class="text-[10px] font-bold tracking-widest text-electric-blue uppercase flex items-center">Inspect Specification Protocol &rarr;</div>
                     </div>
-
-                    <!-- Infrastructure Audit -->
-                    <div class="service-card card-hover cursor-pointer" onclick="openModal(7)">
-                        <div class="icon-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" />
-                            </svg>
+                    <div class="service-card group p-8 bg-white dark:bg-navy-muted rounded-sm border border-gray-200 dark:border-white/5 flex flex-col justify-between shadow-sm cursor-pointer reveal" onclick="openServiceDetail(7)">
+                        <div>
+                            <div class="w-12 h-12 bg-electric-blue/10 rounded-sm text-electric-blue flex items-center justify-center mb-8">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg>
+                            </div>
+                            <h3 class="text-xl font-bold dark:text-white text-navy-obsidian mb-4 tracking-wide">Infrastructure Audit</h3>
+                            <p class="dark:text-gray-400 text-gray-500 font-light text-sm leading-relaxed mb-6">Running explicit code testing, identifying latency friction patterns, and hardening network access policies securely.</p>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3">Infrastructure Audit</h3>
-                        <p class="text-gray-300 text-sm leading-relaxed">Comprehensive assessment of your IT infrastructure to identify bottlenecks and vulnerabilities.</p>
-                        <h2 class="text-blue-400 hover:text-blue-300 cursor-pointer">Click to Know More</h2>
+                        <div class="text-[10px] font-bold tracking-widest text-electric-blue uppercase flex items-center">Inspect Specification Protocol &rarr;</div>
                     </div>
-
-                    <!-- SEO & Growth Hacking -->
-                    <div class="service-card card-hover cursor-pointer" onclick="openModal(8)">
-                        <div class="icon-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M14.828 14.828a4 4 0 1 0-5.656-5.656M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" />
-                            </svg>
+                    <div class="service-card group p-8 bg-white dark:bg-navy-muted rounded-sm border border-gray-200 dark:border-white/5 flex flex-col justify-between shadow-sm cursor-pointer reveal" onclick="openServiceDetail(8)">
+                        <div>
+                            <div class="w-12 h-12 bg-electric-blue/10 rounded-sm text-electric-blue flex items-center justify-center mb-8">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"/></svg>
+                            </div>
+                            <h3 class="text-xl font-bold dark:text-white text-navy-obsidian mb-4 tracking-wide">SEO & Growth Hacking</h3>
+                            <p class="dark:text-gray-400 text-gray-500 font-light text-sm leading-relaxed mb-6">Optimizing layout speed indexes and implementing schema semantic structures to increase discoverability.</p>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3">SEO & Growth Hacking</h3>
-                        <p class="text-gray-300 text-sm leading-relaxed">Maximize your online visibility and drive sustainable growth with data-driven strategies.</p>
-                        <h2 class="text-blue-400 hover:text-blue-300 cursor-pointer">Click to Know More</h2>
+                        <div class="text-[10px] font-bold tracking-widest text-electric-blue uppercase flex items-center">Inspect Specification Protocol &rarr;</div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Modal -->
-    <div id="modal" class="modal-wrapper">
-        <div class="bg-[#111827] border border-[#1e2a45] p-8 max-w-2xl w-full modal-content relative">
-            <button class="close-btn absolute top-6 right-6" onclick="closeModal()">
-                ✕
+    <div id="service-modal" class="fixed inset-0 z-[100] flex items-center justify-center opacity-0 pointer-events-none transition-all duration-500">
+        <div class="absolute inset-0 bg-navy-obsidian/80 backdrop-blur-xl" onclick="closeServiceDetail()"></div>
+        
+        <div class="relative glass-panel p-8 md:p-12 max-w-2xl w-[92%] border border-gray-200 dark:border-white/5 shadow-2xl transform scale-90 transition-transform duration-500 modal-content rounded-sm text-left">
+            <button onclick="closeServiceDetail()" class="absolute top-6 right-6 dark:text-gray-400 text-navy-obsidian hover:text-electric-blue dark:hover:text-electric-blue transition-colors focus:outline-none font-bold text-xs uppercase tracking-widest">
+                ✕ CLOSE
             </button>
-            <div id="modalContent"></div>
+            
+            <div id="modal-content-target">
+                </div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-[#050b18] border-t border-[#1e2a45] py-12 px-4">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-                <div>
-                    <div class="flex items-center">
-                <a href="#">
-                    <img src="GRIT_G.png" class="h-16 w-auto" alt="ZDS Logo">
-                </a>
-                GRIT WEB SERVICES
-                </div>
-                    <p class="text-gray-400 text-sm">Engineering the Future</p>
-                </div>
-                <div>
-                    <h4 class="text-white font-semibold mb-4">Services</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="services.html" class="hover:text-blue-400 transition">Web Development</a></li>
-                        <li><a href="services.html" class="hover:text-blue-400 transition">Software Solutions</a></li>
-                        <li><a href="services.html" class="hover:text-blue-400 transition">AI &amp; Automation</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white font-semibold mb-4">Company</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="about.html" class="hover:text-blue-400 transition">About</a></li>
-                        <li><a href="portfolio.html" class="hover:text-blue-400 transition">Portfolio</a></li>
-                        <li><a href="contact.html" class="hover:text-blue-400 transition">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white font-semibold mb-4">Location</h4>
-                    <p class="text-gray-400 text-sm">Kitwe, Zambia</p>
-                </div>
-            </div>
-            <div class="w-full flex flex-col md:flex-row justify-between items-center text-[10px] tracking-[0.4em] font-bold uppercase dark:text-electric-blue text-navy-obsidian border-t dark:border-white/5 border-gray-100 pt-10">
-            <p class="mb-8 md:mb-0 text-center">© 2026 GRIT Web Services Limited — Excellence In every Digital Tool</p>
-            
-            <div class="flex space-x-12 justify-between">
-                <a href="#" class="hover:text-gray-500 transition-colors">Privacy</a>
-                <a href="#" class="hover:text-gray-500 transition-colors">Terms</a>
-                <a href="portfolio.html" class="hover:text-gray-500 transition-colors">Systems</a>
-            </div>
+    <footer class="dark:bg-[#050b18] bg-gray-50 border-t dark:border-[#1e2a45] border-gray-200 py-12 px-6 transition-colors duration-300">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+      <div>
+        <div class="flex items-center gap-3 font-bold text-sm tracking-widest mb-4 dark:text-white text-navy-obsidian">
+          <img src="GRIT_G.png" class="h-10 w-auto" alt="ZDS Logo">
+          <span>GRIT WEB SERVICES</span>
         </div>
-        </div>
-    </footer>
-
+        <p class="dark:text-gray-400 text-slate-600 text-sm">Engineering the Future</p>
+      </div>
+      <div>
+        <h4 class="dark:text-white text-navy-obsidian font-semibold mb-4 text-sm tracking-wide">Services</h4>
+        <ul class="space-y-2 text-sm dark:text-gray-400 text-slate-600">
+          <li><a href="services.html" class="dark:hover:text-blue-400 hover:text-electric-blue transition">Web Development</a></li>
+          <li><a href="services.html" class="dark:hover:text-blue-400 hover:text-electric-blue transition">Software Solutions</a></li>
+          <li><a href="services.html" class="dark:hover:text-blue-400 hover:text-electric-blue transition">AI &amp; Automation</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="dark:text-white text-navy-obsidian font-semibold mb-4 text-sm tracking-wide">Company</h4>
+        <ul class="space-y-2 text-sm dark:text-gray-400 text-slate-600">
+          <li><a href="about.html" class="dark:hover:text-blue-400 hover:text-electric-blue transition">About</a></li>
+          <li><a href="portfolio.html" class="dark:hover:text-blue-400 hover:text-electric-blue transition">Portfolio</a></li>
+          <li><a href="contact.html" class="dark:hover:text-blue-400 hover:text-electric-blue transition">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="dark:text-white text-navy-obsidian font-semibold mb-4 text-sm tracking-wide">Location</h4>
+        <p class="dark:text-gray-400 text-slate-600 text-sm">Kitwe, Zambia</p>
+      </div>
+    </div>
+    
+    <div class="w-full flex flex-col md:flex-row justify-between items-center text-[10px] tracking-[0.4em] font-bold uppercase dark:text-electric-blue text-navy-obsidian border-t dark:border-white/5 border-slate-200 pt-10">
+      <p class="mb-8 md:mb-0 text-center dark:text-electric-blue text-navy-obsidian">© 2026 GRIT Web Services Limited — Excellence In every Digital Tool</p>
+      <div class="flex space-x-12 justify-between dark:text-gray-400 text-slate-600">
+        <a href="#" class="dark:hover:text-white hover:text-electric-blue transition-colors">Privacy</a>
+        <a href="#" class="dark:hover:text-white hover:text-electric-blue transition-colors">Terms</a>
+        <a href="portfolio.html" class="dark:hover:text-white hover:text-electric-blue transition-colors">Systems</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
     <script>
-        const servicesData = [
+        // High-Fidelity Local Technical Specifications Dataset
+        const serviceRegistry = [
             {
-                title: 'Web Development',
-                description: 'Modern, responsive, lightning-fast websites tailored to your specific business architecture. We build scalable web solutions that convert visitors into customers and provide exceptional user experiences across all devices.',
-                deliverables: [
-                    'Custom CMS Integration',
-                    'API Development & Integration',
-                    'SEO-Ready Architecture',
-                    'Performance Optimization'
-                ]
+                title: "Web Development Architecture",
+                description: "Modern, responsive, lightning-fast web applications custom engineered around your corporate ecosystem. We deploy single-page portals featuring dynamic user interface controls, highly responsive relational layouts, and semantic structure configurations.",
+                scope: ["Custom CMS Engine Integrations", "Database Telemetry Connections", "Core Layout Speed Optimization", "Semantic Search Engine Optimization"]
             },
             {
-                title: 'Custom SaaS Development',
-                description: 'Custom internal systems that simplify operations and scale effortlessly as your company grows. From legacy system modernization to building ground-up enterprise solutions, we engineer software that works.',
-                deliverables: [
-                    'Enterprise System Design',
-                    'Database Architecture',
-                    'Workflow Automation',
-                    'Integration Services'
-                ]
+                title: "Custom SaaS Development",
+                description: "Bespoke transactional application logic designed to simplify complex multi-regional business flows. From dynamic administrative compliance layers to robust HR/Payroll platforms adjusting for statutory threshold changes, we build systems that scale cleanly without processing limits.",
+                scope: ["Relational Database Architecture Design", "Dynamic Compliance Engine Hooks", "Secure Payment Gateway Pipelines", "Enterprise Workflow Automation"]
             },
             {
-                title: 'Mobile App Ecosystems',
-                description: 'Cross-platform mobile applications built for performance, scale, and seamless user experience. We develop native and cross-platform apps that engage users and drive business growth on iOS and Android.',
-                deliverables: [
-                    'Cross-Platform Development',
-                    'Native Performance',
-                    'App Store Optimization',
-                    'User Analytics Integration'
-                ]
+                title: "Mobile App Ecosystems",
+                description: "Robust, cross-platform mobile systems built directly inside Android Studio utilizing Kotlin and Java backends for extreme responsiveness. We construct clean mobile entry gates integrated with stable cloud authentication frameworks.",
+                scope: ["Native Android Interface Layouts", "Cloud Database Synchronization Lines", "Secure API Connection Protocols", "Production Play Store Optimization"]
             },
             {
-                title: 'AI & LLM Integration',
-                description: 'Integrate LLMs and intelligent workflow triggers to enhance productivity and eliminate repetitive tasks. We leverage cutting-edge AI technology to automate processes, generate insights, and unlock competitive advantages.',
-                deliverables: [
-                    'LLM Integration',
-                    'Intelligent Workflows',
-                    'Process Automation',
-                    'Data Analytics & Insights'
-                ]
+                title: "AI & LLM Integration Arrays",
+                description: "Leverage intelligent context processing infrastructure. We map tailored language model triggers and automated workspace assistant modules to execute complex data extraction routines from live internal tables safely.",
+                scope: ["Large Language Model Node Pipelines", "Contextual Automation Triggers", "Intelligent Extraction Workflows", "Algorithmic Text Transformation"]
             },
             {
-                title: 'Predictive Analytics',
-                description: 'Transform your data into actionable intelligence. Our predictive analytics solutions help you forecast trends, identify opportunities, and make data-driven decisions that drive business growth.',
-                deliverables: [
-                    'Predictive Models',
-                    'Data Visualization',
-                    'Business Intelligence',
-                    'Custom Dashboards'
-                ]
+                title: "Predictive Analytics Engineering",
+                description: "Turn raw tracking telemetry logs into legible proactive score readouts. Our analytics frameworks integrate algorithmic modeling systems to map trend variables and system utilization risk scores visibility rules.",
+                scope: ["Proactive Compliance Scoring Models", "Telemetry Monitoring Dashboards", "Data Infrastructure Normalization", "Distributed Performance Mapping"]
             },
             {
-                title: 'Workflow Automation',
-                description: 'Streamline your business processes and reduce manual effort. We design and implement intelligent automation solutions that increase efficiency, reduce errors, and free up your team for strategic work.',
-                deliverables: [
-                    'Process Mapping',
-                    'Custom Workflows',
-                    'Integration Layer',
-                    'Monitoring & Optimization'
-                ]
+                title: "System Workflow Automation",
+                description: "Eliminate transactional latency entirely. We develop secure event-driven backend micro-tasks and programmatic webhook switches that handle your data inputs cleanly throughout entire digital verification states.",
+                scope: ["Webhook Pipeline Architectures", "Automated Event Trigger Infrastructure", "Asynchronous State Logging Hooks", "System Interoperability Bridges"]
             },
             {
-                title: 'Digital Consulting',
-                description: 'Expert guidance to transform your business strategy into a roadmap for digital success. Our consultants work with you to identify opportunities, navigate digital transformation, and achieve measurable business outcomes.',
-                deliverables: [
-                    'Digital Strategy',
-                    'Technology Roadmap',
-                    'Business Process Review',
-                    'Change Management'
-                ]
+                title: "Digital Strategy & Consulting",
+                description: "Convert ambiguous corporate technical goals into high-fidelity technical specification blueprints. We conduct professional system audits determining proper library dependencies, data engines, and framework trajectories.",
+                scope: ["Systems Dependency Blueprints", "Database Engine Selection Audits", "Lifecycle Scaling Roadmaps", "Project Security Architecture Reviews"]
             },
             {
-                title: 'Infrastructure Audit',
-                description: 'Comprehensive assessment of your current IT infrastructure. We identify bottlenecks, security vulnerabilities, and optimization opportunities to ensure your systems are robust, scalable, and efficient.',
-                deliverables: [
-                    'Infrastructure Assessment',
-                    'Security Audit',
-                    'Performance Analysis',
-                    'Improvement Recommendations'
-                ]
+                title: "Infrastructure & Security Audit",
+                description: "Thorough vulnerability testing and data architecture scanning protocols. We identify access-control configuration leaks, analyze relational indexing blockages, and provide complete execution remediation maps.",
+                scope: ["Access-Control Policy Evaluation", "Database Normalized Table Scans", "Penetration Vulnerability Identification", "Performance Latency Remediation Plans"]
             },
             {
-                title: 'SEO & Growth Hacking',
-                description: 'Maximize your online visibility and drive sustainable growth. Our SEO and growth strategies are data-driven, focusing on organic reach, conversion optimization, and measurable business results.',
-                deliverables: [
-                    'SEO Optimization',
-                    'Content Strategy',
-                    'Growth Analytics',
-                    'Conversion Optimization'
-                ]
+                title: "SEO & Growth Config Frameworks",
+                description: "Maximize product performance discovery through programmatic configuration optimization. We craft valid structural microdata layouts, improve essential rendering speed indices, and map clean operational monitoring tags.",
+                scope: ["Programmatic Schema Tag Injections", "Organic System Search Visibility Roadmaps", "Performance Speed Metric Hardening", "User Telemetry Tracking Protocols"]
             }
         ];
 
-        function openModal(index) {
-            const service = servicesData[index];
-            const modal = document.getElementById('modal');
-            const modalContent = document.getElementById('modalContent');
-
-            const deliverablesList = service.deliverables
-                .map(item => `<li class="text-gray-300 text-sm flex items-start"><span class="text-blue-400 mr-3">•</span>${item}</li>`)
-                .join('');
-
-            modalContent.innerHTML = `
-                <div class="flex items-start gap-4 mb-6">
-                    <div class="icon-wrapper" style="margin-bottom: 0;">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
-                    </div>
-                    <div>
-                        <h2 class="text-3xl font-bold text-white">${service.title}</h2>
-                    </div>
-                </div>
-                
-                <p class="text-gray-300 leading-relaxed mb-8">${service.description}</p>
-                
-                <h4 class="text-white font-semibold mb-4">Key Deliverables</h4>
-                <ul class="space-y-2 mb-8">
-                    ${deliverablesList}
-                </ul>
-                
-                <a href="contact.html" class="btn-primary" onclick="handleConsultation()">
-                    Book a Consultation →
-                </a>
-            `;
-
-            modal.classList.add('active');
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('modal');
-            modal.classList.remove('active');
-        }
-
-        function handleConsultation() {
-            alert('Thank you for your interest! Redirecting to consultation booking...');
-            closeModal();
-        }
-
-        // Close modal on background click
-        document.getElementById('modal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
-        });
-
-        // Close modal on Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        });
-
+        // Central Dark/Light Universal Theme Switching Engine (Mirrors Index perfectly)
         function toggleTheme() {
             const body = document.body;
             if (body.classList.contains('dark')) {
                 body.classList.replace('dark', 'light');
-                body.classList.replace('bg-[#0b0f1e]', 'bg-white');
+                body.classList.replace('bg-navy-obsidian', 'bg-white');
                 body.classList.replace('text-white', 'text-navy-obsidian');
                 localStorage.setItem('theme', 'light');
             } else {
                 body.classList.replace('light', 'dark');
-                body.classList.replace('bg-white', 'bg-[#0b0f1e]');
+                body.classList.replace('bg-white', 'bg-navy-obsidian');
                 body.classList.replace('text-navy-obsidian', 'text-white');
                 localStorage.setItem('theme', 'dark');
             }
         }
 
+        // Mobile Menu Drawer Framework Controllers
         function toggleMobileMenu() {
             const body = document.body;
             const menu = document.getElementById('mobile-menu');
@@ -654,12 +441,78 @@
             overlay.classList.toggle('pointer-events-none');
         }
 
+        // Interceptive Service Modal Trigger Framework
+        function openServiceDetail(registryIndex) {
+            const spec = serviceRegistry[registryIndex];
+            const targetNode = document.getElementById('modal-content-target');
+            const modal = document.getElementById('service-modal');
+            const contentPanel = modal.querySelector('.modal-content');
+            
+            // Build High-Impact Deliverables DOM Content
+            const scopeItemsHTML = spec.scope
+                .map(item => `<li class="text-sm font-light dark:text-gray-300 text-gray-600 flex items-start"><span class="text-electric-blue mr-3 font-bold">•</span>${item}</li>`)
+                .join('');
+
+            targetNode.innerHTML = `
+                <div class="mb-6">
+                    <span class="text-electric-blue font-bold text-[10px] tracking-[0.3em] uppercase block mb-1">Technical Specification</span>
+                    <h2 class="text-2xl md:text-3xl font-black dark:text-white text-navy-obsidian tracking-tight">${spec.title}</h2>
+                </div>
+                <p class="dark:text-gray-400 text-gray-500 font-light text-sm md:text-base leading-relaxed mb-8 border-b dark:border-white/5 border-gray-200 pb-6">${spec.description}</p>
+                <h4 class="dark:text-white text-navy-obsidian font-bold text-xs uppercase tracking-wider mb-4">Scope Matrix Deliverables</h4>
+                <ul class="space-y-3 mb-8">
+                    ${scopeItemsHTML}
+                </ul>
+                <div class="pt-2">
+                    <a href="contact.html" class="inline-block bg-electric-blue text-white px-8 py-4 rounded-sm font-bold text-[10px] tracking-widest uppercase btn-glow transition-all">Book Technical Consultation &rarr;</a>
+                </div>
+            `;
+
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            contentPanel.classList.remove('scale-90');
+            contentPanel.classList.add('scale-100');
+            document.body.classList.add('no-scroll');
+        }
+
+        function closeServiceDetail() {
+            const modal = document.getElementById('service-modal');
+            const contentPanel = modal.querySelector('.modal-content');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            contentPanel.classList.remove('scale-100');
+            contentPanel.classList.add('scale-90');
+            document.body.classList.remove('no-scroll');
+        }
+
+        // Global Intersection Reveal System
+        function reveal() {
+            const reveals = document.querySelectorAll(".reveal");
+            reveals.forEach(el => {
+                const windowHeight = window.innerHeight;
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) el.classList.add("active");
+            });
+        }
+
+        // Global Scrolling Action Event Handlers
         window.addEventListener("scroll", () => {
             let winScroll = document.documentElement.scrollTop;
             let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            if (document.getElementById("progress-bar")) {
+            if (height > 0) {
                 document.getElementById("progress-bar").style.width = (winScroll / height) * 100 + "%";
             }
+            reveal();
+        });
+
+        // Initialize State On Document Ready Node Event
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') toggleTheme();
+            reveal();
+        });
+
+        // Escape Key Modal Interceptor Switch
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeServiceDetail();
         });
     </script>
 </body>
