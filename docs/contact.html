@@ -207,12 +207,10 @@
       </div>
 
       <div class="flex items-center space-x-6">
-        <button onclick="toggleTheme()" class="p-2 dark:text-electric-blue text-navy-obsidian" id="theme-btn">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round">
-            <path d="M12 2V12M18.36 5.64A8 8 0 1 1 5.64 18.36" />
-          </svg>
-        </button>
+        <button onclick="toggleTheme()" class="p-2 dark:text-electric-blue text-navy-obsidian transition-transform hover:scale-105" id="theme-btn" title="Toggle Environment Theme">
+  <svg id="theme-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    </svg>
+</button>
         <a href="contact.html"
           class="hidden md:block bg-electric-blue text-white px-6 py-3 rounded-sm font-bold text-[10px] tracking-widest uppercase btn-glow">Request a Quote</a>
         <button onclick="toggleMobileMenu()" class="lg:hidden">
@@ -388,27 +386,39 @@
 </footer>
 
   <script>
-    // System Theme Management
-    if (localStorage.getItem('theme') === 'light') {
-      document.body.classList.replace('dark', 'light');
-      document.body.classList.replace('bg-[#0A0E1A]', 'bg-white');
-      document.body.classList.replace('text-white', 'text-navy-obsidian');
-    }
+   // Environmental Interface Dark/Light Workspace Toggle Logic
+        const sunIcon = `<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>`;
+const moonIcon = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>`;
 
-    function toggleTheme() {
-      const body = document.body;
-      if (body.classList.contains('dark')) {
+// 1. Immediate Page Load Initialization (Prevents theme flashing)
+if (localStorage.getItem('theme') === 'light') {
+    document.body.classList.replace('dark', 'light');
+    document.body.classList.replace('bg-navy-obsidian', 'bg-white');
+    document.body.classList.replace('text-white', 'text-navy-obsidian');
+    // On light mode, we display the Moon icon so clicking it switches to dark mode
+    document.getElementById('theme-icon').innerHTML = moonIcon;
+} else {
+    // On dark mode, we display the Sun icon
+    document.getElementById('theme-icon').innerHTML = sunIcon;
+}
+
+// 2. Your Prefered Toggle Function
+function toggleTheme() {
+    const body = document.body;
+    if (body.classList.contains('dark')) {
         body.classList.replace('dark', 'light');
-        body.classList.replace('bg-[#0A0E1A]', 'bg-white');
+        body.classList.replace('bg-navy-obsidian', 'bg-white');
         body.classList.replace('text-white', 'text-navy-obsidian');
         localStorage.setItem('theme', 'light');
-      } else {
+        document.getElementById('theme-icon').innerHTML = moonIcon; // Swaps to moon icon
+    } else {
         body.classList.replace('light', 'dark');
-        body.classList.replace('bg-white', 'bg-[#0A0E1A]');
+        body.classList.replace('bg-white', 'bg-navy-obsidian');
         body.classList.replace('text-navy-obsidian', 'text-white');
         localStorage.setItem('theme', 'dark');
-      }
+        document.getElementById('theme-icon').innerHTML = sunIcon;  // Swaps to sun icon
     }
+}
 
     function toggleMobileMenu() {
       const body = document.body;
