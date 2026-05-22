@@ -149,7 +149,8 @@
 
             <div class="flex items-center space-x-6">
                 <button onclick="toggleTheme()" class="p-2 dark:text-electric-blue text-navy-obsidian transition-transform hover:scale-105" id="theme-btn" title="Toggle Environment Theme">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2V12M18.36 5.64A8 8 0 1 1 5.64 18.36"/></svg>
+                    <svg id="theme-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-all duration-300">
+                    </svg>
                 </button>
                 <a href="contact.html" class="hidden md:block bg-electric-blue text-white px-6 py-3 rounded-sm font-bold text-[10px] tracking-widest uppercase btn-glow transition-all">Request a Quote</a>
                 <button onclick="toggleMobileMenu()" class="lg:hidden focus:outline-none" aria-label="Toggle Menu">
@@ -553,20 +554,46 @@
 
     <script>
         // Environmental Interface Dark/Light Workspace Toggle Logic
-        function toggleTheme() {
-            const body = document.body;
-            if (body.classList.contains('dark')) {
-                body.classList.replace('dark', 'light');
-                body.classList.replace('bg-navy-obsidian', 'bg-white');
-                body.classList.replace('text-white', 'text-navy-obsidian');
-                localStorage.setItem('theme', 'light');
-            } else {
-                body.classList.replace('light', 'dark');
-                body.classList.replace('bg-white', 'bg-navy-obsidian');
-                body.classList.replace('text-navy-obsidian', 'text-white');
-                localStorage.setItem('theme', 'dark');
-            }
-        }
+        // Paths for the icons
+const sunIcon = `<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>`;
+const moonIcon = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>`;
+
+function updateToggleIcon(isLight) {
+  const iconSvg = document.getElementById('theme-icon');
+  if (iconSvg) {
+    // If it's light mode, show the moon to toggle to dark. If dark mode, show the sun.
+    iconSvg.innerHTML = isLight ? moonIcon : sunIcon;
+  }
+}
+
+// System Theme Initialization Management
+const currentSavedTheme = localStorage.getItem('theme');
+if (currentSavedTheme === 'light') {
+  document.body.classList.replace('dark', 'light');
+  document.body.classList.replace('bg-[#0A0E1A]', 'bg-white');
+  document.body.classList.replace('text-white', 'text-navy-obsidian');
+  updateToggleIcon(true);
+} else {
+  updateToggleIcon(false);
+}
+
+// Core Toggle Function
+function toggleTheme() {
+  const body = document.body;
+  if (body.classList.contains('dark')) {
+    body.classList.replace('dark', 'light');
+    body.classList.replace('bg-[#0A0E1A]', 'bg-white');
+    body.classList.replace('text-white', 'text-navy-obsidian');
+    localStorage.setItem('theme', 'light');
+    updateToggleIcon(true);
+  } else {
+    body.classList.replace('light', 'dark');
+    body.classList.replace('bg-white', 'bg-[#0A0E1A]');
+    body.classList.replace('text-navy-obsidian', 'text-white');
+    localStorage.setItem('theme', 'dark');
+    updateToggleIcon(false);
+  }
+}
 
         // Responsive Overlay Layout Drawer Mechanics
         function toggleMobileMenu() {
